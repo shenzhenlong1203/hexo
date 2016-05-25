@@ -231,7 +231,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/个人日记/">个人日记</a>
+    <a class="article-category-link" href="/categories/Note/">Note</a>
   </div>
 
   </div>
@@ -274,6 +274,8 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 		<!-- JiaThis Button END -->
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
+
     </footer>
 
 	
@@ -288,7 +290,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/个人日记/">个人日记</a>
+    <a class="article-category-link" href="/categories/Note/">Note</a>
   </div>
 
   </div>
@@ -333,6 +335,8 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 		<!-- JiaThis Button END -->
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
+
     </footer>
 
 	
@@ -366,7 +370,8 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。<br>crontab简介<br>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos(χρόνος)，原意是时间。　　通常，crontab储存的指令被守护进程激活， crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。<br>crontab用法<br>crontab的格式如下面：<br>f1 f2 f3 f4 f5 program<br>其中 f1 是表示分钟，f2 表示小时，f3 表示一个月份中的第几日，f4 表示月份，f5 表示一个星期中的第几天。program 表示要执行程式的路径。<br>当 f1 为 <em> 时表示每分钟都要执行 program，f2 为 </em> 时表示每小时都要执行程式，其余类推<br>当 f1 为 a-b 时表示从第 a 分钟到第 b 分钟这段时间内要执行，f2 为 a-b 时表示从第 a 到第 b 小时都要执行，其余类推<br>当 f1 为 <em>/n 时表示每 n 分钟个时间间隔执行一次，f2 为 </em>/n 表示每 n 小时个时间间隔执行一次，其余类推<br>当 f1 为 a, b, c,… 时表示第 a, b, c,… 分钟要执行，f2 为 a, b, c,… 时表示第 a, b, c…个小时要执行，其余类推<br>管理员登录SSH,输入命令crontab -e编辑crontab文件，根据上面的格式输入并保存。<br>crontab例子<br>每月每天每小时的第 0 分钟执行一次 /bin/ls :<br>0 <em> </em> <em> </em> /bin/ls<br>在 12 月内, 每天的早上 6 点到 12 点中，每隔 20 分钟执行一次 /usr/bin/backup :<br><em>/20 6-12 </em> 12 <em> /usr/bin/backup<br>周一到周五每天下午 5:00 寄一封信给 alex@domain.name :<br>0 17 </em> <em> 1-5 mail -s “hi” alex@domain.name &lt; /tmp/maildata<br>每月每天的午夜 0 点 20 分, 2 点 20 分, 4 点 20 分….执行 echo “haha”<br>20 0-23/2 </em> <em> </em> echo “haha”<br>晚上11点到早上8点之间每两个小时，早上8点<br>0 23-7/2，8 <em> </em> <em> date<br>在hp unix,中，每20分钟执行一次，表示为：0,20,40 </em> <em> </em> <em> 而不能采用</em>/n方式，否则出现语法错误<br>crontab用法其实很容易掌握，懂得使用crontab，对网站和服务器维护起到很大的帮助，比如定时备份，定时优化服务器等。<br>转载来源:<a href="https://www.centos.bz/2011/03/auto-run-task-crontab/" target="_blank">https://www.centos.bz/2011/03/auto-run-task-crontab/</a></p>
+        <p>每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。<br>crontab简介<br>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos(χρόνος)，原意是时间。　　通常，crontab储存的指令被守护进程激活， crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。<br>crontab用法<br>crontab的格式如下面：<br>f1 f2 f3 f4 f5 program<br>其中 f1 是表示分钟，f2 表示小时，f3 表示一个月份中的第几日，f4 表示月份，f5 表示一个星期中的第几天。program 表示要执行程式的路径。<br>当 f1 为 <em> 时表示每分钟都要执行 program，f2 为 </em> 时表示每小时都要执行程式，其余类推<br>当 f1 为 a-b 时表示从第 a 分钟到第 b 分钟这段时间内要执行，f2 为 a-b 时表示从第 a 到第 b 小时都要执行，其余类推<br>当 f1 为 <em>/n 时表示每 n 分钟个时间间隔执行一次，f2 为 </em>/n 表示每 n 小时个时间间隔执行一次，其余类推<br>当 f1 为 a, b, c,… 时表示第 a, b, c,… 分钟要执行，f2 为 a, b, c,… 时表示第 a, b, c…个小时要执行，其余类推<br>管理员登录SSH,输入命令crontab -e编辑crontab文件，根据上面的格式输入并保存。<br>crontab例子<br>每月每天每小时的第 0 分钟执行一次 /bin/ls :<br>    0 <em> </em> <em> </em> /bin/ls<br>在 12 月内, 每天的早上 6 点到 12 点中，每隔 20 分钟执行一次 /usr/bin/backup :<br>    <em>/20 6-12 </em> 12 <em> /usr/bin/backup<br>周一到周五每天下午 5:00 寄一封信给 alex@domain.name :<br>    0 17 </em> <em> 1-5 mail -s “hi” alex@domain.name &lt; /tmp/maildata<br>每月每天的午夜 0 点 20 分, 2 点 20 分, 4 点 20 分….执行 echo “haha”<br>    20 0-23/2 </em> <em> </em> echo “haha”<br>晚上11点到早上8点之间每两个小时，早上8点<br>    0 23-7/2，8 <em> </em> <em> date<br>在hp unix,中，每20分钟执行一次，表示为：0,20,40 </em> <em> </em> <em> 而不能采用</em>/n方式，否则出现语法错误<br>crontab用法其实很容易掌握，懂得使用crontab，对网站和服务器维护起到很大的帮助，比如定时备份，定时优化服务器等。</p>
+<p>转载来源:<a href="https://www.centos.bz/2011/03/auto-run-task-crontab/" target="_blank">https://www.centos.bz/2011/03/auto-run-task-crontab/</a></p>
 
       
     </div>
@@ -426,10 +431,13 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
     <div class="article-entry" itemprop="articleBody">
       
         <p>PHP中的魔术方法总结 :<strong>construct, </strong>destruct , <strong>call, </strong>callStatic,<strong>get, </strong>set, <strong>isset, </strong>unset , <strong>sleep, </strong>wakeup, <strong>toString, </strong>set_state, <strong>clone and </strong>autoload</p>
-<p>1、<strong>get、</strong>set<br>这两个方法是为在类和他们的父类中没有声明的属性而设计的<br><strong>get( $property ) 当调用一个未定义的属性时访问此方法
+<p>1、<strong>get、</strong>set</p>
+<p>这两个方法是为在类和他们的父类中没有声明的属性而设计的<br><strong>get( $property ) 当调用一个未定义的属性时访问此方法
 </strong>set( $property, $value ) 给一个未定义的属性赋值时调用<br>这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
-<p>2、<strong>isset、</strong>unset<br><strong>isset( $property ) 当在一个未定义的属性上调用isset()函数时调用此方法
-</strong>unset( $property ) 当在一个未定义的属性上调用unset()函数时调用此方法<br>与<strong>get方法和</strong>set方法相同，这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）<br>3、<strong>call
+<p>2、<strong>isset、</strong>unset</p>
+<p><strong>isset( $property ) 当在一个未定义的属性上调用isset()函数时调用此方法
+</strong>unset( $property ) 当在一个未定义的属性上调用unset()函数时调用此方法<br>与<strong>get方法和</strong>set方法相同，这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
+<p>3、<strong>call
 </strong>call( $method, $arg_array ) 当调用一个未定义的方法是调用此访求<br>这里的未定义的方法包括没有权限访问的方法</p>
 <p>4、<strong>autoload
 </strong>autoload 函数，它会在试图使用尚未被定义的类时自动调用。通过调用此函数，脚本引擎在 PHP 出错失败前有了最后一个机会加载所需的类。<br>注意: 在 __autoload 函数中抛出的异常不能被 catch 语句块捕获并导致致命错误。</p>
@@ -483,7 +491,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
   </div>
 
   </div>
@@ -502,7 +510,11 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，<br><code>UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT Fid from house WHERE Fuser_id = 79056 AND Fdistrict1 = &#39;&#39; AND Fis_process = 0);</code><br>但是在具体操作的过程中，问题出现了，问题是You can’t specify target table ‘A’ for update in FROM clause,问题出在哪了，一查资料原因是在更新这个表和数据时又查询了它，而查询的数据又做了更新的条件。<br>解决方案呢就是先将查出的表作为一个第三方表，然后查询第三方表实现隔离操作。<br><code>UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT temp.Fid FROM (SELECT Fid from house WHERE Fuser_id = 79056 AND Fdistrict1 = &#39;&#39; AND Fis_process = 0) temp );</code><br>当然这种做法是最佳的选择，还有一个笨方法就是建立一个temp临时表，插入临时表，然后查询临时表，当然该方法的优点是在遇到数据量大的情况下，可以避免数据库内存不够用而导致的宕机。</p>
+        <p>今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，</p>
+<pre><code>UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT Fid from house WHERE Fuser_id = 79056 AND Fdistrict1 = &apos;&apos; AND Fis_process = 0);
+</code></pre><p>但是在具体操作的过程中，问题出现了，问题是You can’t specify target table ‘A’ for update in FROM clause,问题出在哪了，一查资料原因是在更新这个表和数据时又查询了它，而查询的数据又做了更新的条件。<br>解决方案呢就是先将查出的表作为一个第三方表，然后查询第三方表实现隔离操作。</p>
+<pre><code>UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT temp.Fid FROM (SELECT Fid from house WHERE Fuser_id = 79056 AND Fdistrict1 = &apos;&apos; AND Fis_process = 0) temp );
+</code></pre><p>当然这种做法是最佳的选择，还有一个笨方法就是建立一个temp临时表，插入临时表，然后查询临时表，当然该方法的优点是在遇到数据量大的情况下，可以避免数据库内存不够用而导致的宕机。</p>
 
       
     </div>
@@ -542,7 +554,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mysql/">Mysql</a>►<a class="article-category-link" href="/categories/Mysql/PHP/">PHP</a>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
   </div>
 
   </div>
@@ -562,7 +574,14 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
     <div class="article-entry" itemprop="articleBody">
       
         <p>新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。</p>
-<p>1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。<br>2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。<br>3. limit 分段处理，每次取2000条，处理完之后再取数据处理。<br>4. mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。<br>5. 优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。<br>6.利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></p>
+<ol>
+<li>尽量不要用inner join，内连接查询速度慢，建议为left jion。</li>
+<li>建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。</li>
+<li>limit 分段处理，每次取2000条，处理完之后再取数据处理。</li>
+<li>mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。</li>
+<li>优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。</li>
+<li>利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></li>
+</ol>
 <p>其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现在改数据库，花费的代价很大。</p>
 
       
@@ -622,29 +641,18 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。
-1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。
-2、 数据类型--Memcache在添加数据时就要指定数据的字节长度，例如：
-`
-  set key3 0 0 8
-  lxsymcto
-  STORED
-`
-而redis不需要，如：
-`
-  redis 127.0.0.1:6379&gt;set key2 &quot;lxsymblog&quot;
-  OK
-  redis 127.0.0.1:6379&gt;get key2
- &quot;lxsymblog&quot;
- `
-3、虚拟内存--Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。
-4、过期策略--memcache在set时就指定，例如set key1 0 0 8,即永不过期。
-   Redis可以通过例如expire 设定，例如expire name 10
-5、分布式--设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。
-6、存储数据安全--memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。
-7、灾难恢复--memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。
-以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。
-</code></pre>
+        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：</p>
+<pre><code>set key3 0 0 8
+lxsymcto
+STORED
+</code></pre><p>而redis不需要，如：</p>
+<pre><code>redis 127.0.0.1:6379&gt;set key2 &quot;lxsymblog&quot;
+OK
+
+redis 127.0.0.1:6379&gt;get key2
+&quot;lxsymblog&quot;
+</code></pre><p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。<br>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
+
       
     </div>
     <footer class="article-footer">
@@ -683,7 +691,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mongodb/">Mongodb</a>►<a class="article-category-link" href="/categories/Mongodb/NodeJs/">NodeJs</a>
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
   </div>
 
   </div>
@@ -702,73 +710,8 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br><code>&gt; use my_mongodb
-switched to db my_mongodb
-&gt; db.user.find();
-{ &quot;_id&quot; : ObjectId(&quot;4f81a4a1779282ca68fd8a5a&quot;), &quot;uid&quot; : 2, &quot;username&quot; : &quot;Jerry&quot;, &quot;age&quot; : 100 }
-{ &quot;_id&quot; : ObjectId(&quot;4f844d1847d25a9ce5f120c4&quot;), &quot;uid&quot; : 1, &quot;username&quot; : &quot;Tom&quot;, &quot;age&quot; : 25 }
-&gt;</code><br>1 常用导出方法<br><code>[root@localhost bin]# ./mongoexport -d my_mongodb -c user -o user.dat
-connected to: 127.0.0.1
-exported 2 records
-[root@localhost bin]# cat user.dat
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;4f81a4a1779282ca68fd8a5a&quot; }, &quot;uid&quot; : 2, &quot;username&quot; : &quot;Jerry&quot;, &quot;age&quot; : 100 }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;4f844d1847d25a9ce5f120c4&quot; }, &quot;uid&quot; : 1, &quot;username&quot; : &quot;Tom&quot;, &quot;age&quot; : 25 }
-[root@localhost bin]#</code><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br><code>[root@localhost bin]# ./mongoexport -d my_mongodb -c user --csv -f uid,username,age -o
-user_csv.dat
-connected to: 127.0.0.1
-exported 2 records
-[root@localhost bin]# cat user_csv.dat
-uid,username,age
-2,&quot;Jerry&quot;,100
-1,&quot;Tom&quot;,25
-[root@localhost bin]#</code><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br><code>&gt; db.user.drop();
-true
-&gt; show collections;
-system.indexes
-&gt;</code><br>然后导入数据<br><code>[root@localhost bin]# ./mongoimport -d my_mongodb -c user user.dat
-connected to: 127.0.0.1
-imported 2 objects
-[root@localhost bin]#</code><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br><code>&gt; db.user.drop();
-true
-&gt; show collections;
-system.indexes
-&gt;</code><br>然后导入数据<br><code>[root@localhost bin]# ./mongoimport -d my_mongodb -c user --type csv --headerline --file
-user_csv.dat
-connected to: 127.0.0.1
-imported 3 objects
-[root@localhost bin]#</code><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br><code>[root@localhost bin]# ./mongodump -d my_mongodb
-connected to: 127.0.0.1
-DATABASE: my_mongodb to dump/my_mongodb
-my_mongodb.system.indexes to dump/my_mongodb/system.indexes.bson
-1 objects
-my_mongodb.user to dump/my_mongodb/user.bson
-2 objects
-[root@localhost bin]# ll</code><br>总计 67648<br>-rwxr-xr-x 1 root root 7508756 2011-04-06 bsondump<br>drwxr-xr-x 3 root root 4096 04-10 23:54 dump<br>-rwxr-xr-x 1 root root 2978016 2011-04-06 mongo<br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br><code>[root@localhost bin]# ./mongodump -d my_mongodb -o my_mongodb_dump
-connected to: 127.0.0.1
-DATABASE: my_mongodb to my_mongodb_dump/my_mongodb
-my_mongodb.system.indexes to
-my_mongodb_dump/my_mongodb/system.indexes.bson
-1 objects
-my_mongodb.user to my_mongodb_dump/my_mongodb/user.bson
-2 objects
-[root@localhost bin]#</code><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br><code>&gt; use my_mongodb
-switched to db my_mongodb
-&gt; db.dropDatabase()
-{ &quot;dropped&quot; : &quot;my_mongodb&quot;, &quot;ok&quot; : 1 }
-&gt; show dbs
-admin (empty)
-local (empty)
-test (empty)
-&gt;</code><br>接下来我们进行数据库恢复<br><code>[root@localhost bin]# ./mongorestore -d my_mongodb my_mongodb_dump/*
-connected to: 127.0.0.1
-Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/user.bson
-Wed Apr 11 00:03:03 going into namespace [my_mongodb.user]
-Wed Apr 11 00:03:03 2 objects found
-Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson
-Wed Apr 11 00:03:03 going into namespace [my_mongodb.system.indexes]
-Wed Apr 11 00:03:03 { name: &quot;_id_&quot;, ns: &quot;my_mongodb.user&quot;, key: { _id: 1 }, v: 0 }
-Wed Apr 11 00:03:03 1 objects found
-[root@localhost bin]#</code><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
+        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br><br>    &gt; use my_mongodb<br>    switched to db my_mongodb<br>    &gt; db.user.find();<br>    { “_id” : ObjectId(“4f81a4a1779282ca68fd8a5a”), “uid” : 2, “username” : “Jerry”, “age” : 100 }<br>    { “_id” : ObjectId(“4f844d1847d25a9ce5f120c4”), “uid” : 1, “username” : “Tom”, “age” : 25 }<br>    &gt;<br>1 常用导出方法<br><br>    [root@localhost bin]# ./mongoexport -d my_mongodb -c user -o user.dat<br>    connected to: 127.0.0.1<br>    exported 2 records<br>    [root@localhost bin]# cat user.dat<br>    { “_id” : { “$oid” : “4f81a4a1779282ca68fd8a5a” }, “uid” : 2, “username” : “Jerry”, “age” : 100 }<br>    { “_id” : { “$oid” : “4f844d1847d25a9ce5f120c4” }, “uid” : 1, “username” : “Tom”, “age” : 25 }<br>    [root@localhost bin]#<br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br><br>    [root@localhost bin]# ./mongoexport -d my_mongodb -c user –csv -f uid,username,age -o<br>    user_csv.dat<br>    connected to: 127.0.0.1<br>    exported 2 records<br>    [root@localhost bin]# cat user_csv.dat<br>    uid,username,age<br>    2,”Jerry”,100<br>    1,”Tom”,25<br>    [root@localhost bin]#<br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br><br>    &gt; db.user.drop();<br>    true<br>    &gt; show collections;<br>    system.indexes<br>    &gt;<br><br>然后导入数据<br><br>    [root@localhost bin]# ./mongoimport -d my_mongodb -c user user.dat<br>    connected to: 127.0.0.1<br>    imported 2 objects<br>    [root@localhost bin]#<br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br><br>    &gt; db.user.drop();<br>    true<br>    &gt; show collections;<br>    system.indexes<br>    &gt;<br><br>然后导入数据<br><br>    [root@localhost bin]# ./mongoimport -d my_mongodb -c user –type csv –headerline –file<br>    user_csv.dat<br>    connected to: 127.0.0.1<br>    imported 3 objects<br>    [root@localhost bin]#<br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br><br>    [root@localhost bin]# ./mongodump -d my_mongodb<br>    connected to: 127.0.0.1<br>    DATABASE: my_mongodb to dump/my_mongodb<br>    my_mongodb.system.indexes to dump/my_mongodb/system.indexes.bson<br>    1 objects<br>    my_mongodb.user to dump/my_mongodb/user.bson<br>    2 objects<br>    [root@localhost bin]# ll<br><br>总计 67648<br>    -rwxr-xr-x 1 root root 7508756 2011-04-06 bsondump<br>    drwxr-xr-x 3 root root 4096 04-10 23:54 dump<br>    -rwxr-xr-x 1 root root 2978016 2011-04-06 mongo<br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br><br>    [root@localhost bin]# ./mongodump -d my_mongodb -o my_mongodb_dump<br>    connected to: 127.0.0.1<br>    DATABASE: my_mongodb to my_mongodb_dump/my_mongodb<br>    my_mongodb.system.indexes to<br>    my_mongodb_dump/my_mongodb/system.indexes.bson<br>    1 objects<br>    my_mongodb.user to my_mongodb_dump/my_mongodb/user.bson<br>    2 objects<br>    [root@localhost bin]#<br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br><br>    &gt; use my_mongodb<br>    switched to db my_mongodb<br>    &gt; db.dropDatabase()<br>    { “dropped” : “my_mongodb”, “ok” : 1 }<br>    &gt; show dbs<br>    admin (empty)<br>    local (empty)<br>    test (empty)<br>    &gt;<br><br>接下来我们进行数据库恢复<br><br>    [root@localhost bin]# ./mongorestore -d my_mongodb my_mongodb_dump/*<br>    connected to: 127.0.0.1<br>    Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/user.bson<br>    Wed Apr 11 00:03:03 going into namespace [my_mongodb.user]<br>    Wed Apr 11 00:03:03 2 objects found<br>    Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson<br>    Wed Apr 11 00:03:03 going into namespace [my_mongodb.system.indexes]<br>    Wed Apr 11 00:03:03 { name: “<em>id</em>“, ns: “my_mongodb.user”, key: { _id: 1 }, v: 0 }<br>    Wed Apr 11 00:03:03 1 objects found<br>    [root@localhost bin]#<br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
+
       
     </div>
     <footer class="article-footer">
@@ -807,7 +750,7 @@ Wed Apr 11 00:03:03 1 objects found
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/个人日记/">个人日记</a>
+    <a class="article-category-link" href="/categories/Note/">Note</a>
   </div>
 
   </div>
@@ -877,7 +820,7 @@ Wed Apr 11 00:03:03 1 objects found
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -895,7 +838,7 @@ Wed Apr 11 00:03:03 1 objects found
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
