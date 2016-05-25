@@ -4,7 +4,7 @@
 
 # Site
 title: Dragon_SZ
-subtitle:  http://longlongblog.tk
+subtitle:  http://longlongblog.cn
 description: 沈振龙的个人博客
 author: Dragon_SZ
 language: zh-CN
@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://longlongblog.tk
+url: http://longlongblog.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -64,6 +64,7 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 theme: landscape
+duoshuo_shortname: longlongblog
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

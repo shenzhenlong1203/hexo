@@ -1,0 +1,16 @@
+<% if (theme.duoshuo.enable && page.comments){ %>
+<section class="comment">
+<div class="ds-thread" data-thread-key="4" data-title="" data-url="http://longlongblog.cn/2016/05/25/4/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"longlongblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+<% } %>

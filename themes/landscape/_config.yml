@@ -1,7 +1,6 @@
 # Header
 menu:
   Home: /
-  Archives: /archives
 rss: /atom.xml
 
 # Content
@@ -12,9 +11,8 @@ fancybox: true
 sidebar: right
 widgets:
 - category
-- tag
-- tagcloud
 - archive
+- tagcloud
 - recent_posts
 
 # Miscellaneous
