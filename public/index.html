@@ -63,143 +63,65 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-56" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/25/4/" class="article-date">
-  <time datetime="2016-05-25T03:13:08.295Z" itemprop="datePublished">2016-05-25</time>
+    <a href="/2016/05/30/56/" class="article-date">
+  <time datetime="2016-05-30T03:12:40.000Z" itemprop="datePublished">2016-05-30</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Other/">Other</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/30/56/">监控系统工具对比</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="PHP类的自动加载"><a href="#PHP类的自动加载" class="headerlink" title="PHP类的自动加载"></a>PHP类的自动加载</h2><h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
-<li>require()和include()语句是语言结构，不是真正的函数。</li>
-<li>require()和include()语句也可以不加圆括号而直接加参数。</li>
-<li>require_once() 判断并加载文件。</li>
-<li><p>include_once() 判断并加载文件。 </p>
-<pre><code>相同点：在脚本执行期间包括运行指定文件
-
-不同点： 1.incluce在用到时加载，require在一开始就加载
-           2.include_once()和require_once()文件中的代码已经被包括了，则不会再次包括，
-        以避免函数重定义以及变量重新赋值等问题。
-        3.include引入文件的时候，如果碰到错误，会给出提示，并继续运行下边的代码。
-        4.require引入文件的时候，如果碰到错误，会给出提示，并停止运行下边的代码。
-问题：   1.多个文件中，类的命名重复问题。
-        2. 一个文件中加载多个类文件。
-</code></pre></li>
-</ul>
-<h3 id="类的懒加载"><a href="#类的懒加载" class="headerlink" title="类的懒加载"></a>类的懒加载</h3><ul>
-<li>__autoload : 根据类名，找出类文件，然后require _once()</li>
-<li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
-</li>
-<li><p>__autoload : 定义路径法（path）和直接映射法（array）</p>
-</li>
-<li><p>spl _autoload : autoload调用堆栈，注册多个自定义的autoload函数</p>
-<pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
-</code></pre></li>
-</ul>
-<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
-<ol>
-<li><p>include 配置</p>
-<pre><code>&apos;include&apos; =&gt; array( &apos;application/catalog/controllers&apos;,
-&apos;application/catalog/models&apos;, ),
-$include =&gt; array(&apos;application/controllers&apos;, &apos;application/models&apos;, &apos;application/library&apos;); 
-set_include_path(get_include_path() . PATH_SEPARATOR .implode(PATH_SEPARATOR, $config[&apos;include&apos;]));
-</code></pre></li>
-<li><p>autoload 方式</p>
-<pre><code>public static function autoload($class) 
-    { 
-        $path = &apos;&apos;; 
-        $path = str_replace(&apos;_&apos;, &apos;/&apos;, $class) . &apos;.php&apos;; 
-        include_once($path); 
-    } 
-} 
-/** 
-* sql自动加载 
-*/ 
-spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;)); 
-</code></pre></li>
-<li><p>路由实例化并唤醒类方法</p>
-</li>
-<li><pre><code>public function route() 
-{ 
-    if (class_exists($this-&gt;getController())) { 
-    $rc = new ReflectionClass($this-&gt;getController()); 
-    if ($rc-&gt;hasMethod($this-&gt;getAction())) { 
-        $controller = $rc-&gt;newInstance(); 
-        $method = $rc-&gt;getMethod($this-&gt;getAction()); 
-        $method-&gt;invoke($controller); 
-    } else 
-        throw new Exception(&apos;no action&apos;); 
-    } else 
-        throw new Exception(&apos;no controller&apos;); 
-} 
-</code></pre></li>
-</ol>
-<h3 id="Composer加载原理"><a href="#Composer加载原理" class="headerlink" title="Composer加载原理"></a>Composer加载原理</h3><ul>
-<li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
-</li>
-<li><p>composer（包管理器）的应用</p>
-</li>
-</ul>
-<p><img src="http://123.56.234.128/szl/composer.png" alt="http://123.56.234.128/szl/composer.png"></p>
-<ol>
-<li><p>psr-0</p>
-<pre><code>{
-      &quot;autoload&quot;: {
-        &quot;psr-0&quot;: {
-      &quot;Foo\\&quot;: &quot;src/&quot;,
-        }
-      }
-}
-路径生成： &quot;Foo\\Bar\\Baz.php&quot; 
-</code></pre></li>
-<li><p>psr-4</p>
-<pre><code>{
-      &quot;autoload&quot;: {
-        &quot;psr-4&quot;: {
-      &quot;Foo\\&quot;: &quot;src/&quot;,
-        }
-      }
-}
-路径生成： &quot;src/Foo/Bar/Baz.php&quot;
-</code></pre></li>
-<li><p>class-map</p>
-<pre><code>{
-    &quot;autoload&quot;: {
-    &quot;classmap&quot;: [&quot;src/&quot;, &quot;lib/&quot;, &quot;Something.php&quot;]
-    }
-}
-路径生成： &quot;src/Something.php&quot;
-</code></pre></li>
-<li><p>files</p>
-<pre><code>{
-  &quot;autoload&quot;: {
-    &quot;files&quot;: [&quot;src/MyLibrary/functions.php&quot;]
-  }
-}
-生成一个array
-</code></pre></li>
-</ol>
-<ul>
-<li>加载原理</li>
-</ul>
-<p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
-<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
-<li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
-<li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
-<li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
+        <h2 id="flume与logstash的测试机性能对比"><a href="#flume与logstash的测试机性能对比" class="headerlink" title="flume与logstash的测试机性能对比"></a>flume与logstash的测试机性能对比</h2><h2 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h2><h3 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h3><p>端口监控时 java cpu 负载 在10%～13%左右</p>
+<p><img src="http://123.56.234.128/szl/flume1.png" alt="&quot;http://123.56.234.128/szl/flume1.png&quot;"></p>
+<h3 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h3><p>端口监控时 java cpu 负载 在8%～10%左右</p>
+<p><img src="http://123.56.234.128/szl/logstash1.png" alt="&quot;http://123.56.234.128/szl/logstash1.png&quot;"></p>
+<pre><code>相比较而言，在cpu负载方面，logstash更佳。
+</code></pre><h2 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h2><h3 id="flume-1"><a href="#flume-1" class="headerlink" title="flume"></a>flume</h3><p>请求shenzhenlong.newvip.youku.com页面，nginx生成的access.log 的log日志，请求10000次，耗费时间为1768.1288728714s，平均每请求一次耗时 0.1768s</p>
+<p><img src="http://123.56.234.128/szl/flume10000.png" alt="&quot;http://123.56.234.128/szl/flume10000.png&quot;"></p>
+<h3 id="logstash-1"><a href="#logstash-1" class="headerlink" title="logstash"></a>logstash</h3><p>请求shenzhenlong.newvip.youku.com页面，nginx生成的access.log 的log日志，请求10000次，耗费时间为1637.932365179s，平均每请求一次耗时 0.1637s</p>
+<p><img src="http://123.56.234.128/szl/logstash10000.png" alt="&quot;http://123.56.234.128/szl/flume10000.png&quot;"></p>
+<pre><code>相比较而言，在请求延时方面，logstash更佳。
+</code></pre><h2 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h2><h3 id="flume-2"><a href="#flume-2" class="headerlink" title="flume"></a>flume</h3><p>利用rpc方式 直接写入flume ，请求10000次，发送时间为8.922s</p>
+<p>发送时间：8.922s</p>
+<p><img src="http://123.56.234.128/szl/flume_rpc.png" alt="&quot;http://123.56.234.128/szl/flume_rpc.png&quot;"></p>
+<p>收集时间：55.007 - 45.471 = 9.536s</p>
+<p><img src="http://123.56.234.128/szl/flume_rpc1.png" alt="&quot;http://123.56.234.128/szl/flume_rpc1.png&quot;"></p>
+<pre><code>rpc方式直接写入flume 效率是 9.536 - 8.922 = 0.614s 说明响应时间为 每收集到10000条数据，发送到flume的agent 用时为0.614s
+</code></pre><h3 id="flume-3"><a href="#flume-3" class="headerlink" title="flume"></a>flume</h3><p>利用写log方式 直接写入硬盘，然后flume收集 ，请求10000次，发送时间为1.006s</p>
+<p>发送时间：1.006s</p>
+<p><img src="http://123.56.234.128/szl/flume10001.png" alt="&quot;http://123.56.234.128/szl/flume10001.png&quot;"></p>
+<p>收集时间：57.172 - 53.001 = 4.171s</p>
+<p><img src="http://123.56.234.128/szl/flume10002.png" alt="&quot;http://123.56.234.128/szl/flume10002.png&quot;"></p>
+<pre><code>利用写log方式 然后flume收集  效率是 4.171 - 1.006 = 3.165s 说明响应时间为 每收集到10000条数据，flume的agent 收集到数据 用时为 3.165s
+</code></pre><h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ol>
+<li>两种不同的log收集机制，利用rpc 直接调用写入flume的agent 延时小，效率高，每10000次日志生成，能比直接写入硬盘log 效率快5～6s 时间。</li>
+<li>目前php调用实现rpc的方式需要进一步实现，暂时用java语言测试三，查看效率。</li>
+<li>建议采用rpc方式直接写入agent方式，做demo出来，与现有logstash的收集方式做性能，负载，效率 等对比。</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
       
-        <a href="http://longlongblog.cn/2016/05/25/4/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://longlongblog.cn/2016/05/30/56/#disqus_thread" class="article-comment-link">Comments</a>
 		<!-- JiaThis Button BEGIN -->
 		<div class="jiathis_style">
 			<span class="jiathis_txt">分享到：</span>
@@ -217,6 +139,8 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 		<!-- JiaThis Button END -->
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
     </footer>
 
 	
@@ -743,14 +667,14 @@ redis 127.0.0.1:6379&gt;get key2
   
 </article>
   
-    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/04/3/" class="article-date">
+    <a href="/2015/01/04/4/" class="article-date">
   <time datetime="2015-01-04T14:02:24.000Z" itemprop="datePublished">2015-01-04</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
   </div>
 
   </div>
@@ -761,7 +685,7 @@ redis 127.0.0.1:6379&gt;get key2
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/3/">2014 该有个总结</a>
+      <a class="article-title" href="/2015/01/04/4/">PHP类的自动加载</a>
     </h1>
   
 
@@ -769,18 +693,131 @@ redis 127.0.0.1:6379&gt;get key2
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div style="font-size: 14px;"><span style="padding-left: 30px;">在写这个文章时，我特意看了一下文章《<a href="http://longlongblog.sinaapp.com/?p=411" title="2013 该有个总结" target="_blank" rel="external">2013 ，该有个总结</a>》，自己认真地读完了，内心莫名的一颤，不知为何，就是突如其来的伤感涌上心头，是感叹时间过的飞快，还是叹息这一年自己的所作所为呢，不得而知。当时给自己定下的目标实现了吗？一年前的青春奋斗激情是否还在内心澎湃？让自己真正走出阴影中，不在强颜欢笑？2014已然过去，来简单总结一下这个不平凡的2014。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">学生时代的结束，无疑是最大的亮点。毕竟作为学生也是有15年的时间了，想一想这么多年的学生生涯是怎么过来的呢。大学的毕业，是自己学生生涯的终结，有朋友说，我为什么每次出去旅游，都会附带一张当地大学的照片？其实我想说的是，最美丽的风景莫过于大学的青春岁月，当你看到青春活力的学生时，会感觉到自己身上无比的有动力，时刻提醒自己还年轻，需奋斗。我为什么不考研究生？其实我就是在逃避，不想再去埋头的学习。当然家庭的原因的客观现实存在，促使我下定决心不再深造。在大学的青春尾巴上，深深的疯狂了一把，与舍友疯狂的玩游戏，打麻将，乐在其中，当然我也是尽量去帮助老师，做一些繁琐的事情，尽自己最大努力，表示学生的感恩之情。离别的情景是那样的历历在目，这就是感情的流露，现实的存在。坚持到毕业的最后一天，踏上了远离校园的旅途，校园，学生时代在地平线的一头，渐渐淡去了它的光影。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">感情归宿的寻找，定是不可遗漏的话题。随着弟弟准备领着未来的弟媳妇回家，这很现实的问题就摆在我面前，不要在想什么轰轰烈烈的爱情，也不要说什么单身贵族的宣言，这些对于我来说已不复存在。其实我不善于感情的流露，不会表达内心的真实想法。不是拼命的对一个人好，那个人就会对你好，那样的感情是不平衡的，迟早一天会失去平衡。有朋友说，你的现在是过去的堆积，过去的点点滴滴，确实是能体现一个人的为人与情感，也许这也是太熟悉的人之间的考量。其实我的要求很简单，一个能一起过日子的女人，彼此包容彼此的过去，彼此相信彼此的未来，善良孝顺就足以。我不会刻意知道你的过去，我只要你的将来和我一心一意，相爱到白头就这么简单。2015 就奔着这样的目标前去，不管现在如何，我始终相信我和你会在一个不经意的路口相遇，相知，相爱，白头到永远。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">工作事业的发展，必是今后的重中之重。初入社会的我，没有走到人生的十字路口，没有太多的抉择。选择日立，为了学好一门语言，但是你也会在其他方面失去一些东西，这个就看自己的心态，自己怎样的一个衡量。有得有失这是自然规律的存在，心态的把握才是重点。人生的路还很长，有时不要只顾到眼前的利益，整个年轻时的规划才是重点。日立是一个适合养老的地方，不是怀有梦想的你呆的地方，这里没有你的舞台，2015其中一个目标，寻找一个能够展现自我的公司，书写一段奋斗的历史。生活中的私活，结识的是朋友，尽心尽力去做好每一个活，这是人与人之间最起码的信任。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">多彩生活的计划，才是丰富人生的浓墨一笔。去一些你想去的地方，也许你就会发现未知的自己，也许会给自己的抉择找一些借口，有时就是需要需要一个借口，来说服自己去承认。身体和心灵总要有一个在路上，不要让自己的青春颓废下去。美丽的风景，衬托的是心境，让人内心无比的宽敞，那就是另一个自己。别人的生活，你无法干预；自己的生活，你全权处理。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">2015的来临，也将预示着本命年的到来，为何不在众人的危言中，奋斗一下，努力一把，难道就是相信命运的安排吗？事在人为，所有的偶遇也是人的刻意安排。自己更加现实一些，更加努力一些，相信会更好~</span></div></p>
-<embed src="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/12/愿得一人心（电视剧《最美的时光》主题曲）-李行亮.mp3" hidden="true" autostart="true" loop="true"><br>
+        <h2 id="PHP类的自动加载"><a href="#PHP类的自动加载" class="headerlink" title="PHP类的自动加载"></a>PHP类的自动加载</h2><h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
+<li>require()和include()语句是语言结构，不是真正的函数。</li>
+<li>require()和include()语句也可以不加圆括号而直接加参数。</li>
+<li>require_once() 判断并加载文件。</li>
+<li><p>include_once() 判断并加载文件。 </p>
+<pre><code>相同点：在脚本执行期间包括运行指定文件
+
+不同点： 1.incluce在用到时加载，require在一开始就加载
+           2.include_once()和require_once()文件中的代码已经被包括了，则不会再次包括，
+        以避免函数重定义以及变量重新赋值等问题。
+        3.include引入文件的时候，如果碰到错误，会给出提示，并继续运行下边的代码。
+        4.require引入文件的时候，如果碰到错误，会给出提示，并停止运行下边的代码。
+问题：   1.多个文件中，类的命名重复问题。
+        2. 一个文件中加载多个类文件。
+</code></pre></li>
+</ul>
+<h3 id="类的懒加载"><a href="#类的懒加载" class="headerlink" title="类的懒加载"></a>类的懒加载</h3><ul>
+<li>__autoload : 根据类名，找出类文件，然后require _once()</li>
+<li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
+</li>
+<li><p>__autoload : 定义路径法（path）和直接映射法（array）</p>
+</li>
+<li><p>spl _autoload : autoload调用堆栈，注册多个自定义的autoload函数</p>
+<pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
+</code></pre></li>
+</ul>
+<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
+<ol>
+<li><p>include 配置</p>
+<pre><code>&apos;include&apos; =&gt; array( &apos;application/catalog/controllers&apos;,
+&apos;application/catalog/models&apos;, ),
+$include =&gt; array(&apos;application/controllers&apos;, &apos;application/models&apos;, &apos;application/library&apos;); 
+set_include_path(get_include_path() . PATH_SEPARATOR .implode(PATH_SEPARATOR, $config[&apos;include&apos;]));
+</code></pre></li>
+<li><p>autoload 方式</p>
+<pre><code>public static function autoload($class) 
+    { 
+        $path = &apos;&apos;; 
+        $path = str_replace(&apos;_&apos;, &apos;/&apos;, $class) . &apos;.php&apos;; 
+        include_once($path); 
+    } 
+} 
+/** 
+* sql自动加载 
+*/ 
+spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;)); 
+</code></pre></li>
+<li><p>路由实例化并唤醒类方法</p>
+</li>
+<li><pre><code>public function route() 
+{ 
+    if (class_exists($this-&gt;getController())) { 
+    $rc = new ReflectionClass($this-&gt;getController()); 
+    if ($rc-&gt;hasMethod($this-&gt;getAction())) { 
+        $controller = $rc-&gt;newInstance(); 
+        $method = $rc-&gt;getMethod($this-&gt;getAction()); 
+        $method-&gt;invoke($controller); 
+    } else 
+        throw new Exception(&apos;no action&apos;); 
+    } else 
+        throw new Exception(&apos;no controller&apos;); 
+} 
+</code></pre></li>
+</ol>
+<h3 id="Composer加载原理"><a href="#Composer加载原理" class="headerlink" title="Composer加载原理"></a>Composer加载原理</h3><ul>
+<li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
+</li>
+<li><p>composer（包管理器）的应用</p>
+</li>
+</ul>
+<p><img src="http://123.56.234.128/szl/composer.png" alt="http://123.56.234.128/szl/composer.png"></p>
+<ol>
+<li><p>psr-0</p>
+<pre><code>{
+      &quot;autoload&quot;: {
+        &quot;psr-0&quot;: {
+      &quot;Foo\\&quot;: &quot;src/&quot;,
+        }
+      }
+}
+路径生成： &quot;Foo\\Bar\\Baz.php&quot; 
+</code></pre></li>
+<li><p>psr-4</p>
+<pre><code>{
+      &quot;autoload&quot;: {
+        &quot;psr-4&quot;: {
+      &quot;Foo\\&quot;: &quot;src/&quot;,
+        }
+      }
+}
+路径生成： &quot;src/Foo/Bar/Baz.php&quot;
+</code></pre></li>
+<li><p>class-map</p>
+<pre><code>{
+    &quot;autoload&quot;: {
+    &quot;classmap&quot;: [&quot;src/&quot;, &quot;lib/&quot;, &quot;Something.php&quot;]
+    }
+}
+路径生成： &quot;src/Something.php&quot;
+</code></pre></li>
+<li><p>files</p>
+<pre><code>{
+  &quot;autoload&quot;: {
+    &quot;files&quot;: [&quot;src/MyLibrary/functions.php&quot;]
+  }
+}
+生成一个array
+</code></pre></li>
+</ol>
+<ul>
+<li>加载原理</li>
+</ul>
+<p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
+<li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
+<li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
+<li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
       
-        <a href="http://longlongblog.cn/2015/01/04/3/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://longlongblog.cn/2015/01/04/4/#disqus_thread" class="article-comment-link">Comments</a>
 		<!-- JiaThis Button BEGIN -->
 		<div class="jiathis_style">
 			<span class="jiathis_txt">分享到：</span>
@@ -798,7 +835,7 @@ redis 127.0.0.1:6379&gt;get key2
 		<!-- JiaThis Button END -->
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
 
     </footer>
 
@@ -820,7 +857,7 @@ redis 127.0.0.1:6379&gt;get key2
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -829,7 +866,7 @@ redis 127.0.0.1:6379&gt;get key2
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -850,7 +887,7 @@ redis 127.0.0.1:6379&gt;get key2
       <ul>
         
           <li>
-            <a href="/2016/05/25/4/">(no title)</a>
+            <a href="/2016/05/30/56/">监控系统工具对比</a>
           </li>
         
           <li>
