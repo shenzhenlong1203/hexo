@@ -63,6 +63,82 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-57" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/31/57/" class="article-date">
+  <time datetime="2016-05-31T03:12:40.000Z" itemprop="datePublished">2016-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/31/57/">企业级Redis环境部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>哨兵配置文件参考：</p>
+<p>   哨兵配置文件: etc/redis/sentinel.conf</p>
+  <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sentinel<span class="built_in"> monitor </span>test1 10.10.10.152 6386 1</span><br><span class="line">sentinel down-after-milliseconds test1 5000</span><br><span class="line">sentinel failover-timeout test1 900000</span><br><span class="line">sentinel can-failover test1 yes</span><br><span class="line">sentinel parallel-syncs test1 2</span><br><span class="line"></span><br><span class="line">sentinel config-epoch test1 45</span><br><span class="line">sentinel leader-epoch test1 45</span><br><span class="line">sentinel known-slave test1 10.10.10.155 6387</span><br><span class="line"></span><br><span class="line">port 26379</span><br><span class="line">dir <span class="string">"/usr/local/etc"</span></span><br><span class="line">sentinel current-epoch 45</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备注： </p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">redis</span>哨兵10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span>， 哨兵端口（26379）</span><br><span class="line"><span class="selector-tag">test1</span> 10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.152</span> 6386  为其中一个监控的<span class="selector-tag">redis</span> 主服务端口</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>前提：</p>
+  <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">哨兵：<span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span></span><br><span class="line">   redis端口 <span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span>  <span class="number">26379</span> 实例启动 为哨兵服务</span><br><span class="line">命令： redis-server /usr/local/etc/sentinel.conf --sentinel</span><br><span class="line"></span><br><span class="line">   本机：<span class="number">10.10</span><span class="meta">.10</span><span class="meta">.152</span></span><br><span class="line">   redis端口 <span class="number">10.10</span><span class="meta">.10</span><span class="meta">.152</span>  <span class="number">6386</span> 实例启动 为主master服务，&lt;/br&gt;</span><br><span class="line">命令： sudo redis-server  /etc/redis/redis_master_6386.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   其他机：<span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span></span><br><span class="line">   redis端口 <span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span>  <span class="number">6387</span> 实例启动 为从slave服务</span><br><span class="line">命令： sudo redis-server  /etc/redis/redis_slave_6387.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>操作：</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span>机器上命令：</span><br><span class="line">1. <span class="selector-tag">redis-cli</span> <span class="selector-tag">-h</span>  10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span> <span class="selector-tag">-p</span> 6387 进入<span class="selector-tag">redis</span></span><br><span class="line">2. <span class="selector-tag">slaveof</span> 10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.152</span> 6386  这样本机（10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span>）作为主（10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.152</span> 端口 6386）的从数据库了</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试要点：</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 修改 <span class="number">27</span>行 script_redis_monitor<span class="selector-class">.php</span> 文件 修改哨兵$_sentinels监控的IP和端口，修改为<span class="number">10.10</span>.<span class="number">10.155</span> <span class="number">26379</span>。</span><br><span class="line"><span class="number">2</span>. 修改 <span class="number">141</span>行 script_redis_monitor<span class="selector-class">.php</span> 文件 修改<span class="variable">$address</span>  为自己的邮件地址。</span><br><span class="line"><span class="number">3</span>. 停掉哨兵服务 redis-server /usr/local/etc/sentinel<span class="selector-class">.conf</span> --sentinel 这个进程停掉，运行 php script_redis_monitor<span class="selector-class">.php</span> 看邮件报警。&lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;记得重新启动&lt;/span&gt;。</span><br><span class="line"><span class="number">4</span>. 停掉master服务sudo redis-server  /etc/redis/redis_master_6386<span class="selector-class">.conf</span> 这个进程停掉， &lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;<span class="number">3</span>秒内&lt;/span&gt; 运行 php script_redis_monitor<span class="selector-class">.php</span> 看邮件报警。&lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;记得重新启动&lt;/span&gt;。</span><br><span class="line"><span class="number">5</span>. 停掉master服务sudo redis-server  /etc/redis/redis_master_6386<span class="selector-class">.conf</span> 这个进程停掉， &lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;同时&lt;/span&gt; 停掉slave服务sudo redis-server  /etc/redis/redis_slave_6387<span class="selector-class">.conf</span> 这个进程停掉，运行php script_redis_monitor<span class="selector-class">.php</span> 看邮件报警。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a href="http://longlongblog.cn/2016/05/31/57/#disqus_thread" class="article-comment-link">Comments</a>
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style">
+			<span class="jiathis_txt">分享到：</span>
+			<a class="jiathis_button_qzone">QQ空间</a>
+			<a class="jiathis_button_weixin">微信</a>
+			<a class="jiathis_button_tsina">新浪微博</a>
+			<a class="jiathis_button_tqq">腾讯微博</a>
+			<a href="http://www.jiathis.com/share?uid=2101388" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2101388" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+
+	
+  </div>
+  
+</article>
+  
     <article id="post-56" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/30/56/" class="article-date">
@@ -89,29 +165,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="flume与logstash的测试机性能对比"><a href="#flume与logstash的测试机性能对比" class="headerlink" title="flume与logstash的测试机性能对比"></a>flume与logstash的测试机性能对比</h2><h2 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h2><h3 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h3><p>端口监控时 java cpu 负载 在10%～13%左右</p>
+        <h2 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h2><h3 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h3><p>端口监控时 java cpu 负载 在10%～13%左右</p>
 <p><img src="http://123.56.234.128/szl/flume1.png" alt="&quot;http://123.56.234.128/szl/flume1.png&quot;"></p>
 <h3 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h3><p>端口监控时 java cpu 负载 在8%～10%左右</p>
-<p><img src="http://123.56.234.128/szl/logstash1.png" alt="&quot;http://123.56.234.128/szl/logstash1.png&quot;"></p>
-<pre><code>相比较而言，在cpu负载方面，logstash更佳。
-</code></pre><h2 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h2><h3 id="flume-1"><a href="#flume-1" class="headerlink" title="flume"></a>flume</h3><p>请求shenzhenlong.newvip.youku.com页面，nginx生成的access.log 的log日志，请求10000次，耗费时间为1768.1288728714s，平均每请求一次耗时 0.1768s</p>
+<p><img src="http://123.56.234.128/szl/logstash1.png" alt="&quot;http://123.56.234.128/szl/logstash1.png&quot;"><br>    <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相比较而言，在<span class="meta">cpu</span>负载方面，logstash更佳。</span><br></pre></td></tr></table></figure></p>
+<h2 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h2><h3 id="flume-1"><a href="#flume-1" class="headerlink" title="flume"></a>flume</h3><p>请求shenzhenlong.newvip.youku.com页面，nginx生成的access.log 的log日志，请求10000次，耗费时间为1768.1288728714s，平均每请求一次耗时 0.1768s</p>
 <p><img src="http://123.56.234.128/szl/flume10000.png" alt="&quot;http://123.56.234.128/szl/flume10000.png&quot;"></p>
 <h3 id="logstash-1"><a href="#logstash-1" class="headerlink" title="logstash"></a>logstash</h3><p>请求shenzhenlong.newvip.youku.com页面，nginx生成的access.log 的log日志，请求10000次，耗费时间为1637.932365179s，平均每请求一次耗时 0.1637s</p>
-<p><img src="http://123.56.234.128/szl/logstash10000.png" alt="&quot;http://123.56.234.128/szl/flume10000.png&quot;"></p>
-<pre><code>相比较而言，在请求延时方面，logstash更佳。
-</code></pre><h2 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h2><h3 id="flume-2"><a href="#flume-2" class="headerlink" title="flume"></a>flume</h3><p>利用rpc方式 直接写入flume ，请求10000次，发送时间为8.922s</p>
+<p><img src="http://123.56.234.128/szl/logstash10000.png" alt="&quot;http://123.56.234.128/szl/flume10000.png&quot;"><br>    <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相比较而言，在请求延时方面，logstash更佳。</span><br></pre></td></tr></table></figure></p>
+<h2 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h2><h3 id="flume-2"><a href="#flume-2" class="headerlink" title="flume"></a>flume</h3><p>利用rpc方式 直接写入flume ，请求10000次，发送时间为8.922s</p>
 <p>发送时间：8.922s</p>
 <p><img src="http://123.56.234.128/szl/flume_rpc.png" alt="&quot;http://123.56.234.128/szl/flume_rpc.png&quot;"></p>
 <p>收集时间：55.007 - 45.471 = 9.536s</p>
-<p><img src="http://123.56.234.128/szl/flume_rpc1.png" alt="&quot;http://123.56.234.128/szl/flume_rpc1.png&quot;"></p>
-<pre><code>rpc方式直接写入flume 效率是 9.536 - 8.922 = 0.614s 说明响应时间为 每收集到10000条数据，发送到flume的agent 用时为0.614s
-</code></pre><h3 id="flume-3"><a href="#flume-3" class="headerlink" title="flume"></a>flume</h3><p>利用写log方式 直接写入硬盘，然后flume收集 ，请求10000次，发送时间为1.006s</p>
+<p><img src="http://123.56.234.128/szl/flume_rpc1.png" alt="&quot;http://123.56.234.128/szl/flume_rpc1.png&quot;"><br>    <figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpc方式直接写入flume 效率是 <span class="number">9.536</span> - <span class="number">8.922</span> = <span class="number">0.614</span><span class="keyword">s</span> 说明响应时间为 每收集到<span class="number">10000</span>条数据，发送到flume的agent 用时为<span class="number">0.614</span><span class="keyword">s</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="flume-3"><a href="#flume-3" class="headerlink" title="flume"></a>flume</h3><p>利用写log方式 直接写入硬盘，然后flume收集 ，请求10000次，发送时间为1.006s</p>
 <p>发送时间：1.006s</p>
 <p><img src="http://123.56.234.128/szl/flume10001.png" alt="&quot;http://123.56.234.128/szl/flume10001.png&quot;"></p>
 <p>收集时间：57.172 - 53.001 = 4.171s</p>
-<p><img src="http://123.56.234.128/szl/flume10002.png" alt="&quot;http://123.56.234.128/szl/flume10002.png&quot;"></p>
-<pre><code>利用写log方式 然后flume收集  效率是 4.171 - 1.006 = 3.165s 说明响应时间为 每收集到10000条数据，flume的agent 收集到数据 用时为 3.165s
-</code></pre><h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ol>
+<p><img src="http://123.56.234.128/szl/flume10002.png" alt="&quot;http://123.56.234.128/szl/flume10002.png&quot;"><br>    <figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用写log方式 然后flume收集  效率是 <span class="number">4.171</span> - <span class="number">1.006</span> = <span class="number">3.165</span><span class="keyword">s</span> 说明响应时间为 每收集到<span class="number">10000</span>条数据，flume的agent 收集到数据 用时为 <span class="number">3.165</span><span class="keyword">s</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ol>
 <li>两种不同的log收集机制，利用rpc 直接调用写入flume的agent 延时小，效率高，每10000次日志生成，能比直接写入硬盘log 效率快5～6s 时间。</li>
 <li>目前php调用实现rpc的方式需要进一步实现，暂时用java语言测试三，查看效率。</li>
 <li>建议采用rpc方式直接写入agent方式，做demo出来，与现有logstash的收集方式做性能，负载，效率 等对比。</li>
@@ -122,6 +194,124 @@
     <footer class="article-footer">
       
         <a href="http://longlongblog.cn/2016/05/30/56/#disqus_thread" class="article-comment-link">Comments</a>
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style">
+			<span class="jiathis_txt">分享到：</span>
+			<a class="jiathis_button_qzone">QQ空间</a>
+			<a class="jiathis_button_weixin">微信</a>
+			<a class="jiathis_button_tsina">新浪微博</a>
+			<a class="jiathis_button_tqq">腾讯微博</a>
+			<a href="http://www.jiathis.com/share?uid=2101388" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2101388" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+
+	
+  </div>
+  
+</article>
+  
+    <article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/04/4/" class="article-date">
+  <time datetime="2016-01-04T14:02:24.000Z" itemprop="datePublished">2016-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/04/4/">PHP类的自动加载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
+<li>require()和include()语句是语言结构，不是真正的函数。</li>
+<li>require()和include()语句也可以不加圆括号而直接加参数。</li>
+<li>require_once() 判断并加载文件。</li>
+<li>include_once() 判断并加载文件。   <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">相同点：在脚本执行期间包括运行指定文件</span><br><span class="line"></span><br><span class="line">不同点： <span class="number">1.</span>incluce在用到时加载，<span class="keyword">require</span>在一开始就加载</span><br><span class="line">		<span class="number">2.</span><span class="keyword">include_once</span>()和<span class="keyword">require_once</span>()文件中的代码已经被包括了，则不会再次包括，</span><br><span class="line">		以避免函数重定义以及变量重新赋值等问题。</span><br><span class="line">		<span class="number">3.</span><span class="keyword">include</span>引入文件的时候，如果碰到错误，会给出提示，并继续运行下边的代码。</span><br><span class="line">		<span class="number">4.</span><span class="keyword">require</span>引入文件的时候，如果碰到错误，会给出提示，并停止运行下边的代码。</span><br><span class="line">问题：   <span class="number">1.</span>多个文件中，类的命名重复问题。</span><br><span class="line">		<span class="number">2.</span> 一个文件中加载多个类文件。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="类的懒加载"><a href="#类的懒加载" class="headerlink" title="类的懒加载"></a>类的懒加载</h3><ul>
+<li>__autoload : 根据类名，找出类文件，然后require _once()</li>
+<li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
+</li>
+<li><p>__autoload : 定义路径法（path）和直接映射法（array）</p>
+</li>
+<li><p>spl _autoload : autoload调用堆栈，注册多个自定义的autoload函数</p>
+<pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
+</code></pre></li>
+</ul>
+<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
+<ol>
+<li><p>include 配置</p>
+ <figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">'include'</span> =&gt; <span class="built_in">array</span>( <span class="symbol">'application</span>/catalog/controllers',</span><br><span class="line"><span class="symbol">'application</span>/catalog/models', ),</span><br><span class="line">$<span class="keyword">include</span> =&gt; <span class="built_in">array</span>(<span class="symbol">'application</span>/controllers', <span class="symbol">'application</span>/models', <span class="symbol">'application</span>/library'); </span><br><span class="line">set_include_path(get_include_path<span class="literal">()</span> . <span class="type">PATH_SEPARATOR</span> .implode(<span class="type">PATH_SEPARATOR</span>, $config[<span class="symbol">'include'</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>autoload 方式</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">($class)</span> </span><br><span class="line">	</span>&#123; </span><br><span class="line">		$path = <span class="string">''</span>; </span><br><span class="line">		$path = str_replace(<span class="string">'_'</span>, <span class="string">'/'</span>, $class) . <span class="string">'.php'</span>; </span><br><span class="line">		<span class="keyword">include_once</span>($path); </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">/** </span><br><span class="line">* sql自动加载 </span><br><span class="line">*/</span> </span><br><span class="line">spl_autoload_register(<span class="keyword">array</span>(<span class="string">'Loader'</span>, <span class="string">'autoload'</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>路由实例化并唤醒类方法</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">route</span><span class="params">()</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">	<span class="keyword">if</span> (class_exists(<span class="keyword">$this</span>-&gt;getController())) &#123; </span><br><span class="line">	$rc = <span class="keyword">new</span> ReflectionClass(<span class="keyword">$this</span>-&gt;getController()); </span><br><span class="line">	<span class="keyword">if</span> ($rc-&gt;hasMethod(<span class="keyword">$this</span>-&gt;getAction())) &#123; </span><br><span class="line">		$controller = $rc-&gt;newInstance(); </span><br><span class="line">		$method = $rc-&gt;getMethod(<span class="keyword">$this</span>-&gt;getAction()); </span><br><span class="line">		$method-&gt;invoke($controller); </span><br><span class="line">	&#125; <span class="keyword">else</span> </span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'no action'</span>); </span><br><span class="line">	&#125; <span class="keyword">else</span> </span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'no controller'</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Composer加载原理"><a href="#Composer加载原理" class="headerlink" title="Composer加载原理"></a>Composer加载原理</h3><ul>
+<li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
+</li>
+<li><p>composer（包管理器）的应用</p>
+</li>
+</ul>
+<p><img src="http://123.56.234.128/szl/composer.png" alt="http://123.56.234.128/szl/composer.png"></p>
+<ol>
+<li><p>psr-0</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"autoload"</span>: &#123;</span><br><span class="line">	 <span class="string">"psr-0"</span>: &#123;</span><br><span class="line">	 <span class="string">"Foo\\"</span>: <span class="string">"src/"</span>,</span><br><span class="line">	 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">路径生成： <span class="string">"Foo\\Bar\\Baz.php"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>psr-4</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"autoload"</span>: &#123;</span><br><span class="line">	 <span class="string">"psr-4"</span>: &#123;</span><br><span class="line">	 <span class="string">"Foo\\"</span>: <span class="string">"src/"</span>,</span><br><span class="line">	 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">路径生成： <span class="string">"src/Foo/Bar/Baz.php"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>class-map</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"autoload"</span>: &#123;</span><br><span class="line">	<span class="string">"classmap"</span>: [<span class="string">"src/"</span>, <span class="string">"lib/"</span>, <span class="string">"Something.php"</span>]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">路径生成： <span class="string">"src/Something.php"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>files</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"autoload"</span>: &#123;</span><br><span class="line">	<span class="string">"files"</span>: [<span class="string">"src/MyLibrary/functions.php"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">生成一个<span class="keyword">array</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>加载原理</li>
+</ul>
+<p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
+<li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
+<li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
+<li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a href="http://longlongblog.cn/2016/01/04/4/#disqus_thread" class="article-comment-link">Comments</a>
 		<!-- JiaThis Button BEGIN -->
 		<div class="jiathis_style">
 			<span class="jiathis_txt">分享到：</span>
@@ -294,7 +484,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。<br>crontab简介<br>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos(χρόνος)，原意是时间。　　通常，crontab储存的指令被守护进程激活， crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。<br>crontab用法<br>crontab的格式如下面：<br>f1 f2 f3 f4 f5 program<br>其中 f1 是表示分钟，f2 表示小时，f3 表示一个月份中的第几日，f4 表示月份，f5 表示一个星期中的第几天。program 表示要执行程式的路径。<br>当 f1 为 <em> 时表示每分钟都要执行 program，f2 为 </em> 时表示每小时都要执行程式，其余类推<br>当 f1 为 a-b 时表示从第 a 分钟到第 b 分钟这段时间内要执行，f2 为 a-b 时表示从第 a 到第 b 小时都要执行，其余类推<br>当 f1 为 <em>/n 时表示每 n 分钟个时间间隔执行一次，f2 为 </em>/n 表示每 n 小时个时间间隔执行一次，其余类推<br>当 f1 为 a, b, c,… 时表示第 a, b, c,… 分钟要执行，f2 为 a, b, c,… 时表示第 a, b, c…个小时要执行，其余类推<br>管理员登录SSH,输入命令crontab -e编辑crontab文件，根据上面的格式输入并保存。<br>crontab例子<br>每月每天每小时的第 0 分钟执行一次 /bin/ls :<br>    0 <em> </em> <em> </em> /bin/ls<br>在 12 月内, 每天的早上 6 点到 12 点中，每隔 20 分钟执行一次 /usr/bin/backup :<br>    <em>/20 6-12 </em> 12 <em> /usr/bin/backup<br>周一到周五每天下午 5:00 寄一封信给 alex@domain.name :<br>    0 17 </em> <em> 1-5 mail -s “hi” alex@domain.name &lt; /tmp/maildata<br>每月每天的午夜 0 点 20 分, 2 点 20 分, 4 点 20 分….执行 echo “haha”<br>    20 0-23/2 </em> <em> </em> echo “haha”<br>晚上11点到早上8点之间每两个小时，早上8点<br>    0 23-7/2，8 <em> </em> <em> date<br>在hp unix,中，每20分钟执行一次，表示为：0,20,40 </em> <em> </em> <em> 而不能采用</em>/n方式，否则出现语法错误<br>crontab用法其实很容易掌握，懂得使用crontab，对网站和服务器维护起到很大的帮助，比如定时备份，定时优化服务器等。</p>
+        <p>每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。<br>crontab简介<br>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos(χρόνος)，原意是时间。　　通常，crontab储存的指令被守护进程激活， crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。<br>crontab用法<br>crontab的格式如下面：<br>f1 f2 f3 f4 f5 program<br>其中 f1 是表示分钟，f2 表示小时，f3 表示一个月份中的第几日，f4 表示月份，f5 表示一个星期中的第几天。program 表示要执行程式的路径。<br>当 f1 为 <em> 时表示每分钟都要执行 program，f2 为 </em> 时表示每小时都要执行程式，其余类推<br>当 f1 为 a-b 时表示从第 a 分钟到第 b 分钟这段时间内要执行，f2 为 a-b 时表示从第 a 到第 b 小时都要执行，其余类推<br>当 f1 为 <em>/n 时表示每 n 分钟个时间间隔执行一次，f2 为 </em>/n 表示每 n 小时个时间间隔执行一次，其余类推<br>当 f1 为 a, b, c,… 时表示第 a, b, c,… 分钟要执行，f2 为 a, b, c,… 时表示第 a, b, c…个小时要执行，其余类推<br>管理员登录SSH,输入命令crontab -e编辑crontab文件，根据上面的格式输入并保存。<br>crontab例子<br>每月每天每小时的第 0 分钟执行一次 /bin/ls :<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span>* * * * /bin/ls</span><br></pre></td></tr></table></figure></p>
+<p>在 12 月内, 每天的早上 6 点到 12 点中，每隔 20 分钟执行一次 /usr/bin/backup :<br>    <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*<span class="regexp">/20 6-12 * 12 * /usr</span><span class="regexp">/bin/backup</span></span><br></pre></td></tr></table></figure></p>
+<p>周一到周五每天下午 5:00 寄一封信给 alex@domain.name :<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">17</span> * * <span class="number">1</span>-<span class="number">5</span> mail -s <span class="string">"hi"</span> alex@domain.<span class="keyword">name</span> &lt; /tmp/maildata</span><br></pre></td></tr></table></figure></p>
+<p>每月每天的午夜 0 点 20 分, 2 点 20 分, 4 点 20 分….执行 echo “haha”<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">20 </span><span class="number">0</span>-<span class="number">23</span>/<span class="number">2</span> * * * echo <span class="string">"haha"</span></span><br></pre></td></tr></table></figure></p>
+<p>晚上11点到早上8点之间每两个小时，早上8点<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">23</span>-<span class="number">7</span>/<span class="number">2</span>，<span class="number">8</span> * * * date</span><br></pre></td></tr></table></figure></p>
+<p>在hp unix,中，每20分钟执行一次，表示为：0,20,40 <em> </em> <em> </em> 而不能采用*/n方式，否则出现语法错误<br>crontab用法其实很容易掌握，懂得使用crontab，对网站和服务器维护起到很大的帮助，比如定时备份，定时优化服务器等。</p>
 <p>转载来源:<a href="https://www.centos.bz/2011/03/auto-run-task-crontab/" target="_blank">https://www.centos.bz/2011/03/auto-run-task-crontab/</a></p>
 
       
@@ -369,12 +564,12 @@
 </strong>destruct 析构方法，PHP将在对象被销毁前（即从内存中清除前）调用这个方法<br>默认情况下,PHP仅仅释放对象属性所占用的内存并销毁对象相关的资源.<br>析构函数允许你在使用一个对象之后执行任意代码来清除内存.<br>当PHP决定你的脚本不再与对象相关时,析构函数将被调用.<br>在一个函数的命名空间内,这会发生在函数return的时候.<br>对于全局变量,这发生于脚本结束的时候.如果你想明确地销毁一个对象,你可以给指向该对象的变量分配任何其它值.通常将变量赋值勤为NULL或者调用unset.</p>
 <p>6、<strong>clone<br>PHP5中的对象赋值是使用的引用赋值，如果想复制一个对象则需要使用clone方法，在调用此方法是对象会自动调用</strong>clone魔术方法<br>如果在对象复制需要执行某些初始化操作，可以在__clone方法实现</p>
 <p>7、<strong>toString 
-</strong>toString方法在将一个对象转化成字符串时自动调用，比如使用echo打印对象时<br>如果类没有实现此方法，则无法通过echo打印对象，否则会显示：Catchable fatal error: Object of class test could not be converted to string in<br>此方法必须返回一个字符串</p>
-<p>在PHP 5.2.0之前，<strong>toString方法只有结合使用echo() 或 print()时 才能生效。PHP 5.2.0之后，则可以在任何字符串环境生效（例如通过printf()，使用%s修饰符），但 不能用于非字符串环境（如使用%d修饰符）。从PHP 5.2.0，如果将一个未定义</strong>toString方法的对象 转换为字符串，会报出一个E_RECOVERABLE_ERROR错误。</p>
+</strong>toString方法在将一个对象转化成字符串时自动调用，比如使用echo打印对象时<br>如果类没有实现此方法，则无法通过echo打印对象，否则会显示：Catchable fatal error: Object of class test could not be converted to string in<br>此方法必须返回一个字符串<br>在PHP 5.2.0之前，<strong>toString方法只有结合使用echo() 或 print()时 才能生效。PHP 5.2.0之后，则可以在任何字符串环境生效（例如通过printf()，使用%s修饰符），但 不能用于非字符串环境（如使用%d修饰符）。从PHP 5.2.0，如果将一个未定义</strong>toString方法的对象 转换为字符串，会报出一个E_RECOVERABLE_ERROR错误。</p>
 <p>8、<strong>sleep、</strong>wakeup<br><strong>sleep 串行化的时候用
 </strong>wakeup 反串行化的时候调用<br>serialize() 检查类中是否有魔术名称 <strong>sleep 的函数。如果这样，该函数将在任何序列化之前运行。它可以清除对象并应该返回一个包含有该对象中应被序列化的所有变量名的数组。<br>使用 </strong>sleep 的目的是关闭对象可能具有的任何数据库连接，提交等待中的数据或进行类似的清除任务。此外，如果有非常大的对象而并不需要完全储存下来时此函数也很有用。<br>相反地，unserialize() 检查具有魔术名称 <strong>wakeup 的函数的存在。如果存在，此函数可以重建对象可能具有的任何资源。<br>使用 </strong>wakeup 的目的是重建在序列化中可能丢失的任何数据库连接以及处理其它重新初始化的任务。</p>
 <p>9、__set_state<br>当调用var_export()时，这个静态 方法会被调用（自PHP 5.1.0起有效）。<br>本方法的唯一参数是一个数组，其中包含按array(’property’ =&gt; value, …)格式排列的类属性。</p>
-<p>10、<strong>invoke<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke 方法会被自动调用。<br>PHP5.3.0以上版本有效<br>11、<strong>callStatic<br>它的工作方式类似于 </strong>call() 魔术方法，<strong>callStatic() 是为了处理静态方法调用，<br>PHP5.3.0以上版本有效<br>PHP 确实加强了对 </strong>callStatic() 方法的定义；它必须是公共的，并且必须被声明为静态的。同样，__call() 魔术方法必须被定义为公共的，所有其他魔术方法都必须如此。</p>
+<p>10、<strong>invoke<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke 方法会被自动调用。<br>PHP5.3.0以上版本有效</p>
+<p>11、<strong>callStatic<br>它的工作方式类似于 </strong>call() 魔术方法，<strong>callStatic() 是为了处理静态方法调用，<br>PHP5.3.0以上版本有效<br>PHP 确实加强了对 </strong>callStatic() 方法的定义；它必须是公共的，并且必须被声明为静态的。同样，__call() 魔术方法必须被定义为公共的，所有其他魔术方法都必须如此。</p>
 <p>原文出处：<a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" title="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" target="_blank" rel="external">http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html</a></p>
 
       
@@ -434,11 +629,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，</p>
-<pre><code>UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT Fid from house WHERE Fuser_id = 79056 AND Fdistrict1 = &apos;&apos; AND Fis_process = 0);
-</code></pre><p>但是在具体操作的过程中，问题出现了，问题是You can’t specify target table ‘A’ for update in FROM clause,问题出在哪了，一查资料原因是在更新这个表和数据时又查询了它，而查询的数据又做了更新的条件。<br>解决方案呢就是先将查出的表作为一个第三方表，然后查询第三方表实现隔离操作。</p>
-<pre><code>UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT temp.Fid FROM (SELECT Fid from house WHERE Fuser_id = 79056 AND Fdistrict1 = &apos;&apos; AND Fis_process = 0) temp );
-</code></pre><p>当然这种做法是最佳的选择，还有一个笨方法就是建立一个temp临时表，插入临时表，然后查询临时表，当然该方法的优点是在遇到数据量大的情况下，可以避免数据库内存不够用而导致的宕机。</p>
+        <p>今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> house h <span class="keyword">SET</span> h.Fuser_id = <span class="number">79063</span> <span class="keyword">WHERE</span> h.Fid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> Fid <span class="keyword">from</span> house <span class="keyword">WHERE</span> Fuser_id = <span class="number">79056</span> <span class="keyword">AND</span> Fdistrict1 = <span class="string">''</span> <span class="keyword">AND</span> Fis_process = <span class="number">0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>但是在具体操作的过程中，问题出现了，问题是You can’t specify target table ‘A’ for update in FROM clause,问题出在哪了，一查资料原因是在更新这个表和数据时又查询了它，而查询的数据又做了更新的条件。<br>解决方案呢就是先将查出的表作为一个第三方表，然后查询第三方表实现隔离操作。<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> house h <span class="keyword">SET</span> h.Fuser_id = <span class="number">79063</span> <span class="keyword">WHERE</span> h.Fid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> temp.Fid <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> Fid <span class="keyword">from</span> house <span class="keyword">WHERE</span> Fuser_id = <span class="number">79056</span> <span class="keyword">AND</span> Fdistrict1 = <span class="string">''</span> <span class="keyword">AND</span> Fis_process = <span class="number">0</span>) temp );</span><br></pre></td></tr></table></figure></p>
+<p>当然这种做法是最佳的选择，还有一个笨方法就是建立一个temp临时表，插入临时表，然后查询临时表，当然该方法的优点是在遇到数据量大的情况下，可以避免数据库内存不够用而导致的宕机。</p>
 
       
     </div>
@@ -565,259 +758,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：</p>
-<pre><code>set key3 0 0 8
-lxsymcto
-STORED
-</code></pre><p>而redis不需要，如：</p>
-<pre><code>redis 127.0.0.1:6379&gt;set key2 &quot;lxsymblog&quot;
-OK
-
-redis 127.0.0.1:6379&gt;get key2
-&quot;lxsymblog&quot;
-</code></pre><p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。<br>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
+        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：<br>    <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> key3 <span class="comment">0 0 8</span></span><br><span class="line">lxsymcto</span><br><span class="line">STORED</span><br></pre></td></tr></table></figure></p>
+<p>而redis不需要，如：<br>    <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">set</span> <span class="selector-tag">key2</span> "<span class="selector-tag">lxsymblog</span>"</span><br><span class="line"><span class="selector-tag">OK</span></span><br><span class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">get</span> <span class="selector-tag">key2</span></span><br><span class="line">"<span class="selector-tag">lxsymblog</span>"</span><br></pre></td></tr></table></figure></p>
+<p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。</p>
+<p>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
 
       
     </div>
     <footer class="article-footer">
       
         <a href="http://longlongblog.cn/2015/04/23/31/#disqus_thread" class="article-comment-link">Comments</a>
-		<!-- JiaThis Button BEGIN -->
-		<div class="jiathis_style">
-			<span class="jiathis_txt">分享到：</span>
-			<a class="jiathis_button_qzone">QQ空间</a>
-			<a class="jiathis_button_weixin">微信</a>
-			<a class="jiathis_button_tsina">新浪微博</a>
-			<a class="jiathis_button_tqq">腾讯微博</a>
-			<a href="http://www.jiathis.com/share?uid=2101388" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-			<a class="jiathis_counter_style"></a>
-		</div>
-		<script type="text/javascript">
-		var jiathis_config = {data_track_clickback:'true'};
-		</script>
-		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2101388" charset="utf-8"></script>
-		<!-- JiaThis Button END -->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-
-	
-  </div>
-  
-</article>
-  
-    <article id="post-46" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/03/46/" class="article-date">
-  <time datetime="2015-02-03T13:19:48.000Z" itemprop="datePublished">2015-02-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/03/46/">mongodb数据导入导出以及备份恢复</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br><br>    &gt; use my_mongodb<br>    switched to db my_mongodb<br>    &gt; db.user.find();<br>    { “_id” : ObjectId(“4f81a4a1779282ca68fd8a5a”), “uid” : 2, “username” : “Jerry”, “age” : 100 }<br>    { “_id” : ObjectId(“4f844d1847d25a9ce5f120c4”), “uid” : 1, “username” : “Tom”, “age” : 25 }<br>    &gt;<br>1 常用导出方法<br><br>    [root@localhost bin]# ./mongoexport -d my_mongodb -c user -o user.dat<br>    connected to: 127.0.0.1<br>    exported 2 records<br>    [root@localhost bin]# cat user.dat<br>    { “_id” : { “$oid” : “4f81a4a1779282ca68fd8a5a” }, “uid” : 2, “username” : “Jerry”, “age” : 100 }<br>    { “_id” : { “$oid” : “4f844d1847d25a9ce5f120c4” }, “uid” : 1, “username” : “Tom”, “age” : 25 }<br>    [root@localhost bin]#<br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br><br>    [root@localhost bin]# ./mongoexport -d my_mongodb -c user –csv -f uid,username,age -o<br>    user_csv.dat<br>    connected to: 127.0.0.1<br>    exported 2 records<br>    [root@localhost bin]# cat user_csv.dat<br>    uid,username,age<br>    2,”Jerry”,100<br>    1,”Tom”,25<br>    [root@localhost bin]#<br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br><br>    &gt; db.user.drop();<br>    true<br>    &gt; show collections;<br>    system.indexes<br>    &gt;<br><br>然后导入数据<br><br>    [root@localhost bin]# ./mongoimport -d my_mongodb -c user user.dat<br>    connected to: 127.0.0.1<br>    imported 2 objects<br>    [root@localhost bin]#<br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br><br>    &gt; db.user.drop();<br>    true<br>    &gt; show collections;<br>    system.indexes<br>    &gt;<br><br>然后导入数据<br><br>    [root@localhost bin]# ./mongoimport -d my_mongodb -c user –type csv –headerline –file<br>    user_csv.dat<br>    connected to: 127.0.0.1<br>    imported 3 objects<br>    [root@localhost bin]#<br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br><br>    [root@localhost bin]# ./mongodump -d my_mongodb<br>    connected to: 127.0.0.1<br>    DATABASE: my_mongodb to dump/my_mongodb<br>    my_mongodb.system.indexes to dump/my_mongodb/system.indexes.bson<br>    1 objects<br>    my_mongodb.user to dump/my_mongodb/user.bson<br>    2 objects<br>    [root@localhost bin]# ll<br><br>总计 67648<br>    -rwxr-xr-x 1 root root 7508756 2011-04-06 bsondump<br>    drwxr-xr-x 3 root root 4096 04-10 23:54 dump<br>    -rwxr-xr-x 1 root root 2978016 2011-04-06 mongo<br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br><br>    [root@localhost bin]# ./mongodump -d my_mongodb -o my_mongodb_dump<br>    connected to: 127.0.0.1<br>    DATABASE: my_mongodb to my_mongodb_dump/my_mongodb<br>    my_mongodb.system.indexes to<br>    my_mongodb_dump/my_mongodb/system.indexes.bson<br>    1 objects<br>    my_mongodb.user to my_mongodb_dump/my_mongodb/user.bson<br>    2 objects<br>    [root@localhost bin]#<br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br><br>    &gt; use my_mongodb<br>    switched to db my_mongodb<br>    &gt; db.dropDatabase()<br>    { “dropped” : “my_mongodb”, “ok” : 1 }<br>    &gt; show dbs<br>    admin (empty)<br>    local (empty)<br>    test (empty)<br>    &gt;<br><br>接下来我们进行数据库恢复<br><br>    [root@localhost bin]# ./mongorestore -d my_mongodb my_mongodb_dump/*<br>    connected to: 127.0.0.1<br>    Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/user.bson<br>    Wed Apr 11 00:03:03 going into namespace [my_mongodb.user]<br>    Wed Apr 11 00:03:03 2 objects found<br>    Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson<br>    Wed Apr 11 00:03:03 going into namespace [my_mongodb.system.indexes]<br>    Wed Apr 11 00:03:03 { name: “<em>id</em>“, ns: “my_mongodb.user”, key: { _id: 1 }, v: 0 }<br>    Wed Apr 11 00:03:03 1 objects found<br>    [root@localhost bin]#<br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://longlongblog.cn/2015/02/03/46/#disqus_thread" class="article-comment-link">Comments</a>
-		<!-- JiaThis Button BEGIN -->
-		<div class="jiathis_style">
-			<span class="jiathis_txt">分享到：</span>
-			<a class="jiathis_button_qzone">QQ空间</a>
-			<a class="jiathis_button_weixin">微信</a>
-			<a class="jiathis_button_tsina">新浪微博</a>
-			<a class="jiathis_button_tqq">腾讯微博</a>
-			<a href="http://www.jiathis.com/share?uid=2101388" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-			<a class="jiathis_counter_style"></a>
-		</div>
-		<script type="text/javascript">
-		var jiathis_config = {data_track_clickback:'true'};
-		</script>
-		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2101388" charset="utf-8"></script>
-		<!-- JiaThis Button END -->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-
-	
-  </div>
-  
-</article>
-  
-    <article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/04/4/" class="article-date">
-  <time datetime="2015-01-04T14:02:24.000Z" itemprop="datePublished">2015-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/4/">PHP类的自动加载</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="PHP类的自动加载"><a href="#PHP类的自动加载" class="headerlink" title="PHP类的自动加载"></a>PHP类的自动加载</h2><h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
-<li>require()和include()语句是语言结构，不是真正的函数。</li>
-<li>require()和include()语句也可以不加圆括号而直接加参数。</li>
-<li>require_once() 判断并加载文件。</li>
-<li><p>include_once() 判断并加载文件。 </p>
-<pre><code>相同点：在脚本执行期间包括运行指定文件
-
-不同点： 1.incluce在用到时加载，require在一开始就加载
-           2.include_once()和require_once()文件中的代码已经被包括了，则不会再次包括，
-        以避免函数重定义以及变量重新赋值等问题。
-        3.include引入文件的时候，如果碰到错误，会给出提示，并继续运行下边的代码。
-        4.require引入文件的时候，如果碰到错误，会给出提示，并停止运行下边的代码。
-问题：   1.多个文件中，类的命名重复问题。
-        2. 一个文件中加载多个类文件。
-</code></pre></li>
-</ul>
-<h3 id="类的懒加载"><a href="#类的懒加载" class="headerlink" title="类的懒加载"></a>类的懒加载</h3><ul>
-<li>__autoload : 根据类名，找出类文件，然后require _once()</li>
-<li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
-</li>
-<li><p>__autoload : 定义路径法（path）和直接映射法（array）</p>
-</li>
-<li><p>spl _autoload : autoload调用堆栈，注册多个自定义的autoload函数</p>
-<pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
-</code></pre></li>
-</ul>
-<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
-<ol>
-<li><p>include 配置</p>
-<pre><code>&apos;include&apos; =&gt; array( &apos;application/catalog/controllers&apos;,
-&apos;application/catalog/models&apos;, ),
-$include =&gt; array(&apos;application/controllers&apos;, &apos;application/models&apos;, &apos;application/library&apos;); 
-set_include_path(get_include_path() . PATH_SEPARATOR .implode(PATH_SEPARATOR, $config[&apos;include&apos;]));
-</code></pre></li>
-<li><p>autoload 方式</p>
-<pre><code>public static function autoload($class) 
-    { 
-        $path = &apos;&apos;; 
-        $path = str_replace(&apos;_&apos;, &apos;/&apos;, $class) . &apos;.php&apos;; 
-        include_once($path); 
-    } 
-} 
-/** 
-* sql自动加载 
-*/ 
-spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;)); 
-</code></pre></li>
-<li><p>路由实例化并唤醒类方法</p>
-</li>
-<li><pre><code>public function route() 
-{ 
-    if (class_exists($this-&gt;getController())) { 
-    $rc = new ReflectionClass($this-&gt;getController()); 
-    if ($rc-&gt;hasMethod($this-&gt;getAction())) { 
-        $controller = $rc-&gt;newInstance(); 
-        $method = $rc-&gt;getMethod($this-&gt;getAction()); 
-        $method-&gt;invoke($controller); 
-    } else 
-        throw new Exception(&apos;no action&apos;); 
-    } else 
-        throw new Exception(&apos;no controller&apos;); 
-} 
-</code></pre></li>
-</ol>
-<h3 id="Composer加载原理"><a href="#Composer加载原理" class="headerlink" title="Composer加载原理"></a>Composer加载原理</h3><ul>
-<li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
-</li>
-<li><p>composer（包管理器）的应用</p>
-</li>
-</ul>
-<p><img src="http://123.56.234.128/szl/composer.png" alt="http://123.56.234.128/szl/composer.png"></p>
-<ol>
-<li><p>psr-0</p>
-<pre><code>{
-      &quot;autoload&quot;: {
-        &quot;psr-0&quot;: {
-      &quot;Foo\\&quot;: &quot;src/&quot;,
-        }
-      }
-}
-路径生成： &quot;Foo\\Bar\\Baz.php&quot; 
-</code></pre></li>
-<li><p>psr-4</p>
-<pre><code>{
-      &quot;autoload&quot;: {
-        &quot;psr-4&quot;: {
-      &quot;Foo\\&quot;: &quot;src/&quot;,
-        }
-      }
-}
-路径生成： &quot;src/Foo/Bar/Baz.php&quot;
-</code></pre></li>
-<li><p>class-map</p>
-<pre><code>{
-    &quot;autoload&quot;: {
-    &quot;classmap&quot;: [&quot;src/&quot;, &quot;lib/&quot;, &quot;Something.php&quot;]
-    }
-}
-路径生成： &quot;src/Something.php&quot;
-</code></pre></li>
-<li><p>files</p>
-<pre><code>{
-  &quot;autoload&quot;: {
-    &quot;files&quot;: [&quot;src/MyLibrary/functions.php&quot;]
-  }
-}
-生成一个array
-</code></pre></li>
-</ol>
-<ul>
-<li>加载原理</li>
-</ul>
-<p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
-<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
-<li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
-<li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
-<li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://longlongblog.cn/2015/01/04/4/#disqus_thread" class="article-comment-link">Comments</a>
 		<!-- JiaThis Button BEGIN -->
 		<div class="jiathis_style">
 			<span class="jiathis_txt">分享到：</span>
@@ -857,7 +807,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -866,7 +816,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -887,7 +837,15 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       <ul>
         
           <li>
+            <a href="/2016/05/31/57/">企业级Redis环境部署</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/30/56/">监控系统工具对比</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/04/4/">PHP类的自动加载</a>
           </li>
         
           <li>
@@ -896,14 +854,6 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
         
           <li>
             <a href="/2015/06/26/8/">一意孤行</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/06/49/">PHP的魔术方法</a>
           </li>
         
       </ul>
