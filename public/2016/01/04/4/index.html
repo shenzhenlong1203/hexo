@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP类的自动加载 | Dragon_SZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类的加载 require()和include()语句是语言结构，不是真正的函数。 require()和include()语句也可以不加圆括号而直接加参数。 require_once() 判断并加载文件。 include_once() 判断并加载文件。   123456789相同点：在脚本执行期间包括运行指定文件不同点： 1.incluce在用到时加载，require在一开始就加载		2.inclu">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP类的自动加载">
+<meta property="og:url" content="http://longlongblog.cn/2016/01/04/4/index.html">
+<meta property="og:site_name" content="Dragon_SZ">
+<meta property="og:description" content="类的加载 require()和include()语句是语言结构，不是真正的函数。 require()和include()语句也可以不加圆括号而直接加参数。 require_once() 判断并加载文件。 include_once() 判断并加载文件。   123456789相同点：在脚本执行期间包括运行指定文件不同点： 1.incluce在用到时加载，require在一开始就加载		2.inclu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://longlongblog.cn/img/flow.png">
+<meta property="og:image" content="http://longlongblog.cn/img/composer.png">
+<meta property="og:image" content="http://longlongblog.cn/img/autoload.png">
+<meta property="og:updated_time" content="2016-06-28T12:34:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP类的自动加载">
+<meta name="twitter:description" content="类的加载 require()和include()语句是语言结构，不是真正的函数。 require()和include()语句也可以不加圆括号而直接加参数。 require_once() 判断并加载文件。 include_once() 判断并加载文件。   123456789相同点：在脚本执行期间包括运行指定文件不同点： 1.incluce在用到时加载，require在一开始就加载		2.inclu">
+<meta name="twitter:image" content="http://longlongblog.cn/img/flow.png">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
+<link rel="publisher" href="https://plus.google.com/u/0/+%E6%B2%88%E6%8C%AF%E9%BE%99">
+  
+    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-105380317-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Dragon_SZ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">http://longlongblog.cn</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="longlongblog.cn">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/04/4/" class="article-date">
+  <time datetime="2016-01-04T14:02:24.000Z" itemprop="datePublished">2016-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP类的自动加载
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
+<li>require()和include()语句是语言结构，不是真正的函数。</li>
+<li>require()和include()语句也可以不加圆括号而直接加参数。</li>
+<li>require_once() 判断并加载文件。</li>
+<li>include_once() 判断并加载文件。   <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">相同点：在脚本执行期间包括运行指定文件</div><div class="line"></div><div class="line">不同点： <span class="number">1.</span>incluce在用到时加载，require在一开始就加载</div><div class="line">		<span class="number">2.</span>include_once()和require_once()文件中的代码已经被包括了，则不会再次包括，</div><div class="line">		以避免函数重定义以及变量重新赋值等问题。</div><div class="line">		<span class="number">3.</span>include引入文件的时候，如果碰到错误，会给出提示，并继续运行下边的代码。</div><div class="line">		<span class="number">4.</span>require引入文件的时候，如果碰到错误，会给出提示，并停止运行下边的代码。</div><div class="line">问题：   <span class="number">1.</span>多个文件中，类的命名重复问题。</div><div class="line">		<span class="number">2.</span> 一个文件中加载多个类文件。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="类的懒加载"><a href="#类的懒加载" class="headerlink" title="类的懒加载"></a>类的懒加载</h3><ul>
+<li>__autoload : 根据类名，找出类文件，然后require _once()</li>
+<li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
+</li>
+<li><p>__autoload : 定义路径法（path）和直接映射法（array）</p>
+</li>
+<li><p>spl _autoload : autoload调用堆栈，注册多个自定义的autoload函数</p>
+<pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
+</code></pre></li>
+</ul>
+<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="/img/flow.png" alt="/img/flow.png"></p>
+<ol>
+<li><p>include 配置</p>
+ <figure class="highlight sml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">'include'</span> =&gt; <span class="built_in">array</span>( <span class="symbol">'application</span>/catalog/controllers',</div><div class="line"><span class="symbol">'application</span>/catalog/models', ),</div><div class="line">$<span class="keyword">include</span> =&gt; <span class="built_in">array</span>(<span class="symbol">'application</span>/controllers', <span class="symbol">'application</span>/models', <span class="symbol">'application</span>/library'); </div><div class="line">set_include_path(get_include_path<span class="literal">()</span> . <span class="type">PATH_SEPARATOR</span> .implode(<span class="type">PATH_SEPARATOR</span>, $config[<span class="symbol">'include'</span>]));</div></pre></td></tr></table></figure>
+</li>
+<li><p>autoload 方式</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">($class)</span> </span></div><div class="line"><span class="function">	</span>&#123; </div><div class="line">		$path = <span class="string">''</span>; </div><div class="line">		$path = str_replace(<span class="string">'_'</span>, <span class="string">'/'</span>, $class) . <span class="string">'.php'</span>; </div><div class="line">		<span class="keyword">include_once</span>($path); </div><div class="line">	&#125; </div><div class="line">&#125; </div><div class="line"><span class="comment">/** </span></div><div class="line"><span class="comment">* sql自动加载 </span></div><div class="line"><span class="comment">*/</span> </div><div class="line">spl_autoload_register(<span class="keyword">array</span>(<span class="string">'Loader'</span>, <span class="string">'autoload'</span>));</div></pre></td></tr></table></figure>
+</li>
+<li><p>路由实例化并唤醒类方法</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">route</span><span class="params">()</span> </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">	<span class="keyword">if</span> (class_exists(<span class="keyword">$this</span>-&gt;getController())) &#123; </div><div class="line">	$rc = <span class="keyword">new</span> ReflectionClass(<span class="keyword">$this</span>-&gt;getController()); </div><div class="line">	<span class="keyword">if</span> ($rc-&gt;hasMethod(<span class="keyword">$this</span>-&gt;getAction())) &#123; </div><div class="line">		$controller = $rc-&gt;newInstance(); </div><div class="line">		$method = $rc-&gt;getMethod(<span class="keyword">$this</span>-&gt;getAction()); </div><div class="line">		$method-&gt;invoke($controller); </div><div class="line">	&#125; <span class="keyword">else</span> </div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'no action'</span>); </div><div class="line">	&#125; <span class="keyword">else</span> </div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'no controller'</span>); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Composer加载原理"><a href="#Composer加载原理" class="headerlink" title="Composer加载原理"></a>Composer加载原理</h3><ul>
+<li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
+</li>
+<li><p>composer（包管理器）的应用</p>
+</li>
+</ul>
+<p><img src="/img/composer.png" alt="/img/composer.png"></p>
+<ol>
+<li><p>psr-0</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="string">"autoload"</span>: &#123;</div><div class="line">	 <span class="string">"psr-0"</span>: &#123;</div><div class="line">	 <span class="string">"Foo\\"</span>: <span class="string">"src/"</span>,</div><div class="line">	 &#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">路径生成： <span class="string">"Foo\\Bar\\Baz.php"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>psr-4</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="string">"autoload"</span>: &#123;</div><div class="line">	 <span class="string">"psr-4"</span>: &#123;</div><div class="line">	 <span class="string">"Foo\\"</span>: <span class="string">"src/"</span>,</div><div class="line">	 &#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">路径生成： <span class="string">"src/Foo/Bar/Baz.php"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>class-map</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="string">"autoload"</span>: &#123;</div><div class="line">	<span class="string">"classmap"</span>: [<span class="string">"src/"</span>, <span class="string">"lib/"</span>, <span class="string">"Something.php"</span>]</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">路径生成： <span class="string">"src/Something.php"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>files</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"autoload"</span>: &#123;</div><div class="line">	<span class="string">"files"</span>: [<span class="string">"src/MyLibrary/functions.php"</span>]</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">生成一个<span class="keyword">array</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>加载原理</li>
+</ul>
+<p><img src="/img/autoload.png" alt="/img/autoload.png"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
+<li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
+<li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
+<li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2016/01/04/4/" data-id="cj6umcptz002vtv3k8att4yxl" class="article-share-link" data-share="baidu" data-title="PHP类的自动加载">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2016/01/04/4/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/30/56/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          监控系统工具对比
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/30/5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">不知从何说起</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-4" data-title="PHP类的自动加载" data-url="http://longlongblog.cn/2016/01/04/4/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'longlongblog'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/31/57/">企业级Redis环境部署</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/30/56/">监控系统工具对比</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/04/4/">PHP类的自动加载</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/30/5/">不知从何说起</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/26/8/">一意孤行</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
+          </li>
+        
+          <li>
+            <a href="http://honglu.me" target="_blank">独奏</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Dragon_SZ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"longlongblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

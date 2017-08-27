@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cf7a7aee-d7f5-49f3-ba33-47dbd6a4d082" name="youku66 (project level)" url="http://10.10.221.66">
+        <fileTransfer host="10.10.221.66" port="22022" rootFolder="/home/shenzhenlong/work/" accessType="SFTP" password="dfd9dfd0dfc6df93df9bdf9bdf98df9adf99" username="shenzhenlong">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22022" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
