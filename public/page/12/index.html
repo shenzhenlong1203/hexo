@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dragon_SZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <meta name="description" content="Dragon的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dragon_SZ">
+<meta property="og:url" content="http://longlongblog.cn/page/12/index.html">
+<meta property="og:site_name" content="Dragon_SZ">
+<meta property="og:description" content="Dragon的个人博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dragon_SZ">
+<meta name="twitter:description" content="Dragon的个人博客">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
+<link rel="publisher" href="https://plus.google.com/u/0/">
+  
+    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/logo.jpg">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Chrome on Android -->    
+    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/img/logo.jpg">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-105380317-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Dragon_SZ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">相离莫相忘,且行且珍惜</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+      </nav>
+      <!--
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="longlongblog.cn">
+        </form>
+      </div>
+      -->
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main">
+  
+    <article id="post-28" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/08/27/28/" class="article-date">
+  <time datetime="2013-08-27T10:15:38.000Z" itemprop="datePublished">2013-08-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/08/27/28/">J2ME时间显示</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p><span style="padding-left: 30px;font-size: 14px;"><span style="color: #000000;"> 这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象<br>并且创建一个线程让时间占用这个线程进行。</span></span><br>    <figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Shijianxianshi() &#123;</div><div class="line">	display=Display.getDisplay(<span class="keyword">this</span>);</div><div class="line">	canvas=<span class="keyword">new</span> testCanvas();</div><div class="line"></div><div class="line">	quit=<span class="keyword">new</span> Command(<span class="string">"Quit"</span>,Command.EXIT,<span class="number">2</span>);</div><div class="line">	canvas.addCommand(quit);</div><div class="line">	canvas.setCommandListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">protected</span> <span class="keyword">void</span> startApp()&lt;/span&gt; <span class="keyword">throws</span> MIDletStateChangeException &#123;</div><div class="line"></div><div class="line">		display.setCurrent(canvas);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> destroyApp(<span class="built_in">boolean</span> unconditional)<span class="keyword">throws</span> MIDletStateChangeException &#123;</div><div class="line">	<span class="comment">// TODO 自动生成方法存根</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">protected</span> <span class="keyword">void</span> pauseApp()&lt;/span&gt;</div><div class="line">	&#123;</div><div class="line">	<span class="comment">// TODO 自动生成方法存根</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">public</span> <span class="keyword">void</span> commandAction&lt;/span&gt;(Command c, Displayable d)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">try</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(c == quit)</div><div class="line">		&#123;</div><div class="line">			&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;destroyApp(<span class="keyword">true</span>);&lt;/span&gt;</div><div class="line">			notifyDestroyed();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">catch</span>(MIDletStateChangeException me)</div><div class="line">	&#123;</div><div class="line">		System.out.<span class="built_in">println</span>(me+<span class="string">"caught."</span>);</div><div class="line">	&#125;</div><div class="line">	&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;class testCanvas extends Canvas implements Runnable&lt;/span&gt;&#123;</div><div class="line">	<span class="keyword">private</span> Image <span class="built_in">image</span>=<span class="keyword">null</span>;</div><div class="line">	<span class="keyword">private</span> Font font;</div><div class="line">	TimeZone t;</div><div class="line">	Calendar c;</div><div class="line">	<span class="built_in">int</span> h,  <span class="built_in">min</span>, sec, <span class="built_in">year</span>, <span class="built_in">month</span>, <span class="built_in">day</span>, week=<span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> testCanvas()</div><div class="line">	&#123;</div><div class="line">		t = TimeZone.getTimeZone(<span class="string">"GMT+08:00"</span>);<span class="comment">//获取东8区TimeZone 否则会使用默认的时区</span></div><div class="line">		c = Calendar.getInstance(t); <span class="comment">//创建一个日历对象</span></div><div class="line">		h = c.<span class="built_in">get</span>(Calendar.HOUR_OF_DAY); <span class="comment">//从日历对象获取想要的日期、时间信息</span></div><div class="line">		<span class="built_in">min</span> = c.<span class="built_in">get</span>(Calendar.MINUTE);</div><div class="line">		sec = c.<span class="built_in">get</span>(Calendar.SECOND);</div><div class="line">		<span class="built_in">year</span>=c.<span class="built_in">get</span>(Calendar.YEAR);</div><div class="line">		<span class="built_in">month</span>=c.<span class="built_in">get</span>(Calendar.MONTH);</div><div class="line">		<span class="built_in">day</span>=c.<span class="built_in">get</span>(Calendar.DAY_OF_MONTH);</div><div class="line">		week=c.<span class="built_in">get</span>(Calendar.DAY_OF_WEEK);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// int h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息</span></div><div class="line"></div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">protected</span> <span class="keyword">void</span> paint&lt;/span&gt;(Graphics g)&#123;</div><div class="line"></div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">new</span> Thread(<span class="keyword">this</span>).start();&lt;/span&gt;</div><div class="line">	font=Font.getFont(Font.FACE_SYSTEM,Font.STYLE_BOLD,Font.SIZE_MEDIUM);</div><div class="line">	g.setFont(font);</div><div class="line">	<span class="keyword">String</span> <span class="built_in">hour</span>;</div><div class="line">	<span class="keyword">String</span> <span class="built_in">minute</span>;</div><div class="line">	<span class="keyword">String</span> <span class="built_in">second</span>;</div><div class="line">	<span class="keyword">String</span> m;</div><div class="line">	<span class="keyword">String</span> d;</div><div class="line">	<span class="keyword">String</span> w = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">	<span class="keyword">switch</span>(week)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="number">1</span>: w=<span class="string">" 一"</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">2</span>: w=<span class="string">" 二"</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">3</span>: w=<span class="string">" 三"</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">4</span>: w=<span class="string">" 四"</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">5</span>: w=<span class="string">" 五"</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">6</span>: w=<span class="string">" 六"</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">7</span>: w=<span class="string">" 日"</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(h&amp;lt;<span class="number">10</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">hour</span>=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(h);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">hour</span>=<span class="keyword">String</span>.valueOf(h);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">min</span>&amp;lt;<span class="number">10</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">minute</span>=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(<span class="built_in">min</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">minute</span>=<span class="keyword">String</span>.valueOf(<span class="built_in">min</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(sec&amp;lt;<span class="number">10</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">second</span>=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(sec);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">second</span>=<span class="keyword">String</span>.valueOf(sec);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">String</span> y=<span class="keyword">String</span>.valueOf(<span class="built_in">year</span>);</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(<span class="built_in">month</span>+<span class="number">1</span>&amp;lt;<span class="number">10</span>)</div><div class="line">	&#123;</div><div class="line">		m=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(<span class="built_in">month</span>+<span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		m=<span class="keyword">String</span>.valueOf(<span class="built_in">month</span>+<span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(<span class="built_in">day</span>&amp;lt;<span class="number">10</span>)</div><div class="line">	&#123;</div><div class="line">		d=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(<span class="built_in">day</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		d=<span class="keyword">String</span>.valueOf(<span class="built_in">day</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		<span class="built_in">image</span>=Image.<span class="built_in">createImage</span>(<span class="string">"/2.png"</span>);</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException ex) &#123;</div><div class="line">		System.out.<span class="built_in">println</span>(<span class="string">"图片导入失败"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	g.drawImage(<span class="built_in">image</span>, <span class="number">0</span>, <span class="number">0</span>, Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="string">"我的时钟"</span>, getWidth()/<span class="number">2</span>, <span class="number">20</span>, Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="string">"当前的日期为:"</span>,<span class="number">60</span>,<span class="number">60</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="string">"星期:"</span>,<span class="number">30</span>,<span class="number">100</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="string">"当前的时间为:"</span>,<span class="number">60</span>,<span class="number">130</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line"></div><div class="line">	g.drawString(<span class="built_in">hour</span>,<span class="number">50</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);<span class="comment">//时间的显示</span></div><div class="line">	g.drawString(<span class="string">":"</span>,<span class="number">65</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="built_in">minute</span>,<span class="number">80</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="string">":"</span>,<span class="number">95</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="built_in">second</span>,<span class="number">110</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line"></div><div class="line">	g.drawString(w,<span class="number">60</span>,<span class="number">100</span>,Graphics.HCENTER|Graphics.TOP);<span class="comment">//星期的显示</span></div><div class="line"></div><div class="line">	g.drawString(y,<span class="number">50</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);<span class="comment">//年月的显示</span></div><div class="line">	g.drawString(<span class="string">"/"</span>,<span class="number">75</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(m,<span class="number">90</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(<span class="string">"/"</span>,<span class="number">105</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	g.drawString(d,<span class="number">120</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</div><div class="line">	</div><div class="line">	<span class="keyword">if</span>(sec&amp;lt;<span class="number">60</span>)</div><div class="line">	&#123;</div><div class="line"></div><div class="line">		sec++;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		sec=<span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(<span class="built_in">min</span>&amp;lt;<span class="number">60</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">min</span>++;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line"></div><div class="line">		<span class="built_in">min</span>=<span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(h&amp;lt;<span class="number">13</span>)</div><div class="line">		h++;</div><div class="line">		<span class="keyword">else</span></div><div class="line">		h=<span class="number">1</span>;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">public</span> <span class="keyword">void</span> run() &#123;&lt;/span&gt;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		Thread.sleep(<span class="number">1000</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</div><div class="line">		<span class="comment">// ex.printStackTrace();</span></div><div class="line">		&#125;</div><div class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;repaint();&lt;/span&gt;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><span style="padding-left: 30px;">备注：以上高亮颜色显示的为重要类与方法，供大家借鉴。我已在自己的java手机上运行过，没有问题的。</span></p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2013/08/27/28/" data-id="cj6up47ub001rok3kbw4f3wqt" class="article-share-link" data-share="baidu" data-title="J2ME时间显示">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2013/08/27/28/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
+  </nav>
+</section>
+      
+      <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">来关注我</h3>
+  <div class="widget">
+    <ul>
+      
+      
+        
+        
+          <div style="text-align: center;">
+            <img src="http://oofutns6f.bkt.clouddn.com/wechatqrcode_for_gh_2a5f1955845a_1280.jpg" style="width: 100%; max-width: 250px;">
+          </div>
+        
+        <li>
+          <a href="http://oofutns6f.bkt.clouddn.com/wechatqrcode_for_gh_2a5f1955845a_1280.jpg" target="_blank">1. 我的「微信公共号」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">推荐文章</h3>
+  <div class="widget">
+    <ul>
+      
+      
+        
+        <li>
+          <a href="/2016/01/04/4/" target="_blank">1. PHP类的自动加载</a>
+        </li>
+      
+        
+        <li>
+          <a href="/2016/05/30/56/" target="_blank">2. 监控系统工具对比</a>
+        </li>
+      
+        
+        <li>
+          <a href="/2015/01/04/3/" target="_blank">3. 2014该有个总结</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近评论</h3>
+    <div class="widget">
+      <!-- 多说最新评论 start -->
+      <div class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+      <!-- 多说最新评论 end -->
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+      <script type="text/javascript">
+        var duoshuoQuery = {short_name:"shijiajie"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+      </script>
+      <!-- 多说公共JS代码 end -->
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyright &copy; 2012 - 2017 <a href="/" target="_blank">Dragon_SZ</a>.
+      &nbsp;
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>
+      
+        &nbsp;
+        <span>
+          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
+        </span>
+      
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"longlongblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

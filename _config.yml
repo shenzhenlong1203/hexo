@@ -4,8 +4,8 @@
 
 # Site
 title: Dragon_SZ
-subtitle:  http://longlongblog.cn
-description: 沈振龙的个人博客
+subtitle: 相离莫相忘,且行且珍惜
+description: Dragon的个人博客
 author: Dragon_SZ
 language: zh-CN
 timezone:
@@ -28,7 +28,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: test.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab

@@ -11,16 +11,16 @@
   <meta name="renderer" content="webkit">
   <!-- No Baidu Siteapp-->
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="沈振龙的个人博客">
+  <meta name="description" content="Dragon的个人博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dragon_SZ">
 <meta property="og:url" content="http://longlongblog.cn/page/2/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="沈振龙的个人博客">
+<meta property="og:description" content="Dragon的个人博客">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dragon_SZ">
-<meta name="twitter:description" content="沈振龙的个人博客">
+<meta name="twitter:description" content="Dragon的个人博客">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
 <link rel="publisher" href="https://plus.google.com/u/0/">
   
@@ -77,7 +77,7 @@ var _hmt = _hmt || [];
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">http://longlongblog.cn</a>
+          <a href="/" id="subtitle">相离莫相忘,且行且珍惜</a>
         </h2>
       
     </div>
@@ -114,14 +114,14 @@ var _hmt = _hmt || [];
     <div class="outer">
       <section id="main">
   
-    <article id="post-46" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/02/03/46/" class="article-date">
-  <time datetime="2015-02-03T13:19:48.000Z" itemprop="datePublished">2015-02-03</time>
+    <a href="/2015/05/07/20/" class="article-date">
+  <time datetime="2015-05-07T07:32:20.000Z" itemprop="datePublished">2015-05-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -132,7 +132,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/03/46/">mongodb数据导入导出以及备份恢复</a>
+      <a class="article-title" href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
     </h1>
   
 
@@ -142,10 +142,13 @@ var _hmt = _hmt || [];
       
         <!-- Table of Contents -->
         
-        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; use my_mongodb</div><div class="line">switched <span class="keyword">to</span> db my_mongodb</div><div class="line">&gt; db.user.<span class="builtin-name">find</span>();</div><div class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f81a4a1779282ca68fd8a5a"</span>), <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</div><div class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f844d1847d25a9ce5f120c4"</span>), <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure><br><br>1 常用导出方法<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoexport -d my_mongodb -c<span class="built_in"> user </span>-o user.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">exported 2 records</div><div class="line">[root@localhost bin]# cat user.dat</div><div class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f81a4a1779282ca68fd8a5a"</span> &#125;, <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</div><div class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f844d1847d25a9ce5f120c4"</span> &#125;, <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoexport -d my_mongodb -c<span class="built_in"> user </span>--csv -f uid,username,age -o</div><div class="line">user_csv.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">exported 2 records</div><div class="line">[root@localhost bin]# cat user_csv.dat</div><div class="line">uid,username,age</div><div class="line">2,<span class="string">"Jerry"</span>,100</div><div class="line">1,<span class="string">"Tom"</span>,25</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.user.drop();</span></div><div class="line">true</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show collections;</span></div><div class="line">system.indexes</div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoimport -d my_mongodb -c<span class="built_in"> user </span>user.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">imported 2 objects</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.user.drop();</span></div><div class="line">true</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show collections;</span></div><div class="line">system.indexes</div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoimport -d my_mongodb -c<span class="built_in"> user </span>--type csv --headerline --file</div><div class="line">user_csv.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">imported 3 objects</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb</span></div><div class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">DATABASE: my_mongodb <span class="keyword">to</span> dump/my_mongodb</div><div class="line">my_mongodb.system.indexes <span class="keyword">to</span> dump/my_mongodb/system.indexes.bson</div><div class="line"><span class="number">1</span> objects</div><div class="line">my_mongodb.user <span class="keyword">to</span> dump/my_mongodb/user.bson</div><div class="line"><span class="number">2</span> objects</div><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ll</span></div></pre></td></tr></table></figure><br><br>总计 67648<br>    <figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-rwxr-xr-x<span class="number"> 1 </span>root root<span class="number"> 7508756 </span>2011-04-06 bsondump</div><div class="line">drwxr-xr-x<span class="number"> 3 </span>root root<span class="number"> 4096 </span>04-10 23:54 dump</div><div class="line">-rwxr-xr-x<span class="number"> 1 </span>root root<span class="number"> 2978016 </span>2011-04-06 mongo</div></pre></td></tr></table></figure><br><br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb -o my_mongodb_dump</span></div><div class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">DATABASE: my_mongodb <span class="keyword">to</span> my_mongodb_dump/my_mongodb</div><div class="line">my_mongodb.system.indexes <span class="keyword">to</span></div><div class="line">my_mongodb_dump/my_mongodb/system.indexes.bson</div><div class="line"><span class="number">1</span> objects</div><div class="line">my_mongodb.user <span class="keyword">to</span> my_mongodb_dump/my_mongodb/user.bson</div><div class="line"><span class="number">2</span> objects</div><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></div></pre></td></tr></table></figure><br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br>    <figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; use my_mongodb</div><div class="line">switched to db my_mongodb</div><div class="line">&gt; db.dropDatabase()</div><div class="line">&#123; "dropped" : "my_mongodb", "ok" : 1 &#125;</div><div class="line">&gt; show dbs</div><div class="line">admin (empty)</div><div class="line">local (empty)</div><div class="line"><span class="keyword">test </span>(empty)</div><div class="line">&gt;</div></pre></td></tr></table></figure><br><br>接下来我们进行数据库恢复<br>    <figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]<span class="comment"># ./mongorestore -d my_mongodb my_mongodb_dump/*</span></div><div class="line">connected to: 127.0.0.1</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 my_mongodb_dump/my_mongodb/user.bson</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 going into namespace [my_mongodb.user]</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03<span class="number"> 2 </span>objects found</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 going into namespace [my_mongodb.system.indexes]</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 &#123; name: "_id_", ns: "my_mongodb.user", key: &#123; _id:<span class="number"> 1 </span>&#125;, v:<span class="number"> 0 </span>&#125;</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03<span class="number"> 1 </span>objects found</div><div class="line">[root@localhost bin]<span class="comment">#</span></div></pre></td></tr></table></figure><br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
-
-
-
+        <p>每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。<br>crontab简介<br>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos(χρόνος)，原意是时间。　　通常，crontab储存的指令被守护进程激活， crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。<br>crontab用法<br>crontab的格式如下面：<br>f1 f2 f3 f4 f5 program<br>其中 f1 是表示分钟，f2 表示小时，f3 表示一个月份中的第几日，f4 表示月份，f5 表示一个星期中的第几天。program 表示要执行程式的路径。<br>当 f1 为 <em> 时表示每分钟都要执行 program，f2 为 </em> 时表示每小时都要执行程式，其余类推<br>当 f1 为 a-b 时表示从第 a 分钟到第 b 分钟这段时间内要执行，f2 为 a-b 时表示从第 a 到第 b 小时都要执行，其余类推<br>当 f1 为 <em>/n 时表示每 n 分钟个时间间隔执行一次，f2 为 </em>/n 表示每 n 小时个时间间隔执行一次，其余类推<br>当 f1 为 a, b, c,… 时表示第 a, b, c,… 分钟要执行，f2 为 a, b, c,… 时表示第 a, b, c…个小时要执行，其余类推<br>管理员登录SSH,输入命令crontab -e编辑crontab文件，根据上面的格式输入并保存。<br>crontab例子<br>每月每天每小时的第 0 分钟执行一次 /bin/ls :<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span>* * * * /bin/ls</div></pre></td></tr></table></figure></p>
+<p>在 12 月内, 每天的早上 6 点到 12 点中，每隔 20 分钟执行一次 /usr/bin/backup :<br>    <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/<span class="number">20</span> <span class="number">6</span><span class="number">-12</span> * <span class="number">12</span> * /usr/bin/backup</div></pre></td></tr></table></figure></p>
+<p>周一到周五每天下午 5:00 寄一封信给 alex@domain.name :<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span><span class="number">17</span> * * <span class="number">1</span>-<span class="number">5</span> mail -s <span class="string">"hi"</span> alex@domain.<span class="keyword">name</span> &lt; /tmp/maildata</div></pre></td></tr></table></figure></p>
+<p>每月每天的午夜 0 点 20 分, 2 点 20 分, 4 点 20 分….执行 echo “haha”<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">20 </span><span class="number">0</span>-<span class="number">23</span>/<span class="number">2</span> * * * echo <span class="string">"haha"</span></div></pre></td></tr></table></figure></p>
+<p>晚上11点到早上8点之间每两个小时，早上8点<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span><span class="number">23</span>-<span class="number">7</span>/<span class="number">2</span>，<span class="number">8</span> * * * date</div></pre></td></tr></table></figure></p>
+<p>在hp unix,中，每20分钟执行一次，表示为：0,20,40 <em> </em> <em> </em> 而不能采用*/n方式，否则出现语法错误<br>crontab用法其实很容易掌握，懂得使用crontab，对网站和服务器维护起到很大的帮助，比如定时备份，定时优化服务器等。</p>
+<p>转载来源:<a href="https://www.centos.bz/2011/03/auto-run-task-crontab/" target="_blank">https://www.centos.bz/2011/03/auto-run-task-crontab/</a></p>
 
       
       
@@ -153,11 +156,11 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/02/03/46/" data-id="cj6uouiyq003fg43kws1y9mbn" class="article-share-link" data-share="baidu" data-title="mongodb数据导入导出以及备份恢复">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/05/07/20/" data-id="cj6up47tu000yok3k99nf3f9i" class="article-share-link" data-share="baidu" data-title="定时自动启动任务crontab命令用法">分享到</a>
       
 
       
-        <a href="http://longlongblog.cn/2015/02/03/46/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://longlongblog.cn/2015/05/07/20/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -170,68 +173,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-49" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/04/3/" class="article-date">
-  <time datetime="2015-01-04T14:02:24.000Z" itemprop="datePublished">2015-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/3/">2014 该有个总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p><div style="font-size: 14px;"><span style="padding-left: 30px;">在写这个文章时，我特意看了一下文章《<a href="http://longlongblog.sinaapp.com/?p=411" title="2013 该有个总结" target="_blank" rel="external">2013 ，该有个总结</a>》，自己认真地读完了，内心莫名的一颤，不知为何，就是突如其来的伤感涌上心头，是感叹时间过的飞快，还是叹息这一年自己的所作所为呢，不得而知。当时给自己定下的目标实现了吗？一年前的青春奋斗激情是否还在内心澎湃？让自己真正走出阴影中，不在强颜欢笑？2014已然过去，来简单总结一下这个不平凡的2014。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">学生时代的结束，无疑是最大的亮点。毕竟作为学生也是有15年的时间了，想一想这么多年的学生生涯是怎么过来的呢。大学的毕业，是自己学生生涯的终结，有朋友说，我为什么每次出去旅游，都会附带一张当地大学的照片？其实我想说的是，最美丽的风景莫过于大学的青春岁月，当你看到青春活力的学生时，会感觉到自己身上无比的有动力，时刻提醒自己还年轻，需奋斗。我为什么不考研究生？其实我就是在逃避，不想再去埋头的学习。当然家庭的原因的客观现实存在，促使我下定决心不再深造。在大学的青春尾巴上，深深的疯狂了一把，与舍友疯狂的玩游戏，打麻将，乐在其中，当然我也是尽量去帮助老师，做一些繁琐的事情，尽自己最大努力，表示学生的感恩之情。离别的情景是那样的历历在目，这就是感情的流露，现实的存在。坚持到毕业的最后一天，踏上了远离校园的旅途，校园，学生时代在地平线的一头，渐渐淡去了它的光影。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">感情归宿的寻找，定是不可遗漏的话题。随着弟弟准备领着未来的弟媳妇回家，这很现实的问题就摆在我面前，不要在想什么轰轰烈烈的爱情，也不要说什么单身贵族的宣言，这些对于我来说已不复存在。其实我不善于感情的流露，不会表达内心的真实想法。不是拼命的对一个人好，那个人就会对你好，那样的感情是不平衡的，迟早一天会失去平衡。有朋友说，你的现在是过去的堆积，过去的点点滴滴，确实是能体现一个人的为人与情感，也许这也是太熟悉的人之间的考量。其实我的要求很简单，一个能一起过日子的女人，彼此包容彼此的过去，彼此相信彼此的未来，善良孝顺就足以。我不会刻意知道你的过去，我只要你的将来和我一心一意，相爱到白头就这么简单。2015 就奔着这样的目标前去，不管现在如何，我始终相信我和你会在一个不经意的路口相遇，相知，相爱，白头到永远。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">工作事业的发展，必是今后的重中之重。初入社会的我，没有走到人生的十字路口，没有太多的抉择。选择日立，为了学好一门语言，但是你也会在其他方面失去一些东西，这个就看自己的心态，自己怎样的一个衡量。有得有失这是自然规律的存在，心态的把握才是重点。人生的路还很长，有时不要只顾到眼前的利益，整个年轻时的规划才是重点。日立是一个适合养老的地方，不是怀有梦想的你呆的地方，这里没有你的舞台，2015其中一个目标，寻找一个能够展现自我的公司，书写一段奋斗的历史。生活中的私活，结识的是朋友，尽心尽力去做好每一个活，这是人与人之间最起码的信任。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">多彩生活的计划，才是丰富人生的浓墨一笔。去一些你想去的地方，也许你就会发现未知的自己，也许会给自己的抉择找一些借口，有时就是需要需要一个借口，来说服自己去承认。身体和心灵总要有一个在路上，不要让自己的青春颓废下去。美丽的风景，衬托的是心境，让人内心无比的宽敞，那就是另一个自己。别人的生活，你无法干预；自己的生活，你全权处理。</span></div></p>
-<p><div style="font-size: 14px;"><span style="padding-left: 30px;">2015的来临，也将预示着本命年的到来，为何不在众人的危言中，奋斗一下，努力一把，难道就是相信命运的安排吗？事在人为，所有的偶遇也是人的刻意安排。自己更加现实一些，更加努力一些，相信会更好~</span></div></p>
-<embed src="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/12/愿得一人心（电视剧《最美的时光》主题曲）-李行亮.mp3" hidden="true" autostart="true" loop="true"><br>
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="cj6uouixz001wg43kgkn1g4ap" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2015/01/04/3/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-38" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/18/38/" class="article-date">
-  <time datetime="2014-12-18T14:52:03.000Z" itemprop="datePublished">2014-12-18</time>
+    <a href="/2015/05/06/49/" class="article-date">
+  <time datetime="2015-05-06T06:15:06.000Z" itemprop="datePublished">2015-05-06</time>
 </a>
     
   <div class="article-category">
@@ -246,7 +191,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/18/38/">解决PHP上传文件大小限制</a>
+      <a class="article-title" href="/2015/05/06/49/">PHP的魔术方法</a>
     </h1>
   
 
@@ -256,23 +201,145 @@ var _hmt = _hmt || [];
       
         <!-- Table of Contents -->
         
-        <p>一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：</p>
-<p>配置php.ini文件 （以上传500M以下大小的文件为例）<br>查找以下选项并修改：</p>
+        <p>PHP中的魔术方法总结 :<strong>construct, </strong>destruct , <strong>call, </strong>callStatic,<strong>get, </strong>set, <strong>isset, </strong>unset , <strong>sleep, </strong>wakeup, <strong>toString, </strong>set_state, <strong>clone and </strong>autoload</p>
+<p>1、<strong>get、</strong>set</p>
+<p>这两个方法是为在类和他们的父类中没有声明的属性而设计的<br><strong>get( $property ) 当调用一个未定义的属性时访问此方法
+</strong>set( $property, $value ) 给一个未定义的属性赋值时调用<br>这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
+<p>2、<strong>isset、</strong>unset</p>
+<p><strong>isset( $property ) 当在一个未定义的属性上调用isset()函数时调用此方法
+</strong>unset( $property ) 当在一个未定义的属性上调用unset()函数时调用此方法<br>与<strong>get方法和</strong>set方法相同，这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
+<p>3、<strong>call
+</strong>call( $method, $arg_array ) 当调用一个未定义的方法是调用此访求<br>这里的未定义的方法包括没有权限访问的方法</p>
+<p>4、<strong>autoload
+</strong>autoload 函数，它会在试图使用尚未被定义的类时自动调用。通过调用此函数，脚本引擎在 PHP 出错失败前有了最后一个机会加载所需的类。<br>注意: 在 __autoload 函数中抛出的异常不能被 catch 语句块捕获并导致致命错误。</p>
+<p>5、<strong>construct、</strong>destruct<br><strong>construct 构造方法，当一个对象创建时调用此方法，使用此方法的好处是：可以使构造方法有一个独一无二的名称,无论它所在的类的名称是什么.这样你在改变类的名称时,就不需要改变构造方法的名称
+</strong>destruct 析构方法，PHP将在对象被销毁前（即从内存中清除前）调用这个方法<br>默认情况下,PHP仅仅释放对象属性所占用的内存并销毁对象相关的资源.<br>析构函数允许你在使用一个对象之后执行任意代码来清除内存.<br>当PHP决定你的脚本不再与对象相关时,析构函数将被调用.<br>在一个函数的命名空间内,这会发生在函数return的时候.<br>对于全局变量,这发生于脚本结束的时候.如果你想明确地销毁一个对象,你可以给指向该对象的变量分配任何其它值.通常将变量赋值勤为NULL或者调用unset.</p>
+<p>6、<strong>clone<br>PHP5中的对象赋值是使用的引用赋值，如果想复制一个对象则需要使用clone方法，在调用此方法是对象会自动调用</strong>clone魔术方法<br>如果在对象复制需要执行某些初始化操作，可以在__clone方法实现</p>
+<p>7、<strong>toString 
+</strong>toString方法在将一个对象转化成字符串时自动调用，比如使用echo打印对象时<br>如果类没有实现此方法，则无法通过echo打印对象，否则会显示：Catchable fatal error: Object of class test could not be converted to string in<br>此方法必须返回一个字符串<br>在PHP 5.2.0之前，<strong>toString方法只有结合使用echo() 或 print()时 才能生效。PHP 5.2.0之后，则可以在任何字符串环境生效（例如通过printf()，使用%s修饰符），但 不能用于非字符串环境（如使用%d修饰符）。从PHP 5.2.0，如果将一个未定义</strong>toString方法的对象 转换为字符串，会报出一个E_RECOVERABLE_ERROR错误。</p>
+<p>8、<strong>sleep、</strong>wakeup<br><strong>sleep 串行化的时候用
+</strong>wakeup 反串行化的时候调用<br>serialize() 检查类中是否有魔术名称 <strong>sleep 的函数。如果这样，该函数将在任何序列化之前运行。它可以清除对象并应该返回一个包含有该对象中应被序列化的所有变量名的数组。<br>使用 </strong>sleep 的目的是关闭对象可能具有的任何数据库连接，提交等待中的数据或进行类似的清除任务。此外，如果有非常大的对象而并不需要完全储存下来时此函数也很有用。<br>相反地，unserialize() 检查具有魔术名称 <strong>wakeup 的函数的存在。如果存在，此函数可以重建对象可能具有的任何资源。<br>使用 </strong>wakeup 的目的是重建在序列化中可能丢失的任何数据库连接以及处理其它重新初始化的任务。</p>
+<p>9、__set_state<br>当调用var_export()时，这个静态 方法会被调用（自PHP 5.1.0起有效）。<br>本方法的唯一参数是一个数组，其中包含按array(’property’ =&gt; value, …)格式排列的类属性。</p>
+<p>10、<strong>invoke<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke 方法会被自动调用。<br>PHP5.3.0以上版本有效</p>
+<p>11、<strong>callStatic<br>它的工作方式类似于 </strong>call() 魔术方法，<strong>callStatic() 是为了处理静态方法调用，<br>PHP5.3.0以上版本有效<br>PHP 确实加强了对 </strong>callStatic() 方法的定义；它必须是公共的，并且必须被声明为静态的。同样，__call() 魔术方法必须被定义为公共的，所有其他魔术方法都必须如此。</p>
+<p>原文出处：<a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" title="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" target="_blank" rel="external">http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html</a></p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/05/06/49/" data-id="cj6up47vj003pok3k43wsvju1" class="article-share-link" data-share="baidu" data-title="PHP的魔术方法">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/05/06/49/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-42" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/29/42/" class="article-date">
+  <time datetime="2015-04-29T08:30:29.000Z" itemprop="datePublished">2015-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/29/42/">问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> house h <span class="keyword">SET</span> h.Fuser_id = <span class="number">79063</span> <span class="keyword">WHERE</span> h.Fid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> Fid <span class="keyword">from</span> house <span class="keyword">WHERE</span> Fuser_id = <span class="number">79056</span> <span class="keyword">AND</span> Fdistrict1 = <span class="string">''</span> <span class="keyword">AND</span> Fis_process = <span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>但是在具体操作的过程中，问题出现了，问题是You can’t specify target table ‘A’ for update in FROM clause,问题出在哪了，一查资料原因是在更新这个表和数据时又查询了它，而查询的数据又做了更新的条件。<br>解决方案呢就是先将查出的表作为一个第三方表，然后查询第三方表实现隔离操作。<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> house h <span class="keyword">SET</span> h.Fuser_id = <span class="number">79063</span> <span class="keyword">WHERE</span> h.Fid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> temp.Fid <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> Fid <span class="keyword">from</span> house <span class="keyword">WHERE</span> Fuser_id = <span class="number">79056</span> <span class="keyword">AND</span> Fdistrict1 = <span class="string">''</span> <span class="keyword">AND</span> Fis_process = <span class="number">0</span>) temp );</div></pre></td></tr></table></figure></p>
+<p>当然这种做法是最佳的选择，还有一个笨方法就是建立一个temp临时表，插入临时表，然后查询临时表，当然该方法的优点是在遇到数据量大的情况下，可以避免数据库内存不够用而导致的宕机。</p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/04/29/42/" data-id="cj6up47v60034ok3kdevvml0b" class="article-share-link" data-share="baidu" data-title="问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/04/29/42/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-30" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/30/" class="article-date">
+  <time datetime="2015-04-27T10:44:57.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/27/30/">浅谈PHP大数据处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。</p>
 <ol>
-<li><p>file_uploads = On ;打开文件上传选项。</p>
-</li>
-<li><p>upload_max_filesize = 500M ;上传文件上限。<br>如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 </p>
-</li>
-<li><p>post_max_size = 500M ;post上限 </p>
-</li>
-<li><p>max_execution_time = 1800 ; 脚本最大执行时间 </p>
-</li>
-<li><p>max_input_time = 1800 ;  输入最大执行时间 </p>
-</li>
-<li><p>memory_limit = 128M ; 内存上限</p>
-</li>
+<li>尽量不要用inner join，内连接查询速度慢，建议为left jion。</li>
+<li>建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。</li>
+<li>limit 分段处理，每次取2000条，处理完之后再取数据处理。</li>
+<li>mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。</li>
+<li>优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。</li>
+<li>利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></li>
 </ol>
-<p>记得配置完了后要重启apache等服务器服务，即可成功！</p>
+<p>其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现在改数据库，花费的代价很大。</p>
 
       
       
@@ -280,11 +347,11 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="cj6uouiye002og43ko6ifn5rk" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="cj6up47ug0020ok3k9rjar6dt" class="article-share-link" data-share="baidu" data-title="浅谈PHP大数据处理">分享到</a>
       
 
       
-        <a href="http://longlongblog.cn/2014/12/18/38/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://longlongblog.cn/2015/04/27/30/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -297,14 +364,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-55" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-31" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/13/55/" class="article-date">
-  <time datetime="2014-12-13T02:17:11.000Z" itemprop="datePublished">2014-12-13</time>
+    <a href="/2015/04/23/31/" class="article-date">
+  <time datetime="2015-04-23T04:33:31.000Z" itemprop="datePublished">2015-04-23</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
   </div>
 
   </div>
@@ -315,7 +382,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/13/55/">Webservice与Servlet的区别</a>
+      <a class="article-title" href="/2015/04/23/31/">浅谈Redis与Memcache的异同点</a>
     </h1>
   
 
@@ -325,116 +392,10 @@ var _hmt = _hmt || [];
       
         <!-- Table of Contents -->
         
-        <div style="font-size: 14px;">Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，<br>  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在<a href="http://www.w3.org/TR/SOAP/" title="http://www.w3.org/TR/SOAP/" target="_blank" rel="external">http://www.w3.org/TR/SOAP/</a><br><br>  SOAP是为了在Internet   环境下，实现系统是松散耦合的、跨平台的，与语言无关的，与特定接口无关的，而且要提供对Web   应用程序的可靠访问。<br><br>  几乎所有的开发工具都可以开发WebService系统，包括Java,C#,甚至基于VCL架构的Delphi。而且   所开发出来的WebService系统，可以方便的被各种客户端调用，包括，浏览器，W32应用程序，还有Java   App。<br><br>  可以这么说，开发一个WebService系统，把它放到互联网上，生成一个WebService描述文件.wsdl（非常容易）,全世界的任何人，使用几乎任何开发工具，引用了这个wsdl,就像引用了一个动态库的头文件一样，方便的调用你的WebService接口，就像调用本地的方法一样。<br><br>综上所述:<br>    <figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、<span class="built_in">WebService</span>通常是基于http的远程方法调用(RMI)，号称是可以反回远程对象，    一般来说客户段可以象调用本地方法一样调用<span class="built_in">WebService</span>的方法。   </div><div class="line"><span class="number">2</span>、<span class="built_in">WebService</span>使用的SOAP是一种通用的格式，不管什么样的客户端都可以。  </div><div class="line"><span class="number">3</span>、如果你用Servlet返回XML，那个XML的描述框架就是你定的喽？你能确保别人都能看明白你的XML格式含义？  </div><div class="line"><span class="number">4</span>、<span class="built_in">WebService</span>并不复杂，开发起来甚至比Servlet还简单。  </div><div class="line"><span class="number">5</span>、如果客户段需要传递一个复杂的多维数组给服务端，Servlet怎么办？  </div><div class="line"><span class="number">6</span>。<span class="built_in">webservice</span>的优点在于可以传递对象（其实是结构化的数据），从而对异构系统来说更有优势 </div><div class="line">其实最重点要的，是<span class="built_in">WebService</span>的方法返回消息是有标准的（大家通用，谁都能看懂），如果用Servlet所返回XML，是没有标准的</div></pre></td></tr></table></figure><br><br>在我们的项目中，一个java web项目要使用另一个java web的方法，这时可以选择servlet和webservice方法，我们使用servlet方法，使用httpclient访问，地址为<a href="http://ip/servlet/servletname" target="_blank" rel="external">http://ip/servlet/servletname</a> 访问成功。<br>关于如何返回数据，out对象输出即可<br><br>servlet到是也可以传对象 只要能序列化<br><br>其实 servlet和webservice不是一个层次上的东西 不可比<br>servlet定义的是一套interface<br>目的是实现 java在web上的动态访问（不知局限于http协议的 至少还有ftp协议）<br><br>webservice定义的是一套标准（SOAP/UDDI/WSDL… 比API更抽象）,与语言无关 协议无关 平台无关<br>目的是实现基于service的组件（相对于EJB DCOM ….）<br>从webservice的目的不难看出 他的复杂度还是相当大的 （EJB需要考虑的他都要进行实现） 包括安全性 事务性 等等…. 远不止上面列出的SOAP/UDDI/WSDL</div>
-
-<address>转载出处：<a href="http://xuyuanshuaaa.iteye.com/blog/1134677" title="http://xuyuanshuaaa.iteye.com/blog/1134677" target="_blank" rel="external">http://xuyuanshuaaa.iteye.com/blog/1134677</a></address>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cj6uouiz5004ag43k0b61qh4s" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/12/13/55/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-18" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/22/18/" class="article-date">
-  <time datetime="2014-11-22T14:13:15.000Z" itemprop="datePublished">2014-11-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/22/18/">好基友，一辈子</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">想了很长时间，就是想不出这个标题来，就叫这个吧。跟好基友说好的，一定专门为你写个传记，正好今天有时间了，也想写点东西了，就给你写个类似传记的东西。我的好基友，一个我大学里很认真交的朋友；一个让我记忆尤深的基友，一辈子不曾忘记的兄弟。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">为什么回成为我的好基友？为什么会让我如此记忆尤深？这得从我的大学生活开始。那年秋天，我认认真真地开始了我的大学生活，大一的我忙于各种班级，学生会事务，学习也是没放在心上，我顶住来自老师不信任的巨大压力下，每天都是独自回到宿舍，每每回到宿舍，还得忙着学生会的事务，那时的我也就是和同宿舍的舍友最熟了还有就是他了，他就是孙冉，一个比我小一岁的，比我胖，比我高的小伙，那时我看他就是我要交朋友的类型，就是老实，没有任何的心眼，这就是他交朋友的标准，恰好这也是我交朋友的标准，臭味相投。记得大二那年，我经历的发展的寒冬，从忙碌中闲暇下来，一下子不知道干什么，学习也是不知所措。是他在背后支持我，每天早上去叫我起床，一起去十餐吃早餐，然后一起去挤公交车。每天下午放学后，一起走回到学校，细声笑语，尽在其中。这让不知所措的我找到了不一样的大学生活，那时我才会学会思考剩余三年的生活。一年如一日，转眼就是大三了，我们分到了同一个宿舍，每天晚上睡觉前都是扯淡，互相损，犹豫时一起光着膀子站在阳台上抽着烟，大谈阔论。一起调戏着小姑娘（都是他），这样的生活很充实。最关键的是每天早上会有人给带温馨的早餐，吃着相同的早餐，然后一起去上课，美好的一天就这样开始了。大四了，我离开了学校，去扬州了，而他也是准备了考研，我不知道他的考研状态，反正没把被子拿到教室，学够了就不学了，到点就不舒服，就走了，这样的考研状态。。。哈哈，我回到了学校，跟他们一起来学习，督促着他学习，但是我失败了。他有时就像一个小孩，考虑的不周全，依赖性较强，性格还是比较急的。我又一次离开了学校来到了青岛，他那时还在学校考研，我记得当时考试前一天晚上打电话，听到他说的，很是轻松的感觉，我也是有点放心的，因为我大体知道他复习到什么程度。学成归来，参加毕业设计答辩，那时我们每天几乎是轮着买午餐和晚餐（早餐忽略了），一起吃着大锅菜，尤其是我忙一天后，回到宿舍已经有人给买好饭了。（声明一下:我的性取向是女的，当然也是想以后的生活，自己忙碌了一天后回到家，有心爱的人等着你一起吃饭，想一想是多么的温馨，那样的生活才是幸福的）。答辩完后，和他一起搬的家，看了看他未来的生活的家，也是醉了~。就这样大学里最好的基友，开始了他的自己生活。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">当他工作后跟我说要出差，我很支持，因为我知道他还不太成熟，自己单独的能力欠缺，性子还比较急，所有的这些，出差回好好地额磨练他的，他找了女朋友，开始了自己的感情生活，我很是高兴的。希望他在云南好好磨练，变得成熟起来，变得独立起来，当出现问题时要自己硬着头皮顶上去，理性的处理各种问题，感性的对待生活。啥也不说了，总之好基友，一辈子！</span><br></div>
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/11/22/18/" data-id="cj6uouixc000og43k7r8ph25e" class="article-share-link" data-share="baidu" data-title="好基友，一辈子">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/11/22/18/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-29" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/08/29/" class="article-date">
-  <time datetime="2014-09-08T09:09:18.000Z" itemprop="datePublished">2014-09-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/08/29/">每逢佳节倍思亲</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">每逢佳节倍思亲，月圆之夜你是否会想起家的温暖？独自漂泊在北京，在忙忙人海中，似乎迷失了自己。就是这样，也要去奋斗，去学习，为了自己的事业，还是要拼搏。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">中秋三天假期，玩的也算是不亦乐乎。第一天，和同事们一起去的是颐和园，体验了一下当年慈禧太后的家，感受了一下昆明湖的魅力，走在大桥上，看到雷峰塔，感叹古代人真会享受，也会审美。第二天和大学同学，早早地去参加基督教堂，参加了那里的教会，听说在里边能净化心灵，让你在繁忙的工作中静下心来，让自己好好休息一下，可是我在那，难受死了，因为我不相信，我试着去净化心灵，但是我还是睡着了。下午去玩了在大学一直没机会去的真人CS，体验了一把CS的魅力，作为队长，带领我们的战队，在最后取得胜利，累的虚脱，但是高兴快乐着。晚上烧烤自助，你无法想象。第三天，在宿舍洗刷一上午，下午LOL几局，让自己身体休息一下，看到北京的蓝天，一切都好了。三天的假期，有朋友的存在，你不会感到孤单，有游戏的存在，你可以尽情的享受。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">休息结束后又要启程，继续奋斗，珍惜在北京的日子，你会学到很多，过好自己的生活，对于关心你的人就是最大的回报。</span></div>
-
+        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：<br>    <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">set key3 <span class="number">0</span> <span class="number">0</span> <span class="number">8</span></div><div class="line">lxsymcto</div><div class="line">STORED</div></pre></td></tr></table></figure></p>
+<p>而redis不需要，如：<br>    <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">set</span> <span class="selector-tag">key2</span> "<span class="selector-tag">lxsymblog</span>"</div><div class="line"><span class="selector-tag">OK</span></div><div class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">get</span> <span class="selector-tag">key2</span></div><div class="line">"<span class="selector-tag">lxsymblog</span>"</div></pre></td></tr></table></figure></p>
+<p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。</p>
+<p>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
 
       
       
@@ -442,228 +403,11 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/09/08/29/" data-id="cj6uouixx001tg43kty0q3esv" class="article-share-link" data-share="baidu" data-title="每逢佳节倍思亲">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/04/23/31/" data-id="cj6up47ui0023ok3ksxpmrlau" class="article-share-link" data-share="baidu" data-title="浅谈Redis与Memcache的异同点">分享到</a>
       
 
       
-        <a href="http://longlongblog.cn/2014/09/08/29/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-40" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/17/40/" class="article-date">
-  <time datetime="2014-08-17T09:39:19.000Z" itemprop="datePublished">2014-08-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/17/40/">那些年，我们一起追过的女孩</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">还记得那是大学时候的电影，宿舍的哥们说是要看看这个电影，说是电影和我的过去很相似，那时的我淡淡一笑，答应一定要去看看，但是一放下就没有再去看这个电影。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">今天，上班了，休息的时候，无所事事，想起来了看看这个电影。电影的情节不时让我心中一震，太多的相似，我不得不承认我那时真的是懵懂，只是语言的巨人，行动的矮子，太多的不了解，太多的不懂，电影的情节，让我明白了一些，让我为之颤抖。真正喜欢一个人时，就是当她成为了别人的新娘时，是发自内心真心的祝福。爱情最美好的时候就是你在追女孩时候的懵懂，没有任何的物质掺杂。看完电影后，总觉得自己要写点什么，可是写着写着，就没有了话语，就像有些人聊着聊着就没有了主题，只有寒暄的问候。哎，写到这吧，就是想表达一下今天下午的心情。</span></div>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/08/17/40/" data-id="cj6uouiyi002xg43kt5j4gaw1" class="article-share-link" data-share="baidu" data-title="那些年，我们一起追过的女孩">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/08/17/40/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-34" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/05/34/" class="article-date">
-  <time datetime="2014-08-05T04:44:50.000Z" itemprop="datePublished">2014-08-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/05/34/">神秘的EJB</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">EJB 是运行在独立服务器上的组件，客户端是通过网络对EJB 对象进行调用的。在Java中，能够实现远程对象调用的技术是RMI，而EJB 技术基础正是RMI。通过RMI 技术，J2EE将EJB 组件创建为远程对象，客户端就可以通过网络调用EJB 对象了。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">a.EJB实现原理： 就是把原来放到客户端实现的代码放到服务器端，并依靠RMI进行通信。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">b.RMI实现原理 ：就是通过Java对象可序列化机制实现分布计算。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">c.服务器集群： 就是通过RMI的通信，连接不同功能模块的服务器，以实现一个完整的功能。</span></div>
-
-<div style="font-size: 14px;"><span style="padding-left: 30px;">参考博客：<a href="http://blog.csdn.net/jojo52013145/article/details/5783677" title="EJB到底是什么" target="_blank" rel="external">http://blog.csdn.net/jojo52013145/article/details/5783677</a></span></div>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/08/05/34/" data-id="cj6uouiy7002cg43k04hpnq5g" class="article-share-link" data-share="baidu" data-title="神秘的EJB">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/08/05/34/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-17" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/04/23/17/" class="article-date">
-  <time datetime="2014-04-23T01:15:25.000Z" itemprop="datePublished">2014-04-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/23/17/">大四生活小记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">在时光的隧道里，在青春的幽径中，大四如期而至，毕业提上日程。匆匆地参加培训，又匆匆地赶回学校，为了一张文凭，还得努力一个多月。做做毕业设计，写写毕业论文，会会好友，享受美食，观光旅行，玩玩游戏，不亦乐乎。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">回到学校，海边烧烤，在禁止烧烤的牌子下，正大光明地烧烤，赤裸裸的挑衅，这就是疯狂。带上相机，美丽郁金香，艳丽引人，留下美丽的瞬间。海边徒步，参观军舰，已知自己将老已。海中海鸥，海边小蟹，尽在相片中，唯美动人。与同班好友，上午英雄联盟，下午打打麻将，晚上敲敲代码，恍惚一天又过去了。闲暇之余，看学弟学妹上课匆忙，才感知青春犹在。打打篮球，跑跑小步，邂逅路人甲。拜访老师，表达谢意，扯扯大学时光。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">本不该如此浪费青春，怎耐大学即将逝去，为何不抓住大学的尾巴，疯狂一次呢？错过了就是错过了，不会有当初，不会回到从前，因为感觉不再，时间不再。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">好好把握现在，疯狂毕业季已经来临！</span><br></div>
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/04/23/17/" data-id="cj6uouixb000jg43k6knlmppb" class="article-share-link" data-share="baidu" data-title="大四生活小记">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/04/23/17/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-51" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/04/22/51/" class="article-date">
-  <time datetime="2014-04-22T11:55:58.000Z" itemprop="datePublished">2014-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/22/51/">Session Error(DWR)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">DWR的Session Error问题，前台页面跳出session error的对话框而控制台则输出:2014-2-23 11:58:53 org.directwebremoting.util.CommonsLoggingOutput error。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">严重: A request has been denied as a potential CSRF attack的错误信息.请求被拒绝因为可能存在csrf(cross-site request forgeries,跨站请求伪造)攻击.也就是说页面URL可能被跨站了的服务所调用。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">在web.xml配置文件中dwr的配置加入corssDomainSessionSecurity这个配置选项，这个参数是在dwr版本2.0才有的.默认值为true,也就是禁止其他域发送请求。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">corssDomainSessionSecurity:设置成false能够从其他域进行请求.注意这样做会在安全性上有一些冒险。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">参考网址：<a href="http://my.oschina.net/u/566829/blog/81935" target="_blank" rel="external">http://my.oschina.net/u/566829/blog/81935</a></span></div>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/04/22/51/" data-id="cj6uouiyy003yg43kii3p4a09" class="article-share-link" data-share="baidu" data-title="Session Error(DWR)">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/04/22/51/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://longlongblog.cn/2015/04/23/31/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -679,7 +423,7 @@ var _hmt = _hmt || [];
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 </section>
       
