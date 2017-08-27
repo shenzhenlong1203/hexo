@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape-plus
+theme: landscape-plus-plus
 duoshuo_shortname: longlongblog
 
 # Deployment

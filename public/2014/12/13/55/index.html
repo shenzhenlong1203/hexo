@@ -6,6 +6,11 @@
   
   <title>Webservice与Servlet的区别 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="description" content="Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在http://www.w3.org/TR/SOAP/  SOAP是为了在Internet   环境下，实现系统是松散">
 <meta name="keywords" content="学习">
 <meta property="og:type" content="article">
@@ -19,15 +24,20 @@
 <meta name="twitter:title" content="Webservice与Servlet的区别">
 <meta name="twitter:description" content="Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在http://www.w3.org/TR/SOAP/  SOAP是为了在Internet   环境下，实现系统是松散">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
-<link rel="publisher" href="https://plus.google.com/u/0/+%E6%B2%88%E6%8C%AF%E9%BE%99">
-  
-    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+<link rel="publisher" href="https://plus.google.com/u/0/">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/logo.jpg">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Chrome on Android -->    
+    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/img/logo.jpg">
+    <meta name="msapplication-TileColor" content="#0e90d2">
   
   <link rel="stylesheet" href="/css/style.css">
-  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google Analytics -->
@@ -42,6 +52,17 @@ ga('send', 'pageview');
 
 </script>
 <!-- End Google Analytics -->
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 </head>
 <body>
@@ -64,19 +85,20 @@ ga('send', 'pageview');
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/">首页</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
         
       </nav>
+      <!--
       <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
           <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
           <input type="submit" value="" class="search-form-submit">
           <input name=tn type=hidden value="bds">
@@ -85,6 +107,7 @@ ga('send', 'pageview');
           <input type="hidden" name="si" value="longlongblog.cn">
         </form>
       </div>
+      -->
     </div>
   </div>
 </header>
@@ -115,16 +138,27 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
+        <!-- Table of Contents -->
+        
         <div style="font-size: 14px;">Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，<br>  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在<a href="http://www.w3.org/TR/SOAP/" title="http://www.w3.org/TR/SOAP/" target="_blank" rel="external">http://www.w3.org/TR/SOAP/</a><br><br>  SOAP是为了在Internet   环境下，实现系统是松散耦合的、跨平台的，与语言无关的，与特定接口无关的，而且要提供对Web   应用程序的可靠访问。<br><br>  几乎所有的开发工具都可以开发WebService系统，包括Java,C#,甚至基于VCL架构的Delphi。而且   所开发出来的WebService系统，可以方便的被各种客户端调用，包括，浏览器，W32应用程序，还有Java   App。<br><br>  可以这么说，开发一个WebService系统，把它放到互联网上，生成一个WebService描述文件.wsdl（非常容易）,全世界的任何人，使用几乎任何开发工具，引用了这个wsdl,就像引用了一个动态库的头文件一样，方便的调用你的WebService接口，就像调用本地的方法一样。<br><br>综上所述:<br>    <figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、<span class="built_in">WebService</span>通常是基于http的远程方法调用(RMI)，号称是可以反回远程对象，    一般来说客户段可以象调用本地方法一样调用<span class="built_in">WebService</span>的方法。   </div><div class="line"><span class="number">2</span>、<span class="built_in">WebService</span>使用的SOAP是一种通用的格式，不管什么样的客户端都可以。  </div><div class="line"><span class="number">3</span>、如果你用Servlet返回XML，那个XML的描述框架就是你定的喽？你能确保别人都能看明白你的XML格式含义？  </div><div class="line"><span class="number">4</span>、<span class="built_in">WebService</span>并不复杂，开发起来甚至比Servlet还简单。  </div><div class="line"><span class="number">5</span>、如果客户段需要传递一个复杂的多维数组给服务端，Servlet怎么办？  </div><div class="line"><span class="number">6</span>。<span class="built_in">webservice</span>的优点在于可以传递对象（其实是结构化的数据），从而对异构系统来说更有优势 </div><div class="line">其实最重点要的，是<span class="built_in">WebService</span>的方法返回消息是有标准的（大家通用，谁都能看懂），如果用Servlet所返回XML，是没有标准的</div></pre></td></tr></table></figure><br><br>在我们的项目中，一个java web项目要使用另一个java web的方法，这时可以选择servlet和webservice方法，我们使用servlet方法，使用httpclient访问，地址为<a href="http://ip/servlet/servletname" target="_blank" rel="external">http://ip/servlet/servletname</a> 访问成功。<br>关于如何返回数据，out对象输出即可<br><br>servlet到是也可以传对象 只要能序列化<br><br>其实 servlet和webservice不是一个层次上的东西 不可比<br>servlet定义的是一套interface<br>目的是实现 java在web上的动态访问（不知局限于http协议的 至少还有ftp协议）<br><br>webservice定义的是一套标准（SOAP/UDDI/WSDL… 比API更抽象）,与语言无关 协议无关 平台无关<br>目的是实现基于service的组件（相对于EJB DCOM ….）<br>从webservice的目的不难看出 他的复杂度还是相当大的 （EJB需要考虑的他都要进行实现） 包括安全性 事务性 等等…. 远不止上面列出的SOAP/UDDI/WSDL</div>
 
 <address>转载出处：<a href="http://xuyuanshuaaa.iteye.com/blog/1134677" title="http://xuyuanshuaaa.iteye.com/blog/1134677" target="_blank" rel="external">http://xuyuanshuaaa.iteye.com/blog/1134677</a></address>
 
 
       
+      
+  <div class="article-statement">
+    <hr>  
+    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
+    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
+  </div>
+
     </div>
+    
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cj6umcpul0048tv3k3y07zf1h" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cj6uojuaf004a7m3ko5hr2iev" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
       
 
       
@@ -161,44 +195,99 @@ ga('send', 'pageview');
 </article>
 
 
-<section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-55" data-title="Webservice与Servlet的区别" data-url="http://longlongblog.cn/2014/12/13/55/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'longlongblog'};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-      </script>
-    <!-- 多说公共JS代码 end -->
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2014/12/13/55/" data-title="Webservice与Servlet的区别" data-url="http://longlongblog.cn/2014/12/13/55/"></div>
   </section>
-
 </section>
       
       <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">来关注我</h3>
+  <div class="widget">
+    <ul>
+      
+      
+        
+        
+          <div style="text-align: center;">
+            <img src="http://oofutns6f.bkt.clouddn.com/wechatqrcode_for_gh_2a5f1955845a_1280.jpg" style="width: 100%; max-width: 250px;">
+          </div>
+        
+        <li>
+          <a href="http://oofutns6f.bkt.clouddn.com/wechatqrcode_for_gh_2a5f1955845a_1280.jpg" target="_blank">1. 我的「微信公共号」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
+        </li>
+      
+        
+        
+        <li>
+          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">推荐文章</h3>
+  <div class="widget">
+    <ul>
+      
+      
+        
+        <li>
+          <a href="/2016/01/04/4/" target="_blank">1. PHP类的自动加载</a>
+        </li>
+      
+        
+        <li>
+          <a href="/2016/05/30/56/" target="_blank">2. 监控系统工具对比</a>
+        </li>
+      
+        
+        <li>
+          <a href="/2015/01/04/3/" target="_blank">3. 2014该有个总结</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -216,57 +305,30 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
+    <h3 class="widget-title">最近评论</h3>
     <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/05/31/57/">企业级Redis环境部署</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/30/56/">监控系统工具对比</a>
-          </li>
-        
-          <li>
-            <a href="/2016/01/04/4/">PHP类的自动加载</a>
-          </li>
-        
-          <li>
-            <a href="/2015/06/30/5/">不知从何说起</a>
-          </li>
-        
-          <li>
-            <a href="/2015/06/26/8/">一意孤行</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
-          </li>
-        
-          <li>
-            <a href="http://honglu.me" target="_blank">独奏</a>
-          </li>
-        
-      </ul>
+      <!-- 多说最新评论 start -->
+      <div class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+      <!-- 多说最新评论 end -->
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+      <script type="text/javascript">
+        var duoshuoQuery = {short_name:"shijiajie"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+      </script>
+      <!-- 多说公共JS代码 end -->
     </div>
   </div>
 
@@ -275,22 +337,37 @@ ga('send', 'pageview');
       
     </div>
     <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Dragon_SZ<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+      Copyright &copy; 2012 - 2017 <a href="/" target="_blank">Dragon_SZ</a>.
+      &nbsp;
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>
+      
+        &nbsp;
+        <span>
+          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
+        </span>
+      
     </div>
   </div>
 </footer>
+
   </div>
   <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
   <!-- totop start -->
@@ -338,7 +415,7 @@ var duoshuoQuery = {short_name:"longlongblog"};
     "common":{onBeforeClick: SetShareData},
     "share":{"bdCustomStyle":"/css/bdshare.css"}
   };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
 <!-- 百度分享 end -->
@@ -346,47 +423,6 @@ var duoshuoQuery = {short_name:"longlongblog"};
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-<! -- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-                processEscapes: true
-                    
-}
-  
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-                  
-}
-    
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Queue(function() {
-            var all = MathJax.Hub.getAllJax(), i;
-            for(i=0; i < all.length; i += 1) {
-                            all[i].SourceElement().parentNode.className += ' has-jax';
-                                    
-            }
-                
-        });
-</script>
-
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
 <script src="/js/script.js"></script>
