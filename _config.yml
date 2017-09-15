@@ -64,7 +64,14 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 theme: landscape-plus-plus
-duoshuo_shortname: longlongblog
+#duoshuo_shortname: longlongblog
+# Disqus 
+disqus:
+  enable: true
+  shortname: longlong    #your name
+  count: true
+
+disqus_shortname: longlong
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
