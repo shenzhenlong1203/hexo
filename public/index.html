@@ -121,7 +121,7 @@ var _hmt = _hmt || [];
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/微信/">微信</a>►<a class="article-category-link" href="/categories/微信/wechat/">wechat</a>
+    <a class="article-category-link" href="/categories/微信/">微信</a>
   </div>
 
   </div>
@@ -142,14 +142,74 @@ var _hmt = _hmt || [];
       
         <!-- Table of Contents -->
         
-        <h3 id="微信开发之初体验"><a href="#微信开发之初体验" class="headerlink" title="微信开发之初体验"></a>微信开发之初体验</h3>
+        <h3 id="微信号区别"><a href="#微信号区别" class="headerlink" title="微信号区别"></a>微信号区别</h3><ol>
+<li>企业号<ul>
+<li>微信企业号只有企业通信录成员才能关注</li>
+<li>同一个微信企业号可配置多个类似服务号的应用，发送信息条数无限制</li>
+<li>旨在通过微信连接企业应用，为企业提供移动端办公入口</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>服务号</p>
+<ul>
+<li>微信的服务号，顾名思义，是提供服务的，用于向粉丝提供服务的一种公众号, 它比订阅号的功能更全。</li>
+<li>服务号也分为两种，认证服务号与未认证服务号，但是认证方式只可以是公司认证，并且也只有公司才能申请</li>
+</ul>
+</li>
+<li><p>订阅号</p>
+<ul>
+<li>订阅号用于媒体、政府等新闻发布平台，时下非常流行的自媒体概念一般都是使用订阅号</li>
+<li>订阅号适合推送消息</li>
+</ul>
+</li>
+<li><p>小程序</p>
+<ul>
+<li>在没有网络连接的情况下，微信公众号的功能无法使用</li>
+<li>小程序本身无需联网的工作，它能够在离线的情况下发挥作用</li>
+<li>小程序更像H5的应用，在微信平台体现可扩展的Native应用</li>
+</ul>
+</li>
+</ol>
+<h3 id="微信用户信息区别"><a href="#微信用户信息区别" class="headerlink" title="微信用户信息区别"></a>微信用户信息区别</h3><ol>
+<li><p>openid</p>
+<ul>
+<li>openid 普通用户的标识，对公众号帐号唯一</li>
+<li>一个openid只对应一个公众号</li>
+<li>同一个用户关注不同的公众号会有不同的openid</li>
+</ul>
+</li>
+<li><p>unionid</p>
+<ul>
+<li>unionid 微信用户统一标识</li>
+<li>针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的</li>
+<li>对于拥有多个账号的企业来说，unionid可以帮助识别不同公众账号下的用户是否是同一个人</li>
+<li>网页应用，二维码等需要记录用户的unionid，因为他们的openid是立即生成的，unionid表示唯一用户</li>
+</ul>
+</li>
+</ol>
+<h3 id="如何获取用户UnionId"><a href="#如何获取用户UnionId" class="headerlink" title="如何获取用户UnionId"></a>如何获取用户UnionId</h3><ol>
+<li><p>开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（<a href="https://open.weixin.qq.com" target="_blank" rel="external">https://open.weixin.qq.com</a>）绑定公众号后，才可利用UnionID机制来满足上述需求。 </p>
+</li>
+<li><p>获取公众号openid列表</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">http请求方式: GET（请使用https协议）</div><div class="line"></div><div class="line">https:<span class="comment">//api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&amp;next_openid=NEXT_OPENID</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>获取公众号openid对应的unionid信息</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">接口调用请求说明</div><div class="line"></div><div class="line">http请求方式: GET https:<span class="regexp">//</span>api.weixin.qq.com<span class="regexp">/cgi-bin/u</span>ser<span class="regexp">/info?access_token=ACCESS_TOKEN&amp;openid=OPENID&amp;lang=zh_CN</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>批量获取用户openid的列表时，注意accesstoken是否已失效，一次获取的accesstoken的最长有效期是7200s,注意批量获取时，判断accesstoken的失效时间。</li>
+<li>批量获取用户unionid时，一般是脚本多线程跑数据，因为提供的批量一次传入100个openid，所以要注意accesstoken过期时间和接口调用sleep，防止被墙报异常。</li>
+</ol>
+
       
       
     </div>
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2017/11/22/59/" data-id="cj9zfqwum004irv3k1teq3r2u" class="article-share-link" data-share="baidu" data-title="微信开发之初体验">分享到</a>
+        <a data-url="http://longlongblog.cn/2017/11/22/59/" data-id="cjapelqq0004mch3knx6761qy" class="article-share-link" data-share="baidu" data-title="微信开发之初体验">分享到</a>
       
 
       
@@ -157,7 +217,7 @@ var _hmt = _hmt || [];
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/账号定义/">账号定义</a></li></ul>
 
     </footer>
   </div>
@@ -208,7 +268,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2017/11/01/58/" data-id="cj9zfqwur004trv3kukbosjsi" class="article-share-link" data-share="baidu" data-title="Redis Cluster FlushAll失败">分享到</a>
+        <a data-url="http://longlongblog.cn/2017/11/01/58/" data-id="cjapelqq1004pch3k8hj5xp6m" class="article-share-link" data-share="baidu" data-title="Redis Cluster FlushAll失败">分享到</a>
       
 
       
@@ -278,7 +338,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2016/05/31/57/" data-id="cj9zfqwuo004mrv3k55sukjx8" class="article-share-link" data-share="baidu" data-title="企业级Redis环境部署">分享到</a>
+        <a data-url="http://longlongblog.cn/2016/05/31/57/" data-id="cjapelqpz004jch3kut3mpa25" class="article-share-link" data-share="baidu" data-title="企业级Redis环境部署">分享到</a>
       
 
       
@@ -353,7 +413,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2016/05/30/56/" data-id="cj9zfqwul004frv3klou6jiul" class="article-share-link" data-share="baidu" data-title="监控系统工具对比">分享到</a>
+        <a data-url="http://longlongblog.cn/2016/05/30/56/" data-id="cjapelqpw004cch3khdgazmr3" class="article-share-link" data-share="baidu" data-title="监控系统工具对比">分享到</a>
       
 
       
@@ -465,7 +525,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2016/01/04/4/" data-id="cj9zfqwty002wrv3krxb1rai5" class="article-share-link" data-share="baidu" data-title="PHP类的自动加载">分享到</a>
+        <a data-url="http://longlongblog.cn/2016/01/04/4/" data-id="cjapelqpb002tch3kadobfar0" class="article-share-link" data-share="baidu" data-title="PHP类的自动加载">分享到</a>
       
 
       
@@ -576,7 +636,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/微信/wechat/">wechat</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -585,7 +645,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a>
+      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
     </div>
   </div>
 
