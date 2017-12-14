@@ -114,6 +114,64 @@ var _hmt = _hmt || [];
     <div class="outer">
       <section id="main">
   
+    <article id="post-54" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/22/54/" class="article-date">
+  <time datetime="2013-09-22T07:42:45.000Z" itemprop="datePublished">2013-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/22/54/">Ubuntu清理垃圾</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p><span style="color: #993300; font-size: 14px;">Ubuntu中使用一段时间会产生很多垃圾，影响系统的运行，经常使得系统崩溃。这不像时windows系统有很多清理垃圾的软件，所以我们要用命令来处理。下面介绍处理垃圾的命令：</span><br><span style="font-size: 14px;"><br><strong>1.可以使用以下命令清理系统垃圾</strong><br>    <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="keyword">get</span> autoclean 清理旧版本的软件缓存</div><div class="line">sudo apt-<span class="keyword">get</span> clean 清理所有软件缓存</div><div class="line">sudo apt-<span class="keyword">get</span> autoremove 删除系统不再使用的孤立软件&lt;/span&gt;</div></pre></td></tr></table></figure></span></p>
+<p><strong>2，清理opera firefox的缓存文件：</strong><br>    <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ls</span> ~<span class="string">/.opera/cache4</span></div><div class="line"><span class="keyword">ls</span> ~<span class="string">/.mozilla/firefox/</span>*<span class="string">.default/Cache</span></div></pre></td></tr></table></figure></p>
+<p><strong>3，删除多余的内核：一定不要删错哦，切记！！</strong><br>打开终端敲命令：dpkg –get-selections|grep linux<br>有image的就是内核文件<br>删除老的内核文件：<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> 内核文件名 （例如：linux-image-2.6.27-2-generic）</div></pre></td></tr></table></figure></p>
+<p>内核删除，释放空间了，应该能释放130－140M空间。<br>最后不要忘了看看当前内核：uname -a</p>
+<p><strong>4,安装包临时文件清理</strong><br>包管理的临时文件目录:<br>包在<br>代码:<br>    <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/var/</span>cache<span class="regexp">/apt/</span>archives</div></pre></td></tr></table></figure></p>
+<p>没有下载完的在<br>代码:<br>    <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/var/</span>cache<span class="regexp">/apt/</span>archives<span class="regexp">/partia</span></div></pre></td></tr></table></figure></p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2013/09/22/54/" data-id="cjb6eapus0049va3krkhydeug" class="article-share-link" data-share="baidu" data-title="Ubuntu清理垃圾">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2013/09/22/54/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-52" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/17/52/" class="article-date">
@@ -151,7 +209,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/09/17/52/" data-id="cjapetabh0042h23kvcvp8w04" class="article-share-link" data-share="baidu" data-title="Shell中ctrl+z 与ctrl+c的区别">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/09/17/52/" data-id="cjb6eapur0043va3kgr4sg5ll" class="article-share-link" data-share="baidu" data-title="Shell中ctrl+z 与ctrl+c的区别">分享到</a>
       
 
       
@@ -206,7 +264,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/09/11/12/" data-id="cjapeta9h0005h23kqview18u" class="article-share-link" data-share="baidu" data-title="即兴的感想">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/09/11/12/" data-id="cjb6eapsv0004va3kqaf5yot9" class="article-share-link" data-share="baidu" data-title="即兴的感想">分享到</a>
       
 
       
@@ -268,7 +326,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/09/07/33/" data-id="cjapetaaj002ah23kcoixz15z" class="article-share-link" data-share="baidu" data-title="社交网络--隐形的杀手">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/09/07/33/" data-id="cjb6eapu3002bva3khh7tx1ys" class="article-share-link" data-share="baidu" data-title="社交网络--隐形的杀手">分享到</a>
       
 
       
@@ -325,7 +383,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/09/04/15/" data-id="cjapeta9m000dh23krrvg8xu8" class="article-share-link" data-share="baidu" data-title="关于PHP对初学者学习的几点建议">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/09/04/15/" data-id="cjb6eapsz000ava3k1t1ukkk2" class="article-share-link" data-share="baidu" data-title="关于PHP对初学者学习的几点建议">分享到</a>
       
 
       
@@ -334,61 +392,6 @@ var _hmt = _hmt || [];
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-19" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/03/19/" class="article-date">
-  <time datetime="2013-09-03T15:24:43.000Z" itemprop="datePublished">2013-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/03/19/">媒体的职责何在</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">针对近期一段时间，网上的媒体发表了很多关于郭晶晶的生活的琐事，同学感觉这些媒体关注的有点过了，本来就是一个很普通的家庭，虽然是世界冠军，报道一两次生活也是对粉丝的关爱了，但是几乎每件事都会报道，就是连人家生孩子，坐月子，就连刨妇产等乱七八糟的事情都罗列出来，有意义吗？我相信就是郭晶晶的家庭也不想这样整天在人们的舆论下生活，每个人都要有自己的生活圈子，都要有自己生活的空间的，如果不是这样的话，生活岂不是很累。如果每天都有媒体来报道她的私人生活，不会让人关注她，反而对此人产生反感。</span></div>
-
-<div style="font-size: 14px;"><span style="padding-left: 30px;">媒体的职责所在？就是整天报道这些陈芝麻烂谷子的事情吗？不应该是报道一些有意义的事情让人们从中学到知识，或者从报道的新闻中领悟一些人生的哲理。让人民大众了解一些国家的大事，了解国家的政策，以免民众误读国家政策，做出有损于国家社稷的事来。不应该说明一些老百姓应该知道的玄机，让老百姓心中有数吗？希望媒体能够做好传播知识，服务民众的工作，尽心尽责，不要仅仅为了利益而工作，应该是为了信仰，为了自己的良心工作。</span></div>
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2013/09/03/19/" data-id="cjapeta9v000vh23kfn0oftqi" class="article-share-link" data-share="baidu" data-title="媒体的职责何在">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2013/09/03/19/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
 
     </footer>
   </div>
@@ -491,7 +494,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -500,7 +503,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
+      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
     </div>
   </div>
 
@@ -509,7 +512,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

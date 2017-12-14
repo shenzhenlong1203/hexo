@@ -78,6 +78,33 @@
   </entry>
   
   <entry>
+    <title>MyBatis Mapper变量引用方式#{}与${}差别</title>
+    <link href="http://longlongblog.cn/2017/09/14/60/"/>
+    <id>http://longlongblog.cn/2017/09/14/60/</id>
+    <published>2017-09-14T09:12:40.000Z</published>
+    <updated>2017-12-14T11:21:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>众所周知，SQL存在注入的风险，所以mybatis 在默认情况下会使用预编译的方式，并会设置PreparedStatement参数，并进行了必要的安全检查和字符的转义。</p><h3 id="PreparedStatement预编译"><a href="#PreparedStatement预编译" class="headerlink" title="PreparedStatement预编译"></a>PreparedStatement预编译</h3><ol><li><p>Mapper配置，默认是预编译</p> <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getList"</span> <span class="attr">resultType</span>=<span class="string">"Map"</span> &gt;</span>select * from A where age = #&#123;age&#125; ORDER BY #&#123;age&#125;<span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure></li><li><p>SQL举例</p> <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">where</span> age = #&#123;age&#125;</div></pre></td></tr></table></figure></li></ol><ol><li>解释<br>参数：age=&gt;5<br>解析后执行的SQL：select * from A where age = ？<br>然后在SQL的执行中进行值的替换。</li></ol><h3 id="Statement直接拼接"><a href="#Statement直接拼接" class="headerlink" title="Statement直接拼接"></a>Statement直接拼接</h3><ol><li><p>Mapper配置 statementType</p> <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getList"</span> <span class="attr">resultType</span>=<span class="string">"Map"</span> <span class="attr">statementType</span>=<span class="string">"STATEMENT"</span>&gt;</span>select * from A where age = $&#123;age&#125; ORDER BY $&#123;age&#125;<span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure></li></ol><ol><li><p>SQL举例</p> <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> B <span class="keyword">where</span> age = $&#123;age&#125;</div></pre></td></tr></table></figure></li><li><p>解释<br>参数：age传入值为：5<br>解析后执行的SQL：select * from B where age =5</p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>综上所述，</p><ol><li><p>${}方式会引发SQL注入的问题、同时也会影响SQL语句的预编译，所以从安全性和性能的角度出发，能使用#{}的情况下就不要使用${}。</p></li><li><p>可能需要直接插入一个不做任何修改的字符串到SQL语句中,这时候应该使用${}语法更加灵活方便，但是不能有外部sql的进入，防止sql注入。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;众所周知，SQL存在注入的风险，所以mybatis 在默认情况下会使用预编译的方式，并会设置PreparedStatement参数，并进行了
+      
+    
+    </summary>
+    
+      <category term="mybatis" scheme="http://longlongblog.cn/categories/mybatis/"/>
+    
+    
+      <category term="mybatis" scheme="http://longlongblog.cn/tags/mybatis/"/>
+    
+      <category term="mapper" scheme="http://longlongblog.cn/tags/mapper/"/>
+    
+  </entry>
+  
+  <entry>
     <title>企业级Redis环境部署</title>
     <link href="http://longlongblog.cn/2016/05/31/57/"/>
     <id>http://longlongblog.cn/2016/05/31/57/</id>
@@ -512,31 +539,6 @@
     
     
       <category term="生活" scheme="http://longlongblog.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>神秘的EJB</title>
-    <link href="http://longlongblog.cn/2014/08/05/34/"/>
-    <id>http://longlongblog.cn/2014/08/05/34/</id>
-    <published>2014-08-05T04:44:50.000Z</published>
-    <updated>2016-05-31T05:55:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<div style="font-size: 14px;"><span style="padding-left: 30px;">EJB 是运行在独立服务器上的组件，客户端是通过网络对EJB 对象进行调用的。在Java中，能够实现远程对象调用的技术是RMI，而EJB 技术基础正是RMI。通过RMI 技术，J2EE将EJB 组件创建为远程对象，客户端就可以通过网络调用EJB 对象了。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">a.EJB实现原理： 就是把原来放到客户端实现的代码放到服务器端，并依靠RMI进行通信。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">b.RMI实现原理 ：就是通过Java对象可序列化机制实现分布计算。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">c.服务器集群： 就是通过RMI的通信，连接不同功能模块的服务器，以实现一个完整的功能。</span></div><div style="font-size: 14px;"><span style="padding-left: 30px;">参考博客：<a href="http://blog.csdn.net/jojo52013145/article/details/5783677" title="EJB到底是什么" target="_blank" rel="external">http://blog.csdn.net/jojo52013145/article/details/5783677</a></span></div>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;EJB 是运行在独立服务器上的组件，客户端是通过网络对EJB 对象进行调用的。在Java中，能够实现远程对象调用的技术是RMI，而EJB 技术基础正是R
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://longlongblog.cn/categories/Java/"/>
-    
-    
-      <category term="学习" scheme="http://longlongblog.cn/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
