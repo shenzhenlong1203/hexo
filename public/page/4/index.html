@@ -114,6 +114,62 @@ var _hmt = _hmt || [];
     <div class="outer">
       <section id="main">
   
+    <article id="post-46" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/03/46/" class="article-date">
+  <time datetime="2015-02-03T13:19:48.000Z" itemprop="datePublished">2015-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/03/46/">mongodb数据导入导出以及备份恢复</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; use my_mongodb</div><div class="line">switched <span class="keyword">to</span> db my_mongodb</div><div class="line">&gt; db.user.<span class="builtin-name">find</span>();</div><div class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f81a4a1779282ca68fd8a5a"</span>), <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</div><div class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f844d1847d25a9ce5f120c4"</span>), <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure><br><br>1 常用导出方法<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoexport -d my_mongodb -c<span class="built_in"> user </span>-o user.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">exported 2 records</div><div class="line">[root@localhost bin]# cat user.dat</div><div class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f81a4a1779282ca68fd8a5a"</span> &#125;, <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</div><div class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f844d1847d25a9ce5f120c4"</span> &#125;, <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoexport -d my_mongodb -c<span class="built_in"> user </span>--csv -f uid,username,age -o</div><div class="line">user_csv.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">exported 2 records</div><div class="line">[root@localhost bin]# cat user_csv.dat</div><div class="line">uid,username,age</div><div class="line">2,<span class="string">"Jerry"</span>,100</div><div class="line">1,<span class="string">"Tom"</span>,25</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.user.drop();</span></div><div class="line">true</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show collections;</span></div><div class="line">system.indexes</div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoimport -d my_mongodb -c<span class="built_in"> user </span>user.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">imported 2 objects</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.user.drop();</span></div><div class="line">true</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show collections;</span></div><div class="line">system.indexes</div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoimport -d my_mongodb -c<span class="built_in"> user </span>--type csv --headerline --file</div><div class="line">user_csv.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">imported 3 objects</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb</span></div><div class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">DATABASE: my_mongodb <span class="keyword">to</span> dump/my_mongodb</div><div class="line">my_mongodb.system.indexes <span class="keyword">to</span> dump/my_mongodb/system.indexes.bson</div><div class="line"><span class="number">1</span> objects</div><div class="line">my_mongodb.user <span class="keyword">to</span> dump/my_mongodb/user.bson</div><div class="line"><span class="number">2</span> objects</div><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ll</span></div></pre></td></tr></table></figure><br><br>总计 67648<br>    <figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-rwxr-xr-x<span class="number"> 1 </span>root root<span class="number"> 7508756 </span>2011-04-06 bsondump</div><div class="line">drwxr-xr-x<span class="number"> 3 </span>root root<span class="number"> 4096 </span>04-10 23:54 dump</div><div class="line">-rwxr-xr-x<span class="number"> 1 </span>root root<span class="number"> 2978016 </span>2011-04-06 mongo</div></pre></td></tr></table></figure><br><br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb -o my_mongodb_dump</span></div><div class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">DATABASE: my_mongodb <span class="keyword">to</span> my_mongodb_dump/my_mongodb</div><div class="line">my_mongodb.system.indexes <span class="keyword">to</span></div><div class="line">my_mongodb_dump/my_mongodb/system.indexes.bson</div><div class="line"><span class="number">1</span> objects</div><div class="line">my_mongodb.user <span class="keyword">to</span> my_mongodb_dump/my_mongodb/user.bson</div><div class="line"><span class="number">2</span> objects</div><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></div></pre></td></tr></table></figure><br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br>    <figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; use my_mongodb</div><div class="line">switched to db my_mongodb</div><div class="line">&gt; db.dropDatabase()</div><div class="line">&#123; "dropped" : "my_mongodb", "ok" : 1 &#125;</div><div class="line">&gt; show dbs</div><div class="line">admin (empty)</div><div class="line">local (empty)</div><div class="line"><span class="keyword">test </span>(empty)</div><div class="line">&gt;</div></pre></td></tr></table></figure><br><br>接下来我们进行数据库恢复<br>    <figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]<span class="comment"># ./mongorestore -d my_mongodb my_mongodb_dump/*</span></div><div class="line">connected to: 127.0.0.1</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 my_mongodb_dump/my_mongodb/user.bson</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 going into namespace [my_mongodb.user]</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03<span class="number"> 2 </span>objects found</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 going into namespace [my_mongodb.system.indexes]</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 &#123; name: "_id_", ns: "my_mongodb.user", key: &#123; _id:<span class="number"> 1 </span>&#125;, v:<span class="number"> 0 </span>&#125;</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03<span class="number"> 1 </span>objects found</div><div class="line">[root@localhost bin]<span class="comment">#</span></div></pre></td></tr></table></figure><br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
+
+
+
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/02/03/46/" data-id="cjc4twygl003lpd3kyun1u2fm" class="article-share-link" data-share="baidu" data-title="mongodb数据导入导出以及备份恢复">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/02/03/46/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/04/3/" class="article-date">
@@ -155,7 +211,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="cjc35cd7w001xs93kxsi8cqjg" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="cjc4twyg2002fpd3kebzki939" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
       
 
       
@@ -224,7 +280,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="cjc35cd8m002ps93k0jaui7gq" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="cjc4twyg6002opd3kmxcwmq7t" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
       
 
       
@@ -280,7 +336,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cjc35cd97004es93k1cs26d8o" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cjc4twygr0047pd3k5io9ou23" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
       
 
       
@@ -332,7 +388,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/11/22/18/" data-id="cjc35cd78000js93krnoszk6o" class="article-share-link" data-share="baidu" data-title="好基友，一辈子">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/11/22/18/" data-id="cjc4twyf7000jpd3kwf9w078k" class="article-share-link" data-share="baidu" data-title="好基友，一辈子">分享到</a>
       
 
       
@@ -349,64 +405,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-29" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/08/29/" class="article-date">
-  <time datetime="2014-09-08T09:09:18.000Z" itemprop="datePublished">2014-09-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/08/29/">每逢佳节倍思亲</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">每逢佳节倍思亲，月圆之夜你是否会想起家的温暖？独自漂泊在北京，在忙忙人海中，似乎迷失了自己。就是这样，也要去奋斗，去学习，为了自己的事业，还是要拼搏。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">中秋三天假期，玩的也算是不亦乐乎。第一天，和同事们一起去的是颐和园，体验了一下当年慈禧太后的家，感受了一下昆明湖的魅力，走在大桥上，看到雷峰塔，感叹古代人真会享受，也会审美。第二天和大学同学，早早地去参加基督教堂，参加了那里的教会，听说在里边能净化心灵，让你在繁忙的工作中静下心来，让自己好好休息一下，可是我在那，难受死了，因为我不相信，我试着去净化心灵，但是我还是睡着了。下午去玩了在大学一直没机会去的真人CS，体验了一把CS的魅力，作为队长，带领我们的战队，在最后取得胜利，累的虚脱，但是高兴快乐着。晚上烧烤自助，你无法想象。第三天，在宿舍洗刷一上午，下午LOL几局，让自己身体休息一下，看到北京的蓝天，一切都好了。三天的假期，有朋友的存在，你不会感到孤单，有游戏的存在，你可以尽情的享受。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">休息结束后又要启程，继续奋斗，珍惜在北京的日子，你会学到很多，过好自己的生活，对于关心你的人就是最大的回报。</span></div>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/09/08/29/" data-id="cjc35cd7t001qs93k77lnuhbl" class="article-share-link" data-share="baidu" data-title="每逢佳节倍思亲">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/09/08/29/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
   </nav>
 </section>
       
@@ -497,7 +499,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -506,7 +508,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
+      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
     </div>
   </div>
 
@@ -515,7 +517,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
