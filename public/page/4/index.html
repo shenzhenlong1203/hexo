@@ -114,6 +114,62 @@ var _hmt = _hmt || [];
     <div class="outer">
       <section id="main">
   
+    <article id="post-31" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/23/31/" class="article-date">
+  <time datetime="2015-04-23T04:33:31.000Z" itemprop="datePublished">2015-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/23/31/">浅谈Redis与Memcache的异同点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：<br>    <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">set key3 <span class="number">0</span> <span class="number">0</span> <span class="number">8</span></div><div class="line">lxsymcto</div><div class="line">STORED</div></pre></td></tr></table></figure></p>
+<p>而redis不需要，如：<br>    <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">set</span> <span class="selector-tag">key2</span> "<span class="selector-tag">lxsymblog</span>"</div><div class="line"><span class="selector-tag">OK</span></div><div class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">get</span> <span class="selector-tag">key2</span></div><div class="line">"<span class="selector-tag">lxsymblog</span>"</div></pre></td></tr></table></figure></p>
+<p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。</p>
+<p>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/04/23/31/" data-id="cjc4u3liu0023s13kovyvhkfl" class="article-share-link" data-share="baidu" data-title="浅谈Redis与Memcache的异同点">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/04/23/31/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-46" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/02/03/46/" class="article-date">
@@ -153,7 +209,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/02/03/46/" data-id="cjc4twygl003lpd3kyun1u2fm" class="article-share-link" data-share="baidu" data-title="mongodb数据导入导出以及备份恢复">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/02/03/46/" data-id="cjc4u3ljo003ds13k63wqpiyk" class="article-share-link" data-share="baidu" data-title="mongodb数据导入导出以及备份恢复">分享到</a>
       
 
       
@@ -211,7 +267,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="cjc4twyg2002fpd3kebzki939" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="cjc4u3liq001us13kcir1p0pm" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
       
 
       
@@ -280,7 +336,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="cjc4twyg6002opd3kmxcwmq7t" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="cjc4u3lje002ps13knkhxwiiq" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
       
 
       
@@ -336,7 +392,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cjc4twygr0047pd3k5io9ou23" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cjc4u3lk1004bs13kwequgrhr" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
       
 
       
@@ -345,58 +401,6 @@ var _hmt = _hmt || [];
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-18" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/22/18/" class="article-date">
-  <time datetime="2014-11-22T14:13:15.000Z" itemprop="datePublished">2014-11-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/22/18/">好基友，一辈子</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">想了很长时间，就是想不出这个标题来，就叫这个吧。跟好基友说好的，一定专门为你写个传记，正好今天有时间了，也想写点东西了，就给你写个类似传记的东西。我的好基友，一个我大学里很认真交的朋友；一个让我记忆尤深的基友，一辈子不曾忘记的兄弟。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">为什么回成为我的好基友？为什么会让我如此记忆尤深？这得从我的大学生活开始。那年秋天，我认认真真地开始了我的大学生活，大一的我忙于各种班级，学生会事务，学习也是没放在心上，我顶住来自老师不信任的巨大压力下，每天都是独自回到宿舍，每每回到宿舍，还得忙着学生会的事务，那时的我也就是和同宿舍的舍友最熟了还有就是他了，他就是孙冉，一个比我小一岁的，比我胖，比我高的小伙，那时我看他就是我要交朋友的类型，就是老实，没有任何的心眼，这就是他交朋友的标准，恰好这也是我交朋友的标准，臭味相投。记得大二那年，我经历的发展的寒冬，从忙碌中闲暇下来，一下子不知道干什么，学习也是不知所措。是他在背后支持我，每天早上去叫我起床，一起去十餐吃早餐，然后一起去挤公交车。每天下午放学后，一起走回到学校，细声笑语，尽在其中。这让不知所措的我找到了不一样的大学生活，那时我才会学会思考剩余三年的生活。一年如一日，转眼就是大三了，我们分到了同一个宿舍，每天晚上睡觉前都是扯淡，互相损，犹豫时一起光着膀子站在阳台上抽着烟，大谈阔论。一起调戏着小姑娘（都是他），这样的生活很充实。最关键的是每天早上会有人给带温馨的早餐，吃着相同的早餐，然后一起去上课，美好的一天就这样开始了。大四了，我离开了学校，去扬州了，而他也是准备了考研，我不知道他的考研状态，反正没把被子拿到教室，学够了就不学了，到点就不舒服，就走了，这样的考研状态。。。哈哈，我回到了学校，跟他们一起来学习，督促着他学习，但是我失败了。他有时就像一个小孩，考虑的不周全，依赖性较强，性格还是比较急的。我又一次离开了学校来到了青岛，他那时还在学校考研，我记得当时考试前一天晚上打电话，听到他说的，很是轻松的感觉，我也是有点放心的，因为我大体知道他复习到什么程度。学成归来，参加毕业设计答辩，那时我们每天几乎是轮着买午餐和晚餐（早餐忽略了），一起吃着大锅菜，尤其是我忙一天后，回到宿舍已经有人给买好饭了。（声明一下:我的性取向是女的，当然也是想以后的生活，自己忙碌了一天后回到家，有心爱的人等着你一起吃饭，想一想是多么的温馨，那样的生活才是幸福的）。答辩完后，和他一起搬的家，看了看他未来的生活的家，也是醉了~。就这样大学里最好的基友，开始了他的自己生活。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">当他工作后跟我说要出差，我很支持，因为我知道他还不太成熟，自己单独的能力欠缺，性子还比较急，所有的这些，出差回好好地额磨练他的，他找了女朋友，开始了自己的感情生活，我很是高兴的。希望他在云南好好磨练，变得成熟起来，变得独立起来，当出现问题时要自己硬着头皮顶上去，理性的处理各种问题，感性的对待生活。啥也不说了，总之好基友，一辈子！</span><br></div>
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/11/22/18/" data-id="cjc4twyf7000jpd3kwf9w078k" class="article-share-link" data-share="baidu" data-title="好基友，一辈子">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/11/22/18/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
 
     </footer>
   </div>
@@ -499,7 +503,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">33</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -508,7 +512,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
+      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 15px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
     </div>
   </div>
 
@@ -517,7 +521,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
