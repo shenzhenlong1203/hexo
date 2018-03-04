@@ -4,6 +4,16 @@
 <head>
   <meta charset="utf-8">
   
+  <script>
+    (function(){
+        if('undefined' !== 'undefined'){
+            if (prompt('请输入文章密码') !== 'undefined'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+  </script>
   <title>Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,6 +75,7 @@ var _hmt = _hmt || [];
 </script>
 
 </head>
+
 <body>
 <div id="container">
   <div id="wrap">
@@ -185,7 +196,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/11/20/53/" data-id="cjcvd089s0049fj3k4xvo82je" class="article-share-link" data-share="baidu" data-title="ubuntu备份与恢复">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/11/20/53/" data-id="cjecs5n8h0047ri3ksoagzu4i" class="article-share-link" data-share="baidu" data-title="ubuntu备份与恢复">分享到</a>
       
 
       
@@ -238,7 +249,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/11/16/14/" data-id="cjcvd0887000jfj3kdpmmgsa7" class="article-share-link" data-share="baidu" data-title="党课监考心得">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/11/16/14/" data-id="cjecs5n6m000ari3k08q8zz1a" class="article-share-link" data-share="baidu" data-title="党课监考心得">分享到</a>
       
 
       
@@ -290,7 +301,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/11/09/11/" data-id="cjcvd087x0005fj3knhavmlib" class="article-share-link" data-share="baidu" data-title="久违的睡眠">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/11/09/11/" data-id="cjecs5n6h0004ri3kh9qu4wg3" class="article-share-link" data-share="baidu" data-title="久违的睡眠">分享到</a>
       
 
       
@@ -335,10 +346,10 @@ var _hmt = _hmt || [];
       
         <!-- Table of Contents -->
         
-        <p><span style="font-size: 14px;"><strong><a href="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8.jpg" target="_blank" rel="external"><img src="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg" alt="" title="ebc8"></a><span style="font-size: 14px;">我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。</span></strong></span></p>
-<p>1.在数据库链接字符串上要形如：<span style="color: #ff6600;">jdbc:mysql://localhost:3306/db?useUnicode=true&amp;characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="external"><span style="color: #ff6600;">UTF-8</span></a>(注意要加characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="external"><span style="color: #ff6600;">UTF-8</span></a>)。</span></p>
-<p>2.在数据库表和相应的字段都要的charset要选择utf8，字段也要加，参照<a href="http://blog.csdn.net/xuanner/article/details/1573616" target="_blank" rel="external">http://blog.csdn.net/xuanner/article/details/1573616</a>。<span style="color: #ff6600;">（最根本的解决方案是将mysql里的bin目录下的my.ini修改或者加入编码utf-8，重新启动服务，重新建立数据库即可）。</span></p>
-<p>3.在servlet的java中去参数时要加上<span style="color: #ff6600;">：httpServletRequest.setCharacterEncoding(“<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="external"><span style="color: #ff6600;">UTF-8</span></a>“);</span>（最好写一个filter来过滤所有的的代码，并设置为utf-8，参照<a href="http://www.cnblogs.com/yqskj/articles/2226774.html" target="_blank" rel="external">http://www.cnblogs.com/yqskj/articles/2226774.html</a>）。</p>
+        <p><span style="font-size: 14px;"><strong><a href="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8.jpg" target="_blank" rel="noopener"><img src="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg" alt="" title="ebc8"></a><span style="font-size: 14px;">我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。</span></strong></span></p>
+<p>1.在数据库链接字符串上要形如：<span style="color: #ff6600;">jdbc:mysql://localhost:3306/db?useUnicode=true&amp;characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="noopener"><span style="color: #ff6600;">UTF-8</span></a>(注意要加characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="noopener"><span style="color: #ff6600;">UTF-8</span></a>)。</span></p>
+<p>2.在数据库表和相应的字段都要的charset要选择utf8，字段也要加，参照<a href="http://blog.csdn.net/xuanner/article/details/1573616" target="_blank" rel="noopener">http://blog.csdn.net/xuanner/article/details/1573616</a>。<span style="color: #ff6600;">（最根本的解决方案是将mysql里的bin目录下的my.ini修改或者加入编码utf-8，重新启动服务，重新建立数据库即可）。</span></p>
+<p>3.在servlet的java中去参数时要加上<span style="color: #ff6600;">：httpServletRequest.setCharacterEncoding(“<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="noopener"><span style="color: #ff6600;">UTF-8</span></a>“);</span>（最好写一个filter来过滤所有的的代码，并设置为utf-8，参照<a href="http://www.cnblogs.com/yqskj/articles/2226774.html" target="_blank" rel="noopener">http://www.cnblogs.com/yqskj/articles/2226774.html</a>）。</p>
 <p>4.jsp页面要<span style="color: #000000;">加</span>上<span style="color: #000000;">字符集</span>：<span style="color: #ff6600;"> &lt;%@ page language=”java” contentType=”text/html; charset=UTF-8” pageEncoding=”UTF-8”%&gt;</span> 保证页码的编码是utf-8.</p>
 <p>5.在一个javaEE项目时，有一个Servers，将里边的server.xml中修改为&lt;Connector connectionTimeout=”20000” port=”8080” protocol=”HTTP/1.1” redirectPort=”8443” <span style="color: #ff6600;"> URIEncoding=”UTF-8”</span>/&gt;。</p>
 <p><strong>这样做完以上五个步骤，中文乱码问题就不复存在了。</strong></p>
@@ -349,7 +360,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/11/01/44/" data-id="cjcvd089f003bfj3kjk1smk0j" class="article-share-link" data-share="baidu" data-title="JavaEE+Mysql中文乱码">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/11/01/44/" data-id="cjecs5n84003cri3kjqxffofm" class="article-share-link" data-share="baidu" data-title="JavaEE+Mysql中文乱码">分享到</a>
       
 
       
@@ -402,7 +413,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/10/23/41/" data-id="cjcvd089b0032fj3k1qjlwghf" class="article-share-link" data-share="baidu" data-title="那时花开">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/10/23/41/" data-id="cjecs5n7z0030ri3k1r2fve6f" class="article-share-link" data-share="baidu" data-title="那时花开">分享到</a>
       
 
       

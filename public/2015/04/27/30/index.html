@@ -4,6 +4,16 @@
 <head>
   <meta charset="utf-8">
   
+  <script>
+    (function(){
+        if('undefined' !== 'undefined'){
+            if (prompt('请输入文章密码') !== 'undefined'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+  </script>
   <title>浅谈PHP大数据处理 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,6 +77,7 @@ var _hmt = _hmt || [];
 </script>
 
 </head>
+
 <body>
 <div id="container">
   <div id="wrap">
@@ -157,7 +168,7 @@ var _hmt = _hmt || [];
 <li>limit 分段处理，每次取2000条，处理完之后再取数据处理。</li>
 <li>mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。</li>
 <li>优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。</li>
-<li>利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></li>
+<li>利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="noopener">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></li>
 </ol>
 <p>其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现在改数据库，花费的代价很大。</p>
 
@@ -174,7 +185,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="cjcvd088s001yfj3ktptxzu5d" class="article-share-link" data-share="baidu" data-title="浅谈PHP大数据处理">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="cjecs5n7h0025ri3kyy6vceq8" class="article-share-link" data-share="baidu" data-title="浅谈PHP大数据处理">分享到</a>
       
 
       

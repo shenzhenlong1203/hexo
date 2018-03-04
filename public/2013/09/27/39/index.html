@@ -4,6 +4,16 @@
 <head>
   <meta charset="utf-8">
   
+  <script>
+    (function(){
+        if('undefined' !== 'undefined'){
+            if (prompt('请输入文章密码') !== 'undefined'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+  </script>
   <title>解决xampp mysql无法启动问题/1067错误 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +22,7 @@
   <!-- No Baidu Siteapp-->
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="description" content="环境：xampp自带了一个mysql数据库 安装好后，启动mysql服务的时候，提示1067错误1、进入mysql的安装目录，将my.ini中的datadir的值更改为：”%安装目录%/data/”。2、进入”%安装目录%/data/”，里边一个子文件夹代表了一个数据库，除文件夹外，把所有的文件都删掉。3、再次启动你的mysql服务，就ok了。在网上找了很多方法，就是这个方法帮我解决了这个问题。主">
-<meta name="keywords" content="感悟,学习">
+<meta name="keywords" content="学习,感悟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决xampp mysql无法启动问题&#x2F;1067错误">
 <meta property="og:url" content="http://longlongblog.cn/2013/09/27/39/index.html">
@@ -67,6 +77,7 @@ var _hmt = _hmt || [];
 </script>
 
 </head>
+
 <body>
 <div id="container">
   <div id="wrap">
@@ -167,7 +178,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2013/09/27/39/" data-id="cjcvd0896002tfj3k8vcpw91j" class="article-share-link" data-share="baidu" data-title="解决xampp mysql无法启动问题/1067错误">分享到</a>
+        <a data-url="http://longlongblog.cn/2013/09/27/39/" data-id="cjecs5n7u002rri3ku5vpxa11" class="article-share-link" data-share="baidu" data-title="解决xampp mysql无法启动问题/1067错误">分享到</a>
       
 
       
