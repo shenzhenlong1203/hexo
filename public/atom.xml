@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://longlongblog.cn/"/>
-  <updated>2018-03-04T13:32:56.000Z</updated>
+  <updated>2019-08-09T05:59:53.000Z</updated>
   <id>http://longlongblog.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018 该有个总结</title>
+    <link href="http://longlongblog.cn/2019/01/01/64/"/>
+    <id>http://longlongblog.cn/2019/01/01/64/</id>
+    <published>2019-01-01T14:02:24.000Z</published>
+    <updated>2019-08-09T05:59:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>2018年是一个值得纪念的一年，生活步入正轨，事业稳步上升，有值得庆幸的，也有值得总结的，五味杂陈。<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2018年是一个值得纪念的一年，生活步入正轨，事业稳步上升，有值得庆幸的，也有值得总结的，五味杂陈。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="http://longlongblog.cn/categories/Note/"/>
+    
+    
+      <category term="生活" scheme="http://longlongblog.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="感悟" scheme="http://longlongblog.cn/tags/%E6%84%9F%E6%82%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>2017 该有个总结</title>
@@ -239,6 +263,30 @@
   
   <entry>
     <title>2015 该有个总结</title>
+    <link href="http://longlongblog.cn/2016/01/01/46/"/>
+    <id>http://longlongblog.cn/2016/01/01/46/</id>
+    <published>2016-01-01T12:02:24.000Z</published>
+    <updated>2019-08-09T05:54:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>2015年是一个跌跌撞撞的一年，工作中迷失自我，但是感情生活总算有了起色，遇到了一生的挚爱，她对我的爱胜过我对她的爱。整个下半年，沉浸在爱情的海洋里，对现在充满着留恋，对未来充满着期待，一切都是最好的安排！<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2015年是一个跌跌撞撞的一年，工作中迷失自我，但是感情生活总算有了起色，遇到了一生的挚爱，她对我的爱胜过我对她的爱。整个下半年，沉浸在爱情的海洋里，对现在充满着留恋，对未来充满着期待，一切都是最好的安排！&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="http://longlongblog.cn/categories/Note/"/>
+    
+    
+      <category term="生活" scheme="http://longlongblog.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="感悟" scheme="http://longlongblog.cn/tags/%E6%84%9F%E6%82%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2015 该有个总结</title>
     <link href="http://longlongblog.cn/2016/01/01/63/"/>
     <id>http://longlongblog.cn/2016/01/01/63/</id>
     <published>2016-01-01T12:02:24.000Z</published>
@@ -433,31 +481,6 @@
   </entry>
   
   <entry>
-    <title>mongodb数据导入导出以及备份恢复</title>
-    <link href="http://longlongblog.cn/2015/02/03/46/"/>
-    <id>http://longlongblog.cn/2015/02/03/46/</id>
-    <published>2015-02-03T13:19:48.000Z</published>
-    <updated>2016-05-31T05:59:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; use my_mongodb</div><div class="line">switched <span class="keyword">to</span> db my_mongodb</div><div class="line">&gt; db.user.<span class="builtin-name">find</span>();</div><div class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f81a4a1779282ca68fd8a5a"</span>), <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</div><div class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f844d1847d25a9ce5f120c4"</span>), <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure><br><br>1 常用导出方法<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoexport -d my_mongodb -c<span class="built_in"> user </span>-o user.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">exported 2 records</div><div class="line">[root@localhost bin]# cat user.dat</div><div class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f81a4a1779282ca68fd8a5a"</span> &#125;, <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</div><div class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f844d1847d25a9ce5f120c4"</span> &#125;, <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoexport -d my_mongodb -c<span class="built_in"> user </span>--csv -f uid,username,age -o</div><div class="line">user_csv.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">exported 2 records</div><div class="line">[root@localhost bin]# cat user_csv.dat</div><div class="line">uid,username,age</div><div class="line">2,<span class="string">"Jerry"</span>,100</div><div class="line">1,<span class="string">"Tom"</span>,25</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.user.drop();</span></div><div class="line">true</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show collections;</span></div><div class="line">system.indexes</div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoimport -d my_mongodb -c<span class="built_in"> user </span>user.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">imported 2 objects</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.user.drop();</span></div><div class="line">true</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show collections;</span></div><div class="line">system.indexes</div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# ./mongoimport -d my_mongodb -c<span class="built_in"> user </span>--type csv --headerline --file</div><div class="line">user_csv.dat</div><div class="line">connected <span class="keyword">to</span>: 127.0.0.1</div><div class="line">imported 3 objects</div><div class="line">[root@localhost bin]#</div></pre></td></tr></table></figure><br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb</span></div><div class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">DATABASE: my_mongodb <span class="keyword">to</span> dump/my_mongodb</div><div class="line">my_mongodb.system.indexes <span class="keyword">to</span> dump/my_mongodb/system.indexes.bson</div><div class="line"><span class="number">1</span> objects</div><div class="line">my_mongodb.user <span class="keyword">to</span> dump/my_mongodb/user.bson</div><div class="line"><span class="number">2</span> objects</div><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ll</span></div></pre></td></tr></table></figure><br><br>总计 67648<br>    <figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-rwxr-xr-x<span class="number"> 1 </span>root root<span class="number"> 7508756 </span>2011-04-06 bsondump</div><div class="line">drwxr-xr-x<span class="number"> 3 </span>root root<span class="number"> 4096 </span>04-10 23:54 dump</div><div class="line">-rwxr-xr-x<span class="number"> 1 </span>root root<span class="number"> 2978016 </span>2011-04-06 mongo</div></pre></td></tr></table></figure><br><br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb -o my_mongodb_dump</span></div><div class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">DATABASE: my_mongodb <span class="keyword">to</span> my_mongodb_dump/my_mongodb</div><div class="line">my_mongodb.system.indexes <span class="keyword">to</span></div><div class="line">my_mongodb_dump/my_mongodb/system.indexes.bson</div><div class="line"><span class="number">1</span> objects</div><div class="line">my_mongodb.user <span class="keyword">to</span> my_mongodb_dump/my_mongodb/user.bson</div><div class="line"><span class="number">2</span> objects</div><div class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></div></pre></td></tr></table></figure><br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br>    <figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; use my_mongodb</div><div class="line">switched to db my_mongodb</div><div class="line">&gt; db.dropDatabase()</div><div class="line">&#123; "dropped" : "my_mongodb", "ok" : 1 &#125;</div><div class="line">&gt; show dbs</div><div class="line">admin (empty)</div><div class="line">local (empty)</div><div class="line"><span class="keyword">test </span>(empty)</div><div class="line">&gt;</div></pre></td></tr></table></figure><br><br>接下来我们进行数据库恢复<br>    <figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]<span class="comment"># ./mongorestore -d my_mongodb my_mongodb_dump/*</span></div><div class="line">connected to: 127.0.0.1</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 my_mongodb_dump/my_mongodb/user.bson</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 going into namespace [my_mongodb.user]</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03<span class="number"> 2 </span>objects found</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 going into namespace [my_mongodb.system.indexes]</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03 &#123; name: "_id_", ns: "my_mongodb.user", key: &#123; _id:<span class="number"> 1 </span>&#125;, v:<span class="number"> 0 </span>&#125;</div><div class="line">Wed Apr<span class="number"> 11 </span>00:03:03<span class="number"> 1 </span>objects found</div><div class="line">[root@localhost bin]<span class="comment">#</span></div></pre></td></tr></table></figure><br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="noopener">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;div style=&quot;font-size:14px;&quot;&gt;&lt;br&gt;一、数据导出 mongoexport&lt;br&gt;&lt;br&gt;假设库里有一张user 表，里面有2 条记录，我们要将它导出&lt;br&gt;    &lt;figure class=&quot;highlight routeros&quot;&gt;&lt;table&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="SQL" scheme="http://longlongblog.cn/categories/SQL/"/>
-    
-    
-      <category term="学习" scheme="http://longlongblog.cn/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>2014 该有个总结</title>
     <link href="http://longlongblog.cn/2015/01/04/3/"/>
     <id>http://longlongblog.cn/2015/01/04/3/</id>
@@ -502,31 +525,6 @@
     </summary>
     
       <category term="PHP" scheme="http://longlongblog.cn/categories/PHP/"/>
-    
-    
-      <category term="学习" scheme="http://longlongblog.cn/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Webservice与Servlet的区别</title>
-    <link href="http://longlongblog.cn/2014/12/13/55/"/>
-    <id>http://longlongblog.cn/2014/12/13/55/</id>
-    <published>2014-12-13T02:17:11.000Z</published>
-    <updated>2016-05-31T06:05:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<div style="font-size: 14px;">Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，<br>  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在<a href="http://www.w3.org/TR/SOAP/" title="http://www.w3.org/TR/SOAP/" target="_blank" rel="noopener">http://www.w3.org/TR/SOAP/</a><br><br>  SOAP是为了在Internet   环境下，实现系统是松散耦合的、跨平台的，与语言无关的，与特定接口无关的，而且要提供对Web   应用程序的可靠访问。<br><br>  几乎所有的开发工具都可以开发WebService系统，包括Java,C#,甚至基于VCL架构的Delphi。而且   所开发出来的WebService系统，可以方便的被各种客户端调用，包括，浏览器，W32应用程序，还有Java   App。<br><br>  可以这么说，开发一个WebService系统，把它放到互联网上，生成一个WebService描述文件.wsdl（非常容易）,全世界的任何人，使用几乎任何开发工具，引用了这个wsdl,就像引用了一个动态库的头文件一样，方便的调用你的WebService接口，就像调用本地的方法一样。<br><br>综上所述:<br>    <figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、<span class="built_in">WebService</span>通常是基于http的远程方法调用(RMI)，号称是可以反回远程对象，    一般来说客户段可以象调用本地方法一样调用<span class="built_in">WebService</span>的方法。   </div><div class="line"><span class="number">2</span>、<span class="built_in">WebService</span>使用的SOAP是一种通用的格式，不管什么样的客户端都可以。  </div><div class="line"><span class="number">3</span>、如果你用Servlet返回XML，那个XML的描述框架就是你定的喽？你能确保别人都能看明白你的XML格式含义？  </div><div class="line"><span class="number">4</span>、<span class="built_in">WebService</span>并不复杂，开发起来甚至比Servlet还简单。  </div><div class="line"><span class="number">5</span>、如果客户段需要传递一个复杂的多维数组给服务端，Servlet怎么办？  </div><div class="line"><span class="number">6</span>。<span class="built_in">webservice</span>的优点在于可以传递对象（其实是结构化的数据），从而对异构系统来说更有优势 </div><div class="line">其实最重点要的，是<span class="built_in">WebService</span>的方法返回消息是有标准的（大家通用，谁都能看懂），如果用Servlet所返回XML，是没有标准的</div></pre></td></tr></table></figure><br><br>在我们的项目中，一个java web项目要使用另一个java web的方法，这时可以选择servlet和webservice方法，我们使用servlet方法，使用httpclient访问，地址为<a href="http://ip/servlet/servletname" target="_blank" rel="noopener">http://ip/servlet/servletname</a> 访问成功。<br>关于如何返回数据，out对象输出即可<br><br>servlet到是也可以传对象 只要能序列化<br><br>其实 servlet和webservice不是一个层次上的东西 不可比<br>servlet定义的是一套interface<br>目的是实现 java在web上的动态访问（不知局限于http协议的 至少还有ftp协议）<br><br>webservice定义的是一套标准（SOAP/UDDI/WSDL… 比API更抽象）,与语言无关 协议无关 平台无关<br>目的是实现基于service的组件（相对于EJB DCOM ….）<br>从webservice的目的不难看出 他的复杂度还是相当大的 （EJB需要考虑的他都要进行实现） 包括安全性 事务性 等等…. 远不止上面列出的SOAP/UDDI/WSDL</div><address>转载出处：<a href="http://xuyuanshuaaa.iteye.com/blog/1134677" title="http://xuyuanshuaaa.iteye.com/blog/1134677" target="_blank" rel="noopener">http://xuyuanshuaaa.iteye.com/blog/1134677</a></address>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;div style=&quot;font-size: 14px;&quot;&gt;Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，&lt;br&gt;  而WebService是在DCOM   CORBA等分布式技术之后发展
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://longlongblog.cn/categories/Java/"/>
     
     
       <category term="学习" scheme="http://longlongblog.cn/tags/%E5%AD%A6%E4%B9%A0/"/>
