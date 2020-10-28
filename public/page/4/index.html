@@ -46,8 +46,6 @@ gio('send');
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
 <link rel="publisher" href="https://plus.google.com/u/0/">
   
-    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
-  
   
     <link rel="icon" href="/img/logo.jpg">
     <meta name="mobile-web-app-capable" content="yes">
@@ -119,11 +117,13 @@ var _hmt = _hmt || [];
         
           <a class="main-nav-link" href="/archives">文章</a>
         
+          <a class="main-nav-link" href="/atom.xml">rss</a>
+        
+          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
+        
       </nav>
       <!--
       <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -144,6 +144,139 @@ var _hmt = _hmt || [];
 
     <div class="outer">
       <section id="main">
+  
+    <article id="post-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/07/20/" class="article-date">
+  <time datetime="2015-05-07T07:32:20.000Z" itemprop="datePublished">2015-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。<br>crontab简介<br>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos(χρόνος)，原意是时间。　　通常，crontab储存的指令被守护进程激活， crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。<br>crontab用法<br>crontab的格式如下面：<br>f1 f2 f3 f4 f5 program<br>其中 f1 是表示分钟，f2 表示小时，f3 表示一个月份中的第几日，f4 表示月份，f5 表示一个星期中的第几天。program 表示要执行程式的路径。<br>当 f1 为 <em> 时表示每分钟都要执行 program，f2 为 </em> 时表示每小时都要执行程式，其余类推<br>当 f1 为 a-b 时表示从第 a 分钟到第 b 分钟这段时间内要执行，f2 为 a-b 时表示从第 a 到第 b 小时都要执行，其余类推<br>当 f1 为 <em>/n 时表示每 n 分钟个时间间隔执行一次，f2 为 </em>/n 表示每 n 小时个时间间隔执行一次，其余类推<br>当 f1 为 a, b, c,… 时表示第 a, b, c,… 分钟要执行，f2 为 a, b, c,… 时表示第 a, b, c…个小时要执行，其余类推<br>管理员登录SSH,输入命令crontab -e编辑crontab文件，根据上面的格式输入并保存。<br>crontab例子<br>每月每天每小时的第 0 分钟执行一次 /bin/ls :<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span>* * * * /bin/ls</div></pre></td></tr></table></figure></p>
+<p>在 12 月内, 每天的早上 6 点到 12 点中，每隔 20 分钟执行一次 /usr/bin/backup :<br>    <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/<span class="number">20</span> <span class="number">6</span><span class="number">-12</span> * <span class="number">12</span> * /usr/bin/backup</div></pre></td></tr></table></figure></p>
+<p>周一到周五每天下午 5:00 寄一封信给 alex@domain.name :<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span><span class="number">17</span> * * <span class="number">1</span>-<span class="number">5</span> mail -s <span class="string">"hi"</span> alex@domain.<span class="keyword">name</span> &lt; /tmp/maildata</div></pre></td></tr></table></figure></p>
+<p>每月每天的午夜 0 点 20 分, 2 点 20 分, 4 点 20 分….执行 echo “haha”<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">20 </span><span class="number">0</span>-<span class="number">23</span>/<span class="number">2</span> * * * echo <span class="string">"haha"</span></div></pre></td></tr></table></figure></p>
+<p>晚上11点到早上8点之间每两个小时，早上8点<br>    <figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span><span class="number">23</span>-<span class="number">7</span>/<span class="number">2</span>，<span class="number">8</span> * * * date</div></pre></td></tr></table></figure></p>
+<p>在hp unix,中，每20分钟执行一次，表示为：0,20,40 <em> </em> <em> </em> 而不能采用*/n方式，否则出现语法错误<br>crontab用法其实很容易掌握，懂得使用crontab，对网站和服务器维护起到很大的帮助，比如定时备份，定时优化服务器等。</p>
+<p>转载来源:<a href="https://www.centos.bz/2011/03/auto-run-task-crontab/" target="_blank">https://www.centos.bz/2011/03/auto-run-task-crontab/</a></p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/05/07/20/" data-id="ckgstzbua000uh33kh4ax9mah" class="article-share-link" data-share="baidu" data-title="定时自动启动任务crontab命令用法">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/05/07/20/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-49" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/06/49/" class="article-date">
+  <time datetime="2015-05-06T06:15:06.000Z" itemprop="datePublished">2015-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/06/49/">PHP的魔术方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>PHP中的魔术方法总结 :<strong>construct, </strong>destruct , <strong>call, </strong>callStatic,<strong>get, </strong>set, <strong>isset, </strong>unset , <strong>sleep, </strong>wakeup, <strong>toString, </strong>set_state, <strong>clone and </strong>autoload</p>
+<p>1、<strong>get、</strong>set</p>
+<p>这两个方法是为在类和他们的父类中没有声明的属性而设计的<br><strong>get( $property ) 当调用一个未定义的属性时访问此方法
+</strong>set( $property, $value ) 给一个未定义的属性赋值时调用<br>这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
+<p>2、<strong>isset、</strong>unset</p>
+<p><strong>isset( $property ) 当在一个未定义的属性上调用isset()函数时调用此方法
+</strong>unset( $property ) 当在一个未定义的属性上调用unset()函数时调用此方法<br>与<strong>get方法和</strong>set方法相同，这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
+<p>3、<strong>call
+</strong>call( $method, $arg_array ) 当调用一个未定义的方法是调用此访求<br>这里的未定义的方法包括没有权限访问的方法</p>
+<p>4、<strong>autoload
+</strong>autoload 函数，它会在试图使用尚未被定义的类时自动调用。通过调用此函数，脚本引擎在 PHP 出错失败前有了最后一个机会加载所需的类。<br>注意: 在 __autoload 函数中抛出的异常不能被 catch 语句块捕获并导致致命错误。</p>
+<p>5、<strong>construct、</strong>destruct<br><strong>construct 构造方法，当一个对象创建时调用此方法，使用此方法的好处是：可以使构造方法有一个独一无二的名称,无论它所在的类的名称是什么.这样你在改变类的名称时,就不需要改变构造方法的名称
+</strong>destruct 析构方法，PHP将在对象被销毁前（即从内存中清除前）调用这个方法<br>默认情况下,PHP仅仅释放对象属性所占用的内存并销毁对象相关的资源.<br>析构函数允许你在使用一个对象之后执行任意代码来清除内存.<br>当PHP决定你的脚本不再与对象相关时,析构函数将被调用.<br>在一个函数的命名空间内,这会发生在函数return的时候.<br>对于全局变量,这发生于脚本结束的时候.如果你想明确地销毁一个对象,你可以给指向该对象的变量分配任何其它值.通常将变量赋值勤为NULL或者调用unset.</p>
+<p>6、<strong>clone<br>PHP5中的对象赋值是使用的引用赋值，如果想复制一个对象则需要使用clone方法，在调用此方法是对象会自动调用</strong>clone魔术方法<br>如果在对象复制需要执行某些初始化操作，可以在__clone方法实现</p>
+<p>7、<strong>toString 
+</strong>toString方法在将一个对象转化成字符串时自动调用，比如使用echo打印对象时<br>如果类没有实现此方法，则无法通过echo打印对象，否则会显示：Catchable fatal error: Object of class test could not be converted to string in<br>此方法必须返回一个字符串<br>在PHP 5.2.0之前，<strong>toString方法只有结合使用echo() 或 print()时 才能生效。PHP 5.2.0之后，则可以在任何字符串环境生效（例如通过printf()，使用%s修饰符），但 不能用于非字符串环境（如使用%d修饰符）。从PHP 5.2.0，如果将一个未定义</strong>toString方法的对象 转换为字符串，会报出一个E_RECOVERABLE_ERROR错误。</p>
+<p>8、<strong>sleep、</strong>wakeup<br><strong>sleep 串行化的时候用
+</strong>wakeup 反串行化的时候调用<br>serialize() 检查类中是否有魔术名称 <strong>sleep 的函数。如果这样，该函数将在任何序列化之前运行。它可以清除对象并应该返回一个包含有该对象中应被序列化的所有变量名的数组。<br>使用 </strong>sleep 的目的是关闭对象可能具有的任何数据库连接，提交等待中的数据或进行类似的清除任务。此外，如果有非常大的对象而并不需要完全储存下来时此函数也很有用。<br>相反地，unserialize() 检查具有魔术名称 <strong>wakeup 的函数的存在。如果存在，此函数可以重建对象可能具有的任何资源。<br>使用 </strong>wakeup 的目的是重建在序列化中可能丢失的任何数据库连接以及处理其它重新初始化的任务。</p>
+<p>9、__set_state<br>当调用var_export()时，这个静态 方法会被调用（自PHP 5.1.0起有效）。<br>本方法的唯一参数是一个数组，其中包含按array(’property’ =&gt; value, …)格式排列的类属性。</p>
+<p>10、<strong>invoke<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke 方法会被自动调用。<br>PHP5.3.0以上版本有效</p>
+<p>11、<strong>callStatic<br>它的工作方式类似于 </strong>call() 魔术方法，<strong>callStatic() 是为了处理静态方法调用，<br>PHP5.3.0以上版本有效<br>PHP 确实加强了对 </strong>callStatic() 方法的定义；它必须是公共的，并且必须被声明为静态的。同样，__call() 魔术方法必须被定义为公共的，所有其他魔术方法都必须如此。</p>
+<p>原文出处：<a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" title="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html</a></p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/05/06/49/" data-id="ckgstzbvk003ih33kja0zvc74" class="article-share-link" data-share="baidu" data-title="PHP的魔术方法">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/05/06/49/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-42" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -183,7 +316,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/04/29/42/" data-id="cjz3pawh0002xnq3kmj7x18wa" class="article-share-link" data-share="baidu" data-title="问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/04/29/42/" data-id="ckgstzbvb002xh33kwf5pimc5" class="article-share-link" data-share="baidu" data-title="问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause">分享到</a>
       
 
       
@@ -245,7 +378,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="cjz3pawgj001tnq3kxhl8p5a4" class="article-share-link" data-share="baidu" data-title="浅谈PHP大数据处理">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="ckgstzbun001qh33kjt7lt4xz" class="article-share-link" data-share="baidu" data-title="浅谈PHP大数据处理">分享到</a>
       
 
       
@@ -301,135 +434,11 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2015/04/23/31/" data-id="cjz3pawgk001wnq3kiuwsqxgd" class="article-share-link" data-share="baidu" data-title="浅谈Redis与Memcache的异同点">分享到</a>
+        <a data-url="http://longlongblog.cn/2015/04/23/31/" data-id="ckgstzbuq001wh33kpmptl0u5" class="article-share-link" data-share="baidu" data-title="浅谈Redis与Memcache的异同点">分享到</a>
       
 
       
         <a href="http://longlongblog.cn/2015/04/23/31/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/04/3/" class="article-date">
-  <time datetime="2015-01-04T14:02:24.000Z" itemprop="datePublished">2015-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/3/">2014 该有个总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><div style="font-size: 14px;"><span style="padding-left: 30px;">在写这个文章时，我特意看了一下文章《<a href="http://longlongblog.sinaapp.com/?p=411" title="2013 该有个总结" target="_blank" rel="noopener">2013 ，该有个总结</a>》，自己认真地读完了，内心莫名的一颤，不知为何，就是突如其来的伤感涌上心头，是感叹时间过的飞快，还是叹息这一年自己的所作所为呢，不得而知。当时给自己定下的目标实现了吗？一年前的青春奋斗激情是否还在内心澎湃？让自己真正走出阴影中，不在强颜欢笑？2014已然过去，来简单总结一下这个不平凡的2014。</span></div><br>
-        
-          <p class="article-more-link">
-            <a href="/2015/01/04/3/#more">阅读全文</a>
-          </p>
-        
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="cjz3pawgg001qnq3kggzr2qmo" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2015/01/04/3/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-38" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/18/38/" class="article-date">
-  <time datetime="2014-12-18T14:52:03.000Z" itemprop="datePublished">2014-12-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/18/38/">解决PHP上传文件大小限制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：</p>
-<p>配置php.ini文件 （以上传500M以下大小的文件为例）<br>查找以下选项并修改：</p>
-<ol>
-<li><p>file_uploads = On ;打开文件上传选项。</p>
-</li>
-<li><p>upload_max_filesize = 500M ;上传文件上限。<br>如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 </p>
-</li>
-<li><p>post_max_size = 500M ;post上限 </p>
-</li>
-<li><p>max_execution_time = 1800 ; 脚本最大执行时间 </p>
-</li>
-<li><p>max_input_time = 1800 ;  输入最大执行时间 </p>
-</li>
-<li><p>memory_limit = 128M ; 内存上限</p>
-</li>
-</ol>
-<p>记得配置完了后要重启apache等服务器服务，即可成功！</p>
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="cjz3pawgu002inq3k1a3e7g5z" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/12/18/38/#disqus_thread" class="article-comment-link">评论</a>
       
 
       
@@ -460,11 +469,11 @@ var _hmt = _hmt || [];
         
         
           <div style="text-align: center;">
-            <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5tanwtwaxj30g60g8t9r.jpg" style="width: 100%; max-width: 250px;">
+            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
           </div>
         
         <li>
-          <a href="http://ww2.sinaimg.cn/large/006tNc79ly1g5tanwtwaxj30g60g8t9r.jpg" target="_blank">1. 我的「微信」</a>
+          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
         </li>
       
         
@@ -515,31 +524,37 @@ var _hmt = _hmt || [];
       
         
         <li>
-          <a href="/2016/01/04/4/" target="_blank">1. PHP类的自动加载</a>
+          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
         </li>
       
         
         <li>
-          <a href="/2016/05/30/56/" target="_blank">2. 监控系统工具对比</a>
+          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
         </li>
       
         
         <li>
-          <a href="/2015/01/04/3/" target="_blank">3. 2014该有个总结</a>
+          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
+        </li>
+      
+        
+        <li>
+          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
         </li>
       
     </ul>
   </div>
 </div>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">35</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
+    <div class="widget-wrap">
+	<h3 class="widget-title">微信公众号</h3>
+	<div class="widget">
+		<div style="text-align: center;">
+			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
+			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
+		</div>
+	</div>
+</div>
   
     
   <div class="widget-wrap">
@@ -554,7 +569,26 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://honglu.me" target="_blank">独奏</a>
+          </li>
+        
+          <li>
+            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
 
@@ -568,7 +602,7 @@ var _hmt = _hmt || [];
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2019 <a href="/" target="_blank">Dragon_SZ</a>.
+      Copyright &copy; 2012 - 2020 <a href="/" target="_blank">Dragon_SZ</a>.
       &nbsp;
       <span id="busuanzi_container_site_pv">
         总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
@@ -592,6 +626,10 @@ var _hmt = _hmt || [];
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">rss</a>
+  
+    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
   
 </nav>
   <!-- totop start -->

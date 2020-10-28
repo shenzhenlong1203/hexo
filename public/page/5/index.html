@@ -46,8 +46,6 @@ gio('send');
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
 <link rel="publisher" href="https://plus.google.com/u/0/">
   
-    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
-  
   
     <link rel="icon" href="/img/logo.jpg">
     <meta name="mobile-web-app-capable" content="yes">
@@ -119,11 +117,13 @@ var _hmt = _hmt || [];
         
           <a class="main-nav-link" href="/archives">文章</a>
         
+          <a class="main-nav-link" href="/atom.xml">rss</a>
+        
+          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
+        
       </nav>
       <!--
       <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -144,6 +144,130 @@ var _hmt = _hmt || [];
 
     <div class="outer">
       <section id="main">
+  
+    <article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/04/3/" class="article-date">
+  <time datetime="2015-01-04T14:02:24.000Z" itemprop="datePublished">2015-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/04/3/">2014 该有个总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div style="font-size: 14px;"><span style="padding-left: 30px;">在写这个文章时，我特意看了一下文章《<a href="http://longlongblog.sinaapp.com/?p=411" title="2013 该有个总结" target="_blank" rel="noopener">2013 ，该有个总结</a>》，自己认真地读完了，内心莫名的一颤，不知为何，就是突如其来的伤感涌上心头，是感叹时间过的飞快，还是叹息这一年自己的所作所为呢，不得而知。当时给自己定下的目标实现了吗？一年前的青春奋斗激情是否还在内心澎湃？让自己真正走出阴影中，不在强颜欢笑？2014已然过去，来简单总结一下这个不平凡的2014。</span></div><br>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/04/3/#more">阅读全文</a>
+          </p>
+        
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="ckgstzbup001th33ky4bi7cbo" class="article-share-link" data-share="baidu" data-title="2014 该有个总结">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2015/01/04/3/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-38" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/18/38/" class="article-date">
+  <time datetime="2014-12-18T14:52:03.000Z" itemprop="datePublished">2014-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/18/38/">解决PHP上传文件大小限制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：</p>
+<p>配置php.ini文件 （以上传500M以下大小的文件为例）<br>查找以下选项并修改：</p>
+<ol>
+<li><p>file_uploads = On ;打开文件上传选项。</p>
+</li>
+<li><p>upload_max_filesize = 500M ;上传文件上限。<br>如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 </p>
+</li>
+<li><p>post_max_size = 500M ;post上限 </p>
+</li>
+<li><p>max_execution_time = 1800 ; 脚本最大执行时间 </p>
+</li>
+<li><p>max_input_time = 1800 ;  输入最大执行时间 </p>
+</li>
+<li><p>memory_limit = 128M ; 内存上限</p>
+</li>
+</ol>
+<p>记得配置完了后要重启apache等服务器服务，即可成功！</p>
+
+      
+      
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://longlongblog.cn/2014/12/18/38/" data-id="ckgstzbv1002ih33k7di53ptx" class="article-share-link" data-share="baidu" data-title="解决PHP上传文件大小限制">分享到</a>
+      
+
+      
+        <a href="http://longlongblog.cn/2014/12/18/38/#disqus_thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-55" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -184,7 +308,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="cjz3pawhg0041nq3kcrusbce2" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/12/13/55/" data-id="ckgstzbvv0041h33kmlefhru2" class="article-share-link" data-share="baidu" data-title="Webservice与Servlet的区别">分享到</a>
       
 
       
@@ -239,7 +363,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/11/22/18/" data-id="cjz3pawg0000mnq3kzv835078" class="article-share-link" data-share="baidu" data-title="好基友，一辈子">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/11/22/18/" data-id="ckgstzbu8000ph33k94z4eyn4" class="article-share-link" data-share="baidu" data-title="好基友，一辈子">分享到</a>
       
 
       
@@ -293,7 +417,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2014/09/08/29/" data-id="cjz3pawge001nnq3kg1x6uysc" class="article-share-link" data-share="baidu" data-title="每逢佳节倍思亲">分享到</a>
+        <a data-url="http://longlongblog.cn/2014/09/08/29/" data-id="ckgstzbul001nh33kxulwuvjo" class="article-share-link" data-share="baidu" data-title="每逢佳节倍思亲">分享到</a>
       
 
       
@@ -302,116 +426,6 @@ var _hmt = _hmt || [];
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-40" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/17/40/" class="article-date">
-  <time datetime="2014-08-17T09:39:19.000Z" itemprop="datePublished">2014-08-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/17/40/">那些年，我们一起追过的女孩</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">还记得那是大学时候的电影，宿舍的哥们说是要看看这个电影，说是电影和我的过去很相似，那时的我淡淡一笑，答应一定要去看看，但是一放下就没有再去看这个电影。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">今天，上班了，休息的时候，无所事事，想起来了看看这个电影。电影的情节不时让我心中一震，太多的相似，我不得不承认我那时真的是懵懂，只是语言的巨人，行动的矮子，太多的不了解，太多的不懂，电影的情节，让我明白了一些，让我为之颤抖。真正喜欢一个人时，就是当她成为了别人的新娘时，是发自内心真心的祝福。爱情最美好的时候就是你在追女孩时候的懵懂，没有任何的物质掺杂。看完电影后，总觉得自己要写点什么，可是写着写着，就没有了话语，就像有些人聊着聊着就没有了主题，只有寒暄的问候。哎，写到这吧，就是想表达一下今天下午的心情。</span></div>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/08/17/40/" data-id="cjz3pawgw002onq3ksrupqnsk" class="article-share-link" data-share="baidu" data-title="那些年，我们一起追过的女孩">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/08/17/40/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-34" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/05/34/" class="article-date">
-  <time datetime="2014-08-05T04:44:50.000Z" itemprop="datePublished">2014-08-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/05/34/">神秘的EJB</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">EJB 是运行在独立服务器上的组件，客户端是通过网络对EJB 对象进行调用的。在Java中，能够实现远程对象调用的技术是RMI，而EJB 技术基础正是RMI。通过RMI 技术，J2EE将EJB 组件创建为远程对象，客户端就可以通过网络调用EJB 对象了。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">a.EJB实现原理： 就是把原来放到客户端实现的代码放到服务器端，并依靠RMI进行通信。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">b.RMI实现原理 ：就是通过Java对象可序列化机制实现分布计算。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">c.服务器集群： 就是通过RMI的通信，连接不同功能模块的服务器，以实现一个完整的功能。</span></div>
-
-<div style="font-size: 14px;"><span style="padding-left: 30px;">参考博客：<a href="http://blog.csdn.net/jojo52013145/article/details/5783677" title="EJB到底是什么" target="_blank" rel="noopener">http://blog.csdn.net/jojo52013145/article/details/5783677</a></span></div>
-
-
-      
-      
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2014/08/05/34/" data-id="cjz3pawgo0026nq3k3egqfilq" class="article-share-link" data-share="baidu" data-title="神秘的EJB">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2014/08/05/34/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
 
     </footer>
   </div>
@@ -438,11 +452,11 @@ var _hmt = _hmt || [];
         
         
           <div style="text-align: center;">
-            <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5tanwtwaxj30g60g8t9r.jpg" style="width: 100%; max-width: 250px;">
+            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
           </div>
         
         <li>
-          <a href="http://ww2.sinaimg.cn/large/006tNc79ly1g5tanwtwaxj30g60g8t9r.jpg" target="_blank">1. 我的「微信」</a>
+          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
         </li>
       
         
@@ -493,31 +507,37 @@ var _hmt = _hmt || [];
       
         
         <li>
-          <a href="/2016/01/04/4/" target="_blank">1. PHP类的自动加载</a>
+          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
         </li>
       
         
         <li>
-          <a href="/2016/05/30/56/" target="_blank">2. 监控系统工具对比</a>
+          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
         </li>
       
         
         <li>
-          <a href="/2015/01/04/3/" target="_blank">3. 2014该有个总结</a>
+          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
+        </li>
+      
+        
+        <li>
+          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
         </li>
       
     </ul>
   </div>
 </div>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">35</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信/">微信</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
+    <div class="widget-wrap">
+	<h3 class="widget-title">微信公众号</h3>
+	<div class="widget">
+		<div style="text-align: center;">
+			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
+			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
+		</div>
+	</div>
+</div>
   
     
   <div class="widget-wrap">
@@ -532,7 +552,26 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://honglu.me" target="_blank">独奏</a>
+          </li>
+        
+          <li>
+            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
 
@@ -546,7 +585,7 @@ var _hmt = _hmt || [];
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2019 <a href="/" target="_blank">Dragon_SZ</a>.
+      Copyright &copy; 2012 - 2020 <a href="/" target="_blank">Dragon_SZ</a>.
       &nbsp;
       <span id="busuanzi_container_site_pv">
         总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
@@ -570,6 +609,10 @@ var _hmt = _hmt || [];
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">rss</a>
+  
+    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
   
 </nav>
   <!-- totop start -->
