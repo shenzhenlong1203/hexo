@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffecd2;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#fcb69f;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <!-- 道路通向远方 -->
+  <polygon points="350,350 450,350 500,200 300,200" fill="white" opacity="0.15"/>
+  <!-- 远方的光 -->
+  <circle cx="400" cy="180" r="60" fill="#FFE66D" opacity="0.4"/>
+  <circle cx="400" cy="180" r="40" fill="#FFE66D" opacity="0.5"/>
+  <circle cx="400" cy="180" r="20" fill="white" opacity="0.7"/>
+  <!-- 飞鸟 -->
+  <g opacity="0.4">
+    <path d="M 150 80 Q 160 70 170 80 Q 180 70 190 80" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M 200 60 Q 208 52 216 60 Q 224 52 232 60" stroke="white" stroke-width="1.5" fill="none"/>
+    <path d="M 175 90 Q 182 83 189 90 Q 196 83 203 90" stroke="white" stroke-width="1.5" fill="none"/>
+  </g>
+  <!-- 近处的草 -->
+  <g stroke="#4a7c59" stroke-width="2" opacity="0.5">
+    <line x1="100" y1="350" x2="95" y2="320"/><line x1="100" y1="350" x2="105" y2="325"/>
+    <line x1="700" y1="350" x2="695" y2="315"/><line x1="700" y1="350" x2="705" y2="320"/>
+  </g>
+  <g transform="translate(660, 40)"><rect width="90" height="32" rx="16" fill="white" opacity="0.85"/><text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#fcb69f">2015</text></g>
+  <text x="400" y="365" text-anchor="middle" font-size="16" font-weight="bold" fill="white" opacity="0.95">对未来的祝福</text>
+  <text x="400" y="385" text-anchor="middle" font-size="11" fill="white" opacity="0.6">Dragon_SZ Blog</text>
+</svg>

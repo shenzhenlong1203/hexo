@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff7e5f;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#feb47b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#ff9a56;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <!-- 夕阳 -->
+  <circle cx="400" cy="220" r="70" fill="#ff4500" opacity="0.7"/>
+  <circle cx="400" cy="220" r="100" fill="#ff4500" opacity="0.2"/>
+  <!-- 云 -->
+  <g opacity="0.4">
+    <ellipse cx="200" cy="150" rx="80" ry="15" fill="#ff6347"/>
+    <ellipse cx="600" cy="170" rx="60" ry="12" fill="#ff6347"/>
+  </g>
+  <!-- 地面剪影 -->
+  <polygon points="0,280 100,260 200,270 300,250 400,265 500,245 600,260 700,235 800,250 800,280" fill="#2d1810" opacity="0.6"/>
+  <rect x="0" y="280" width="800" height="120" fill="#1a0f0a" opacity="0.7"/>
+  <!-- 树剪影 -->
+  <g fill="#2d1810" opacity="0.7">
+    <g transform="translate(120, 240)">
+      <rect x="-4" y="0" width="8" height="40"/>
+      <circle cx="0" cy="-8" r="25"/><circle cx="-18" cy="8" r="20"/><circle cx="18" cy="8" r="20"/>
+    </g>
+    <g transform="translate(680, 250)">
+      <rect x="-3" y="0" width="6" height="35"/>
+      <circle cx="0" cy="-6" r="20"/><circle cx="-14" cy="6" r="16"/><circle cx="14" cy="6" r="16"/>
+    </g>
+  </g>
+  <g transform="translate(660, 40)"><rect width="90" height="32" rx="16" fill="white" opacity="0.85"/><text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#fa709a">2014</text></g>
+  <text x="400" y="365" text-anchor="middle" font-size="16" font-weight="bold" fill="white" opacity="0.95">黄昏时分的校园天际线</text>
+  <text x="400" y="385" text-anchor="middle" font-size="11" fill="white" opacity="0.6">Dragon_SZ Blog</text>
+</svg>

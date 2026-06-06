@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00758f;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00bcd4;stop-opacity:1"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <rect width="800" height="400" fill="url(#grid)"/>
+  <!-- 数据库圆柱 -->
+  <g transform="translate(300, 80)">
+    <ellipse cx="100" cy="30" rx="80" ry="25" fill="white" opacity="0.9"/>
+    <rect x="20" y="30" width="160" height="120" fill="white" opacity="0.8"/>
+    <ellipse cx="100" cy="150" rx="80" ry="25" fill="white" opacity="0.7"/>
+    <line x1="20" y1="60" x2="180" y2="60" stroke="#00758f" stroke-width="1" opacity="0.3"/>
+    <line x1="20" y1="90" x2="180" y2="90" stroke="#00758f" stroke-width="1" opacity="0.3"/>
+    <line x1="20" y1="120" x2="180" y2="120" stroke="#00758f" stroke-width="1" opacity="0.3"/>
+  </g>
+  <!-- 连接线和节点 -->
+  <g stroke="white" stroke-width="2" fill="none" opacity="0.4">
+    <path d="M 150 150 L 150 200 L 250 200"/>
+    <path d="M 650 150 L 650 200 L 550 200"/>
+  </g>
+  <g transform="translate(50, 200)" opacity="0.6">
+    <rect width="80" height="60" rx="8" fill="white"/><circle cx="40" cy="30" r="15" fill="#00758f"/>
+  </g>
+  <g transform="translate(670, 200)" opacity="0.6">
+    <rect width="80" height="60" rx="8" fill="white"/><circle cx="40" cy="30" r="15" fill="#00758f"/>
+  </g>
+  <!-- SQL装饰 -->
+  <g font-family="monospace" font-size="12" fill="white" opacity="0.15">
+    <text x="30" y="320">SELECT * FROM</text>
+    <text x="30" y="340">WHERE id = 1</text>
+    <text x="550" y="320">INSERT INTO</text>
+    <text x="550" y="340">VALUES (...)</text>
+  </g>
+  <g transform="translate(660, 40)"><rect width="90" height="32" rx="16" fill="white" opacity="0.85"/><text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#00758f">2017</text></g>
+  <text x="400" y="365" text-anchor="middle" font-size="16" font-weight="bold" fill="white" opacity="0.95">SQL注入攻击示例</text>
+  <text x="400" y="385" text-anchor="middle" font-size="11" fill="white" opacity="0.6">Dragon_SZ Blog</text>
+</svg>

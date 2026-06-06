@@ -1,469 +1,347 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-<script type='text/javascript'>
-!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
-  gio('init','b42bee32ec9ef0d0', {});
-
-
-gio('send');
-
-</script>
-
-
-  
-  <script>
-    (function(){
-        if('undefined' !== 'undefined'){
-            if (prompt('请输入文章密码') !== 'undefined'){
-                alert('密码错误！');
-                window.location = '/';
-            }
-        }
-    })();
-  </script>
-  <title>解决xampp mysql无法启动问题/1067错误 | Dragon_SZ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="环境：xampp自带了一个mysql数据库 安装好后，启动mysql服务的时候，提示1067错误1、进入mysql的安装目录，将my.ini中的datadir的值更改为：”%安装目录%/data/”。2、进入”%安装目录%/data/”，里边一个子文件夹代表了一个数据库，除文件夹外，把所有的文件都删掉。3、再次启动你的mysql服务，就ok了。在网上找了很多方法，就是这个方法帮我解决了这个问题。主">
-<meta name="keywords" content="学习,感悟">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>解决xampp mysql无法启动问题/1067错误 | Dragon_SZ</title><meta name="author" content="Dragon_SZ"><meta name="copyright" content="Dragon_SZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="问题背景XAMPP 是一款流行的本地开发环境套件，集成了 Apache、MySQL、PHP 和 Perl。很多初学者在 Windows 上安装 XAMPP 后，启动 MySQL 服务时会遇到一个经典错误： 123Error: MySQL shutdown unexpectedly.Error: This may be due to a blocked port, missing dependenc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决xampp mysql无法启动问题&#x2F;1067错误">
-<meta property="og:url" content="http://longlongblog.cn/2013/09/27/39/index.html">
+<meta property="og:url" content="https://blog.xiaoshenlong.cc/2013/09/27/39/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="环境：xampp自带了一个mysql数据库 安装好后，启动mysql服务的时候，提示1067错误1、进入mysql的安装目录，将my.ini中的datadir的值更改为：”%安装目录%/data/”。2、进入”%安装目录%/data/”，里边一个子文件夹代表了一个数据库，除文件夹外，把所有的文件都删掉。3、再次启动你的mysql服务，就ok了。在网上找了很多方法，就是这个方法帮我解决了这个问题。主">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-05-31T05:56:18.000Z">
+<meta property="og:description" content="问题背景XAMPP 是一款流行的本地开发环境套件，集成了 Apache、MySQL、PHP 和 Perl。很多初学者在 Windows 上安装 XAMPP 后，启动 MySQL 服务时会遇到一个经典错误： 123Error: MySQL shutdown unexpectedly.Error: This may be due to a blocked port, missing dependenc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png">
+<meta property="article:published_time" content="2013-09-27T08:29:58.000Z">
+<meta property="article:modified_time" content="2026-04-22T04:08:45.711Z">
+<meta property="article:author" content="Dragon_SZ">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="感悟">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决xampp mysql无法启动问题&#x2F;1067错误">
-<meta name="twitter:description" content="环境：xampp自带了一个mysql数据库 安装好后，启动mysql服务的时候，提示1067错误1、进入mysql的安装目录，将my.ini中的datadir的值更改为：”%安装目录%/data/”。2、进入”%安装目录%/data/”，里边一个子文件夹代表了一个数据库，除文件夹外，把所有的文件都删掉。3、再次启动你的mysql服务，就ok了。在网上找了很多方法，就是这个方法帮我解决了这个问题。主">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
-<link rel="publisher" href="https://plus.google.com/u/0/">
-  
-  
-    <link rel="icon" href="/img/logo.jpg">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Add to homescreen for Chrome on Android -->    
-    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
-    <!-- Add to homescreen for Safari on iOS -->
-    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/img/logo.jpg">
-    <meta name="msapplication-TileColor" content="#0e90d2">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-105380317-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-</head>
-
-<body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-4090430472919209",
-              enable_page_level_ads: true
-                });
-    </script>
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Dragon_SZ</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">相离莫相忘,且行且珍惜</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives">文章</a>
-        
-          <a class="main-nav-link" href="/atom.xml">rss</a>
-        
-          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
-        
-      </nav>
-      <!--
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="longlongblog.cn">
-        </form>
-      </div>
-      -->
-    </div>
-  </div>
-</header>
-
-    <div class="outer">
-      <section id="main"><article id="post-39" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/27/39/" class="article-date">
-  <time datetime="2013-09-27T08:29:58.000Z" itemprop="datePublished">2013-09-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      解决xampp mysql无法启动问题/1067错误
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p><strong>环境：xampp自带了一个mysql数据库</strong></p>
-<div style="font-size: 14px;"><br><br>安装好后，启动mysql服务的时候，提示1067错误<br><br>1、进入mysql的安装目录，将my.ini中的datadir的值更改为：”%安装目录%/data/”。<br>2、进入”%安装目录%/data/”，里边一个子文件夹代表了一个数据库，<span style="color: #ff0000;">除文件夹外，把所有的文件都删掉。</span><br>3、再次启动你的mysql服务，就ok了。<br><br>在网上找了很多方法，就是这个方法帮我解决了这个问题。主要原因当mysql启动有问题时，会在data文件里生成很多错误的文件，所以当你再次解决问题时一定要把以前的错误的文件删除。<br></div>
-
-
-      
-      
-  <div class="article-statement">
-    <hr>  
-    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
-    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
-    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
-  </div>
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2013/09/27/39/" data-id="ckgstzbv2002lh33k5aebmnhr" class="article-share-link" data-share="baidu" data-title="解决xampp mysql无法启动问题/1067错误">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2013/09/27/39/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2013/10/06/7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          一句话的事
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2013/09/25/10/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">为球赛而疯狂</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-</section>
-      
-      <aside id="sidebar">
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">来关注我</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        
-          <div style="text-align: center;">
-            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
-          </div>
-        
-        <li>
-          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">推荐文章</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        <li>
-          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-	<h3 class="widget-title">微信公众号</h3>
-	<div class="widget">
-		<div style="text-align: center;">
-			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
-			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
-		</div>
-	</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 15px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://honglu.me" target="_blank">独奏</a>
-          </li>
-        
-          <li>
-            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-      
-    </div>
-    <footer id="footer">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2020 <a href="/" target="_blank">Dragon_SZ</a>.
-      &nbsp;
-      <span id="busuanzi_container_site_pv">
-        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
-      </span>
-      <span id="busuanzi_container_site_uv">
-        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
-      </span>
-      
-        &nbsp;
-        <span>
-          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
-        </span>
-      
-    </div>
-  </div>
-</footer>
-
-  </div>
-  <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/archives" class="mobile-nav-link">文章</a>
-  
-    <a href="/atom.xml" class="mobile-nav-link">rss</a>
-  
-    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
-  
-</nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-</div>
-
-<!-- totop end -->
-
-<script>
-  var disqus_shortname = 'longlong';
-  
-  var disqus_url = 'http://longlongblog.cn/2013/09/27/39/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
+<meta name="twitter:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "解决xampp mysql无法启动问题/1067错误",
+  "url": "https://blog.xiaoshenlong.cc/2013/09/27/39/",
+  "image": "https://blog.xiaoshenlong.cc/img/butterfly-icon.png",
+  "datePublished": "2013-09-27T08:29:58.000Z",
+  "dateModified": "2026-04-22T04:08:45.711Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dragon_SZ",
+      "url": "https://blog.xiaoshenlong.cc"
     }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.xiaoshenlong.cc/2013/09/27/39/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-<!-- 百度分享 end -->
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '解决xampp mysql无法启动问题/1067错误',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dragon_SZ</span></a><a class="nav-page-title" href="/"><span class="site-name">解决xampp mysql无法启动问题/1067错误</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">解决xampp mysql无法启动问题/1067错误</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2013-09-27T08:29:58.000Z" title="发表于 2013-09-27 16:29:58">2013-09-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-22T04:08:45.711Z" title="更新于 2026-04-22 12:08:45">2026-04-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SQL/">SQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>XAMPP 是一款流行的本地开发环境套件，集成了 Apache、MySQL、PHP 和 Perl。很多初学者在 Windows 上安装 XAMPP 后，启动 MySQL 服务时会遇到一个经典错误：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Error: </span>MySQL shutdown unexpectedly.</span><br><span class="line"><span class="keyword">Error: </span>This may be due to a blocked port, missing dependencies,</span><br><span class="line">       improper privileges, a crash, or shutdown by another method.</span><br></pre></td></tr></table></figure>
 
+<p>在 Windows 服务管理器中查看，MySQL 服务的状态显示为 <strong>“错误 1067: 进程意外终止”</strong>。</p>
+<p><img src="/img/2013-mysql-1067-error.svg" alt="MySQL 1067错误"></p>
+<p>这个错误之所以令人头疼，是因为它的原因可能有多种：数据目录损坏、配置文件错误、端口冲突、服务安装异常等。本文将从实战角度，提供 <strong>4 种排查和解决方法</strong>，覆盖绝大多数 1067 错误的场景。</p>
+<hr>
+<h2 id="方法一：清理-MySQL-数据目录中的错误文件"><a href="#方法一：清理-MySQL-数据目录中的错误文件" class="headerlink" title="方法一：清理 MySQL 数据目录中的错误文件"></a>方法一：清理 MySQL 数据目录中的错误文件</h2><p>这是我在网上搜索后，<strong>最终帮我解决问题的方法</strong>。主要原因在于：当 MySQL 启动失败时，它会在 <code>data</code> 目录中生成一些错误状态的临时文件（如 <code>.err</code>、<code>.pid</code> 等），这些文件会阻止下一次正常启动。</p>
+<h3 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h3><h4 id="步骤-1：定位-MySQL-数据目录"><a href="#步骤-1：定位-MySQL-数据目录" class="headerlink" title="步骤 1：定位 MySQL 数据目录"></a>步骤 1：定位 MySQL 数据目录</h4><p>打开 XAMPP 控制面板，找到 MySQL 的配置项，查看 <code>datadir</code> 的配置路径。通常位于：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">C</span>:\xampp\mysql\<span class="class"><span class="keyword">data</span>\</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="步骤-2：修改-my-ini-中的-datadir-路径（如果需要）"><a href="#步骤-2：修改-my-ini-中的-datadir-路径（如果需要）" class="headerlink" title="步骤 2：修改 my.ini 中的 datadir 路径（如果需要）"></a>步骤 2：修改 my.ini 中的 datadir 路径（如果需要）</h4><p>打开 <code>my.ini</code> 文件（通常在 <code>C:\xampp\mysql\bin\my.ini</code>），找到 <code>datadir</code> 配置：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">datadir</span> = <span class="string">&quot;C:/xampp/mysql/data&quot;</span></span><br></pre></td></tr></table></figure>
 
-<script src="/js/script.js"></script>
+<p>确保路径指向正确的数据目录。使用<strong>正斜杠 <code>/</code></strong> 或双反斜杠 <code>\\</code>，不要使用单反斜杠。</p>
+<h4 id="步骤-3：清理错误文件"><a href="#步骤-3：清理错误文件" class="headerlink" title="步骤 3：清理错误文件"></a>步骤 3：清理错误文件</h4><p>进入 <code>C:\xampp\mysql\data\</code> 目录。你会看到：</p>
+<ul>
+<li>若干子文件夹（每个文件夹代表一个数据库，如 <code>mysql</code>、<code>performance_schema</code>、<code>test</code> 以及你自己创建的数据库）</li>
+<li>若干散件文件（<code>.err</code>、<code>.pid</code>、<code>.log</code>、<code>ib_*</code> 等）</li>
+</ul>
+<p><strong>关键操作：删除所有散件文件，但保留数据库子文件夹。</strong></p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">┌── mysql/          ← 保留（系统数据库）</span><br><span class="line">├── performance_schema/  ← 保留（性能数据库）</span><br><span class="line">├── test/           ← 保留（测试数据库）</span><br><span class="line">├── your_database/  ← 保留（你的数据库！）</span><br><span class="line">├── ibdata1         ← ⚠️ 删除（InnoDB 系统表空间，如果有重要数据请先备份）</span><br><span class="line">├── ib_logfile0     ← 删除</span><br><span class="line">├── ib_logfile1     ← 删除</span><br><span class="line">├── *<span class="string">.err</span>           ← 删除</span><br><span class="line">├── *<span class="string">.pid</span>           ← 删除</span><br><span class="line">├── *<span class="string">.log</span>           ← 删除</span><br><span class="line">└── *<span class="string">.tmp</span>           ← 删除</span><br></pre></td></tr></table></figure>
 
-</div>
-</body>
-</html>
+<blockquote>
+<p><strong>警告</strong>：<code>ibdata1</code> 文件包含 InnoDB 引擎的系统表空间数据。如果你的数据库使用的是 InnoDB 引擎且有重要数据，<strong>删除 ibdata1 会导致数据丢失</strong>！删除前请先备份整个 <code>data</code> 目录。</p>
+</blockquote>
+<h4 id="步骤-4：重新启动-MySQL"><a href="#步骤-4：重新启动-MySQL" class="headerlink" title="步骤 4：重新启动 MySQL"></a>步骤 4：重新启动 MySQL</h4><p>在 XAMPP 控制面板中点击 MySQL 的 “Start” 按钮，观察是否能正常启动。</p>
+<h3 id="为什么这个方法有效？"><a href="#为什么这个方法有效？" class="headerlink" title="为什么这个方法有效？"></a>为什么这个方法有效？</h3><p>MySQL 启动时会读取数据目录中的状态文件。如果上次异常关闭留下了错误的 <code>.pid</code> 文件或损坏的日志文件，MySQL 会认为实例仍在运行或处于不一致状态，从而拒绝启动。清理这些文件后，MySQL 会重新初始化状态，正常启动。</p>
+<hr>
+<h2 id="方法二：修复-my-ini-配置文件"><a href="#方法二：修复-my-ini-配置文件" class="headerlink" title="方法二：修复 my.ini 配置文件"></a>方法二：修复 my.ini 配置文件</h2><p>配置文件中的参数错误也是导致 1067 错误的常见原因。</p>
+<h3 id="常见问题及修复"><a href="#常见问题及修复" class="headerlink" title="常见问题及修复"></a>常见问题及修复</h3><h4 id="2-1-路径使用了错误的斜杠"><a href="#2-1-路径使用了错误的斜杠" class="headerlink" title="2.1 路径使用了错误的斜杠"></a>2.1 路径使用了错误的斜杠</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误写法</span></span><br><span class="line"><span class="attr">datadir</span> = C:\xampp\mysql\data</span><br><span class="line"><span class="attr">basedir</span> = C:\xampp\mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正确写法（使用正斜杠或双反斜杠）</span></span><br><span class="line"><span class="attr">datadir</span> = <span class="string">&quot;C:/xampp/mysql/data&quot;</span></span><br><span class="line"><span class="attr">basedir</span> = <span class="string">&quot;C:/xampp/mysql&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-innodb-配置冲突"><a href="#2-2-innodb-配置冲突" class="headerlink" title="2.2 innodb 配置冲突"></a>2.2 innodb 配置冲突</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果之前的配置有问题，尝试注释掉以下行</span></span><br><span class="line"><span class="comment"># innodb_log_file_size = 50M</span></span><br><span class="line"><span class="comment"># innodb_buffer_pool_size = 16M</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用默认值让 MySQL 自动初始化</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-端口配置检查"><a href="#2-3-端口配置检查" class="headerlink" title="2.3 端口配置检查"></a>2.3 端口配置检查</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br></pre></td></tr></table></figure>
+
+<p>确保端口号没有被注释掉，且没有被其他程序占用。</p>
+<h4 id="2-4-完整的-my-ini-最小配置"><a href="#2-4-完整的-my-ini-最小配置" class="headerlink" title="2.4 完整的 my.ini 最小配置"></a>2.4 完整的 my.ini 最小配置</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"><span class="attr">basedir</span>=<span class="string">&quot;C:/xampp/mysql&quot;</span></span><br><span class="line"><span class="attr">datadir</span>=<span class="string">&quot;C:/xampp/mysql/data&quot;</span></span><br><span class="line"><span class="attr">tmpdir</span>=<span class="string">&quot;C:/xampp/tmp&quot;</span></span><br><span class="line"><span class="attr">socket</span>=<span class="string">&quot;C:/xampp/mysql/mysql.sock&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># InnoDB 设置</span></span><br><span class="line"><span class="attr">innodb_buffer_pool_size</span>=<span class="number">16</span>M</span><br><span class="line"><span class="attr">innodb_log_file_size</span>=<span class="number">5</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8mb4</span><br><span class="line"><span class="attr">collation-server</span>=utf8mb4_general_ci</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志</span></span><br><span class="line"><span class="attr">log_error</span>=<span class="string">&quot;C:/xampp/mysql/data/mysql_error.log&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过错误日志定位问题"><a href="#通过错误日志定位问题" class="headerlink" title="通过错误日志定位问题"></a>通过错误日志定位问题</h3><p>MySQL 的启动错误通常会记录在日志文件中：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\xampp\mysql\<span class="keyword">data</span>\mysql_error.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p>打开这个文件，查看最后的错误信息，它能帮你快速定位问题：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2023</span><span class="number">-01</span><span class="number">-15</span> <span class="number">10</span>:<span class="number">30</span>:<span class="number">45</span> <span class="number">0</span> [ERROR] InnoDB: Unable <span class="built_in">to</span> lock ./ibdata1 error: <span class="number">11</span></span><br><span class="line"><span class="number">2023</span><span class="number">-01</span><span class="number">-15</span> <span class="number">10</span>:<span class="number">30</span>:<span class="number">45</span> <span class="number">0</span> [ERROR] InnoDB: Check that you <span class="built_in">do</span> <span class="keyword">not</span> already</span><br><span class="line">       have another mysqld <span class="built_in">process</span> <span class="keyword">using</span> <span class="keyword">the</span> same InnoDB data <span class="keyword">or</span> <span class="built_in">log</span> <span class="built_in">files</span>.</span><br></pre></td></tr></table></figure>
+
+<p>这条错误说明 <code>ibdata1</code> 文件被锁定了，可能是另一个 MySQL 进程正在使用它。</p>
+<p><img src="/img/2013-mysql-error-log-analysis.svg" alt="错误日志分析"></p>
+<hr>
+<h2 id="方法三：解决端口冲突"><a href="#方法三：解决端口冲突" class="headerlink" title="方法三：解决端口冲突"></a>方法三：解决端口冲突</h2><p>MySQL 默认使用 <strong>3306</strong> 端口。如果该端口被其他程序占用，MySQL 就无法绑定端口，导致启动失败。</p>
+<h3 id="3-1-检查端口占用情况"><a href="#3-1-检查端口占用情况" class="headerlink" title="3.1 检查端口占用情况"></a>3.1 检查端口占用情况</h3><p>打开命令提示符（管理员权限），执行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | <span class="built_in">findstr</span> &quot;<span class="number">3306</span>&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果输出类似以下内容，说明端口已被占用：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">TCP</span>    <span class="number">0.0.0.0:3306</span>    <span class="number">0.0.0.0:0</span>    LISTENING    <span class="number">4568</span></span><br><span class="line"><span class="attribute">TCP</span>   <span class="meta"> [::]:3306       [::]:0       LISTENING    4568</span></span><br></pre></td></tr></table></figure>
+
+<p>最后一列的数字是占用端口的<strong>进程 ID（PID）</strong>。</p>
+<h3 id="3-2-查找占用端口的程序"><a href="#3-2-查找占用端口的程序" class="headerlink" title="3.2 查找占用端口的程序"></a>3.2 查找占用端口的程序</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | <span class="built_in">findstr</span> &quot;<span class="number">4568</span>&quot;</span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysqld</span>.exe    <span class="number">4568</span>    Console    <span class="number">1</span>    <span class="number">45</span>,<span class="number">678</span> K</span><br></pre></td></tr></table></figure>
+
+<p>这说明已经有一个 MySQL 进程在运行了。</p>
+<h3 id="3-3-解决方案"><a href="#3-3-解决方案" class="headerlink" title="3.3 解决方案"></a>3.3 解决方案</h3><p><strong>方案 A：结束占用端口的进程</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">taskkill</span> /PID <span class="number">4568</span> /F</span><br></pre></td></tr></table></figure>
+
+<p><strong>方案 B：修改 MySQL 端口</strong></p>
+<p>如果 3306 端口被其他服务（如另一个 MySQL 实例）占用，可以修改 XAMPP MySQL 的端口：</p>
+<ol>
+<li>编辑 <code>my.ini</code>：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3307</span>    <span class="comment"># 改为 3307</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>编辑 <code>C:\xampp\php\php.ini</code>，更新 PDO 和 MySQLi 的默认端口：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pdo_mysql.default_socket</span>=</span><br><span class="line"><span class="attr">mysqli.default_port</span>=<span class="number">3307</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在 PHP 代码中连接数据库时指定端口：</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="string">&#x27;root&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;mydb&#x27;</span>, <span class="number">3307</span>);</span><br><span class="line"><span class="comment">// 或使用 PDO</span></span><br><span class="line"><span class="variable">$pdo</span> = <span class="keyword">new</span> <span class="title function_ invoke__">PDO</span>(<span class="string">&#x27;mysql:host=127.0.0.1;port=3307;dbname=mydb&#x27;</span>, <span class="string">&#x27;root&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方案 C：卸载冲突的 MySQL 服务</strong></p>
+<p>如果 Windows 上安装了独立版的 MySQL 服务，它与 XAMPP 自带的 MySQL 会冲突。可以卸载独立版 MySQL，或在服务管理器中禁用它：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 停止独立 MySQL 服务</span><br><span class="line"><span class="built_in">net</span> stop MySQL</span><br><span class="line"></span><br><span class="line"># 禁用服务（防止开机自启）</span><br><span class="line">sc config MySQL <span class="built_in">start</span>= disabled</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="方法四：重新安装-MySQL-服务"><a href="#方法四：重新安装-MySQL-服务" class="headerlink" title="方法四：重新安装 MySQL 服务"></a>方法四：重新安装 MySQL 服务</h2><p>如果以上方法都无效，可以尝试重新注册 MySQL 服务。</p>
+<h3 id="4-1-卸载现有服务"><a href="#4-1-卸载现有服务" class="headerlink" title="4.1 卸载现有服务"></a>4.1 卸载现有服务</h3><p>以管理员身份打开命令提示符，执行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\xampp\mysql\bin</span><br><span class="line"></span><br><span class="line"># 移除 MySQL 服务</span><br><span class="line">mysqld --remove MySQL</span><br><span class="line"></span><br><span class="line"># 或如果服务名不同</span><br><span class="line">mysqld --remove MySQL57</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-重新安装服务"><a href="#4-2-重新安装服务" class="headerlink" title="4.2 重新安装服务"></a>4.2 重新安装服务</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 重新注册 MySQL 服务</span><br><span class="line">mysqld --install MySQL --defaults-file=&quot;C:\xampp\mysql\bin\my.ini&quot;</span><br><span class="line"></span><br><span class="line"># 启动服务</span><br><span class="line"><span class="built_in">net</span> <span class="built_in">start</span> MySQL</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-通过-XAMPP-控制面板启动"><a href="#4-3-通过-XAMPP-控制面板启动" class="headerlink" title="4.3 通过 XAMPP 控制面板启动"></a>4.3 通过 XAMPP 控制面板启动</h3><ol>
+<li>打开 XAMPP Control Panel</li>
+<li>点击 MySQL 行的 “Start” 按钮</li>
+<li>如果成功，MySQL 行会显示绿色和 “Running” 状态</li>
+</ol>
+<hr>
+<h2 id="数据备份策略"><a href="#数据备份策略" class="headerlink" title="数据备份策略"></a>数据备份策略</h2><p>在执行任何修复操作之前，<strong>务必备份你的数据</strong>。以下是几种备份方法：</p>
+<h3 id="方法-A：直接复制-data-目录"><a href="#方法-A：直接复制-data-目录" class="headerlink" title="方法 A：直接复制 data 目录"></a>方法 A：直接复制 data 目录</h3><p>最简单粗暴但有效的方式：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 停止 MySQL 服务</span><br><span class="line"><span class="built_in">net</span> stop MySQL</span><br><span class="line"></span><br><span class="line"># 复制整个 data 目录</span><br><span class="line"><span class="built_in">xcopy</span> C:\xampp\mysql\data C:\xampp\mysql\data_backup\ /E /I /H</span><br><span class="line"></span><br><span class="line"># 确认备份完成后再执行修复操作</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法-B：使用-mysqldump-导出-SQL"><a href="#方法-B：使用-mysqldump-导出-SQL" class="headerlink" title="方法 B：使用 mysqldump 导出 SQL"></a>方法 B：使用 mysqldump 导出 SQL</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\xampp\mysql\bin</span><br><span class="line"></span><br><span class="line"># 备份单个数据库</span><br><span class="line">mysqldump -u root -p --all-databases &gt; C:\backup\all_databases.sql</span><br><span class="line"></span><br><span class="line"># 备份指定数据库</span><br><span class="line">mysqldump -u root -p mydb &gt; C:\backup\mydb.sql</span><br><span class="line"></span><br><span class="line"># 备份所有数据库（包括存储过程和触发器）</span><br><span class="line">mysqldump -u root -p --routines --triggers --all-databases &gt; C:\backup\full_backup.sql</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法-C：定期备份脚本"><a href="#方法-C：定期备份脚本" class="headerlink" title="方法 C：定期备份脚本"></a>方法 C：定期备份脚本</h3><p>创建一个 <code>backup.bat</code> 脚本并设置 Windows 计划任务定期执行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> BACKUP_DIR=C:\xampp\mysql_backups</span><br><span class="line"><span class="built_in">set</span> DATE_STR=<span class="variable">%date:~0,4%</span><span class="variable">%date:~5,2%</span><span class="variable">%date:~8,2%</span></span><br><span class="line"><span class="built_in">set</span> TIME_STR=<span class="variable">%time:~0,2%</span><span class="variable">%time:~3,2%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> &quot;<span class="variable">%BACKUP_DIR%</span>\<span class="variable">%DATE_STR%</span>&quot; <span class="number">2</span>&gt;<span class="built_in">nul</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> C:\xampp\mysql\bin</span><br><span class="line">mysqldump -u root --all-databases &gt; &quot;<span class="variable">%BACKUP_DIR%</span>\<span class="variable">%DATE_STR%</span>\backup_<span class="variable">%TIME_STR%</span>.sql&quot;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 备份完成: <span class="variable">%DATE_STR%</span> <span class="variable">%TIME_STR%</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="替代方案：使用-Docker-运行-MySQL"><a href="#替代方案：使用-Docker-运行-MySQL" class="headerlink" title="替代方案：使用 Docker 运行 MySQL"></a>替代方案：使用 Docker 运行 MySQL</h2><p>如果你经常遇到 XAMPP MySQL 的启动问题，强烈建议考虑使用 Docker。Docker 容器化的 MySQL 不仅启动快速，而且环境隔离、干净可控。</p>
+<h3 id="Docker-安装与运行-MySQL"><a href="#Docker-安装与运行-MySQL" class="headerlink" title="Docker 安装与运行 MySQL"></a>Docker 安装与运行 MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取 MySQL 官方镜像</span></span><br><span class="line">docker pull mysql:8.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 MySQL 容器</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name mysql-dev \</span><br><span class="line">  -p 3306:3306 \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=root123 \</span><br><span class="line">  -e MYSQL_DATABASE=mydb \</span><br><span class="line">  -v C:\xampp\mysql_data:/var/lib/mysql \</span><br><span class="line">  mysql:8.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行状态</span></span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止和启动（秒级完成）</span></span><br><span class="line">docker stop mysql-dev</span><br><span class="line">docker start mysql-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 完全清理（不会留下任何系统垃圾）</span></span><br><span class="line">docker stop mysql-dev</span><br><span class="line">docker <span class="built_in">rm</span> mysql-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="Docker-MySQL-的优势"><a href="#Docker-MySQL-的优势" class="headerlink" title="Docker MySQL 的优势"></a>Docker MySQL 的优势</h3><table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>XAMPP MySQL</th>
+<th>Docker MySQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安装复杂度</td>
+<td>需要安装整个 XAMPP 套件</td>
+<td>一条命令</td>
+</tr>
+<tr>
+<td>卸载干净度</td>
+<td>可能残留注册表和文件</td>
+<td>完全隔离</td>
+</tr>
+<tr>
+<td>多版本并存</td>
+<td>困难（端口冲突）</td>
+<td>轻松（不同端口）</td>
+</tr>
+<tr>
+<td>环境一致性</td>
+<td>依赖宿主机配置</td>
+<td>容器内统一环境</td>
+</tr>
+<tr>
+<td>备份恢复</td>
+<td>手动复制或 dump</td>
+<td>数据卷 + 镜像</td>
+</tr>
+<tr>
+<td>学习价值</td>
+<td>适合了解本地开发</td>
+<td>了解现代容器化</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="踩坑经验"><a href="#踩坑经验" class="headerlink" title="踩坑经验"></a>踩坑经验</h2><h3 id="踩坑一：直接删除-ibdata1-导致数据丢失"><a href="#踩坑一：直接删除-ibdata1-导致数据丢失" class="headerlink" title="踩坑一：直接删除 ibdata1 导致数据丢失"></a>踩坑一：直接删除 ibdata1 导致数据丢失</h3><p><code>ibdata1</code> 是 InnoDB 的系统表空间文件，包含所有 InnoDB 表的元数据和数据。<strong>如果数据库使用的是 InnoDB 引擎，删除 ibdata1 等于删除所有数据！</strong></p>
+<p><strong>安全做法</strong>：</p>
+<ol>
+<li>先备份整个 <code>data</code> 目录</li>
+<li>尝试不删除 <code>ibdata1</code>，只删除 <code>.err</code>、<code>.pid</code> 等临时文件</li>
+<li>如果必须删除 <code>ibdata1</code>，确保有 mysqldump 备份</li>
+</ol>
+<h3 id="踩坑二：XAMPP-控制面板显示绿色但-MySQL-实际未运行"><a href="#踩坑二：XAMPP-控制面板显示绿色但-MySQL-实际未运行" class="headerlink" title="踩坑二：XAMPP 控制面板显示绿色但 MySQL 实际未运行"></a>踩坑二：XAMPP 控制面板显示绿色但 MySQL 实际未运行</h3><p>这可能是因为端口被占用，XAMPP 检测到端口”在用”就认为 MySQL 在运行。验证方法：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p -e &quot;SELECT <span class="number">1</span>&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果连接不上，说明 MySQL 确实没有正常运行。</p>
+<h3 id="踩坑三：权限不足导致无法启动"><a href="#踩坑三：权限不足导致无法启动" class="headerlink" title="踩坑三：权限不足导致无法启动"></a>踩坑三：权限不足导致无法启动</h3><p>确保 XAMPP 安装目录的权限设置正确：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 以管理员身份运行命令提示符</span><br><span class="line">icacls &quot;C:\xampp\mysql\data&quot; /grant Everyone:F /T</span><br></pre></td></tr></table></figure>
+
+<h3 id="踩坑四：杀毒软件阻止-MySQL-启动"><a href="#踩坑四：杀毒软件阻止-MySQL-启动" class="headerlink" title="踩坑四：杀毒软件阻止 MySQL 启动"></a>踩坑四：杀毒软件阻止 MySQL 启动</h3><p>某些杀毒软件（如 360、火绒）会将 <code>mysqld.exe</code> 识别为可疑程序并阻止其运行。解决办法：</p>
+<ol>
+<li>打开杀毒软件的白名单&#x2F;信任列表</li>
+<li>添加 <code>C:\xampp\mysql\bin\mysqld.exe</code> 到白名单</li>
+<li>重新启动 MySQL</li>
+</ol>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>MySQL 1067 错误是一个”症状”，背后可能有多种”病因”。推荐的排查顺序是：</p>
+<ol>
+<li><strong>先查看错误日志</strong> (<code>mysql_error.log</code>)，定位具体错误信息</li>
+<li><strong>清理数据目录中的错误临时文件</strong>（保留数据库子文件夹）</li>
+<li><strong>检查端口冲突</strong>（<code>netstat -ano | findstr 3306</code>）</li>
+<li><strong>检查 my.ini 配置</strong>（路径、端口、InnoDB 参数）</li>
+<li><strong>重新注册 MySQL 服务</strong>（作为最后手段）</li>
+</ol>
+<p>操作前<strong>务必备份数据</strong>，避免修复过程中造成数据丢失。如果你正在为新项目选择开发环境，Docker 容器化的 MySQL 方案能帮你彻底告别这类启动问题。</p>
+<p><img src="/img/2013-mysql-troubleshooting-flowchart.svg" alt="MySQL故障排查流程图"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc">Dragon_SZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc/2013/09/27/39/">https://blog.xiaoshenlong.cc/2013/09/27/39/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.xiaoshenlong.cc" target="_blank">Dragon_SZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/%E6%84%9F%E6%82%9F/">感悟</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2013/10/06/7/" title="一句话的事"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">一句话的事</div></div><div class="info-2"><div class="info-item-1">那年夏天的十字路口 2013年的夏天，格外闷热。 我站在人生的十字路口前，面前摆着两条路：一条是接受一份看起来还不错的工作offer，从此踏入社会，开始朝九晚五的职场生活；另一条是继续考研，再花两三年时间在校园里埋头苦读，赌一个不确定但可能更好的未来。 那个夏天，我仿佛被扔进了一个巨大的漩涡，每天都在选择与犹豫之间反复挣扎。 工作offer是一家不错的公司，薪资尚可，发展前景也还可以。HR在电话里热情地催促我尽快答复，说这个岗位竞争很激烈，如果我犹豫太久可能就没了。与此同时，考研的复习资料堆满了书桌的每一个角落，高等数学、英语阅读、政治概论，每一本书都像是一座等待翻越的高山。 我白天在公司实习，感受着职场的气息——同事们忙碌的身影、会议室里激烈的讨论、午餐时间关于房价和婚恋的闲聊。一切看起来那么真实，那么触手可及。晚上回到宿舍，我又翻开考研资料，在台灯下一遍一遍地做着英语阅读理解，计算着距离考试还有多少天。 两种生活在我的身体里撕扯。 那些没有等到回应的期待 在那段最纠结的日子里，我最想听到一个人的声音。 她是我心里的那个人。我曾经无数次在脑海中排练过和她对话的场景：我会告诉她我...</div></div></div></a><a class="pagination-related" href="/2013/09/25/10/" title="为球赛而疯狂"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">为球赛而疯狂</div></div><div class="info-2"><div class="info-item-1">那个属于足球的夜晚 那天晚上，我专门空出了所有的时间，推掉了所有可能的安排，只为了做一件事——好好看一场球赛。 广州恒大对阵柏太阳神，亚冠联赛的首回合。 自从工作之后，已经很久没有这样完整地、投入地、纯粹地享受一场比赛了。白天的时间被工作填满，晚上的精力被疲惫消耗，周末的休息被各种琐事切割得支离破碎。足球，这个曾经占据了我生命中大量时间和热情的东西，似乎已经变成了一个遥远的记忆。 但那天晚上，我决定把它找回来。 下午下班之后，我早早地回到了住处，买了啤酒、薯片和一些卤味，打开了那台不算太大的电视。几个同样热爱足球的朋友陆续到来，有人带来了自己珍藏的恒大围巾，有人穿了一件洗得发白的球衣，有人甚至带了一个小喇叭——虽然我们都知道在公寓里吹喇叭一定会被邻居投诉，但他还是带来了，说”氛围感要拉满”。 窗外的天色一点一点暗下来，房间里的光线被电视屏幕的光芒所取代。几个大男人挤在不算宽敞的客厅里，眼睛死死地盯着屏幕，像是在等待一场盛大的仪式开场。 比赛开始了 比赛开始的那一刻，整个房间安静了下来。 那种安静不是没有声音，而是所有人的注意力都被同一件事所吸引，以至于忘记了说话。只有电视里传来的...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2013/11/09/11/" title="久违的睡眠"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-11-09</div><div class="info-item-2">久违的睡眠</div></div><div class="info-2"><div class="info-item-1">不知你是否也曾向往过这样一个场景——在一个阴天的下午，忙碌了一上午之后，你想象着能睡一个舒服的午觉。没有任何人打扰，没有闹钟，没有催促，就这样沉沉地睡去，睡到自然醒。 当你终于醒来的时候，发现窗外的天色已经暗了，已经到了该吃晚饭的时候。那种从深度睡眠中缓缓苏醒的感觉，像是从另一个世界归来——身体被彻底放松了，大脑被彻底清空了，所有的疲惫、焦虑、不安，都在那个长长的午觉中被一点点地消化掉了。 那种感觉，真好。    为什么连睡个午觉都成了奢侈？为什么会有这样的憧憬？为什么这个看似再简单不过的愿望，对某些人来说却难以实现？ 因为我们都大了。已经过了那个可以无所顾忌地做梦的年纪。 小时候，午睡是每天的必修课。午饭后，母亲会拉上窗帘，屋子里暗下来，你在凉席上翻来翻去，总想着快点睡着好起来玩。那时候的午睡是一种”任务”，你甚至有些不情愿。但现在回想起来，那种被安排好的、不需要操心的日子，是多么珍贵。 我们没有时间去这样享受了。我们必须为了就业而奋斗，为了生存而牺牲掉那些看似”无用”的安逸。大四的我们，站在了人生的一个十字路口——向左走，是考研的独木桥；向右走，是求职的茫茫人海。无论选择哪一...</div></div></div></a><a class="pagination-related" href="/2013/08/27/28/" title="J2ME时间显示"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-08-27</div><div class="info-item-2">J2ME时间显示</div></div><div class="info-2"><div class="info-item-1">这是一个J2ME的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在J2ME中创建对象并且创建一个线程让时间占用这个线程进行。 说起J2ME，可能很多年轻的开发者已经不太了解了。但在2013年那个智能手机刚刚兴起的年代，功能机依然占据着很大的市场份额。那时候，我用着一台支持Java的诺基亚手机，整天琢磨着能在上面跑点什么程序。J2ME（Java 2 Platform, Micro Edition）就是当时在功能机上运行Java程序的标准平台。虽然现在回头看，那段技术已经属于”上古时期”了，但它却是我编程之路上一段非常珍贵的记忆。  项目背景与动机当时学习J2ME的初衷很简单——我想给自己做一款手机应用。那时候还没有什么App Store的概念，手机上的应用大多是用J2ME开发的。我看到别人手机上的时钟、小游戏，觉得挺酷，就想自己也做一个。时间显示虽然听起来简单，但在J2ME的框架下，需要考虑线程管理、Canvas绘制、时区处理等诸多问题，对于当时的我来说，是一个很好的练手项目。 J2ME的核心概念是MIDlet（Mobile Information Device Appli...</div></div></div></a><a class="pagination-related" href="/2015/04/27/30/" title="浅谈PHP大数据处理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2015-04-27</div><div class="info-item-2">浅谈PHP大数据处理</div></div><div class="info-2"><div class="info-item-1">问题背景新换的公司，接手了一个遗留项目。当我第一次登录数据库服务器，看到一张表的数据量达到 29GB 时，我顿时就懵了。更让我惊讶的是，这个 29GB 的大表还需要与另一个 1GB 多的表做关联查询，而且这段代码跑在 PHP 上，数据库是 MySQL。 1234表A（主表）：  29GB  ≈ 5000万条记录表B（关联表）： 1GB  ≈ 200万条记录查询方式：      INNER JOIN + 全表扫描执行时间：      经常超过 30 秒，直接超时  面对这种情况，PHP 的 max_execution_time 默认只有 30 秒，MySQL 的连接等待时间也有限制。每次执行这个查询，结果要么是 PHP 报 “Maximum execution time exceeded”，要么是 MySQL 报 “Lock wait timeout exceeded”。  本文将从实战角度，详细记录我处理这个大表查询的 6 个优化策略。这些方案不仅适用于 PHP + MySQL 组合，其中的思路对其他语言和数据库同样有参考价值。  策略一：用 LIMIT 分段处理，避免一次性加载...</div></div></div></a><a class="pagination-related" href="/2016/01/01/46/" title="2015 该有个总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2016-01-01</div><div class="info-item-2">2015 该有个总结</div></div><div class="info-2"><div class="info-item-1">2015年的最后一个夜晚，我独自坐在电脑前，回望着这一年的光景。 窗外是深圳不眠的灯火，那些高楼大厦里的灯光，每一盏背后都有一个人的故事。而我的故事，在2015年，跌跌撞撞地走过了一整年。  工作中的迷失年初的时候，我以为自己已经找到了方向。 毕业后的第一年，带着满腔热血进入了职场。然而现实远比想象的要复杂得多。每天早出晚归，坐在工位上对着屏幕，处理着永远做不完的任务。加班成了常态，周末成了奢侈品，生活被切割成一个个碎片——早上挤地铁、白天开会写代码、晚上拖着疲惫的身躯回到出租屋。 最难的不是身体的疲惫，而是内心的迷失。 有那么一段时间，我完全不知道自己为什么要这么拼。是为了钱吗？好像也不是，工资就那么些，除去房租和生活费所剩无几。是为了前途吗？好像也不太确定，每天做的事情大同小异，看不到成长的空间，也看不到未来的方向。 那种感觉，就像是在一条漆黑的隧道里行走，看不见入口的光，也看不到出口的亮。你只能一步一步往前走，因为停下就意味着被黑暗吞噬。 记得有好几个深夜，办公室只剩下我一个人。灯光打在我的键盘上，屏幕上的代码一行一行地敲出来又删掉。那种孤独感是难以言喻的——不是没有人陪的...</div></div></div></a><a class="pagination-related" href="/2013/11/22/32/" title="生活小记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-11-22</div><div class="info-item-2">生活小记</div></div><div class="info-2"><div class="info-item-1">不一样的一天，学到的东西很多，自己要学的东西更是很多。多遇到不一样的人，会有不一样的生活。  今天被学校机关的老师叫去重装系统。本来就是一个简单的事情，却让我见识了很多。跟不一样的人打交道，就会有一样的收获——这句话，我是在这天下午才真正理解的。 事情是这样的。早上我正在自习室准备公务员考试的复习资料，桌上摊着行测真题和申论范文，旁边放着一杯已经凉透了的茶。突然手机响了，是学校机关的一位老师打来的，说电脑出了点问题，问我能不能帮忙看看。 我当时没多想。觉得不就是个重装系统嘛，小菜一碟。这种事情对我来说简直易如反掌，大学这几年帮同学、帮朋友重装过的系统没有一百也有八十了。便爽快地答应了。  我合上书本，收拾了一下就去了老师的办公室。推开门，一位穿着朴素的中年老师正坐在办公桌前，对着电脑发愁。她看到我来了，连忙站起来，热情地招呼我坐下。 “同学啊，你看看这个电脑，开机慢得要命，打开一个文件要等半天，我都快急死了。” 我坐到电脑前，熟练地操作起来。系统确实已经卡得没法用了——开机要等好几分钟，桌面上堆满了各种快捷方式和临时文件，C盘几乎满了。我判断了一下，最好的办法就是重装系统。 为了...</div></div></div></a><a class="pagination-related" href="/2013/09/17/52/" title="Shell中ctrl+z 与ctrl+c的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-09-17</div><div class="info-item-2">Shell中ctrl+z 与ctrl+c的区别</div></div><div class="info-2"><div class="info-item-1"> 引言：一个差点让我翻车的小习惯在 Linux 的世界里，Shell 是我们与系统对话的窗口。每一个敲击键盘的动作，都可能触发一系列连锁反应。而 Ctrl+C 和 Ctrl+Z，就是两个最常被误用的快捷键。 我至今还记得自己曾经犯过的一个错误。那天我在服务器上启动了一个后台数据处理服务，按下 Ctrl+Z 后看到终端返回了命令行提示符，就以为任务已经结束了。然后我继续做其他操作，直到系统变得越来越卡，用 ps 命令一查才发现 —— 那个进程还活着，只是被挂起了。它占用了大量的内存和 CPU 资源，差点把整个服务器的性能拖垮。 那次经历让我深刻认识到：理解工具的正确用法，远比记住快捷键本身更重要。 这篇笔记详细梳理了 Ctrl+C 和 Ctrl+Z 的本质区别，以及它们在 Shell 中的正确使用方法。希望每一位读者都能从中受益，避免重蹈我的覆辙。  核心区别：中断 vs 挂起Ctrl+C 和 Ctrl+Z 都是中断命令，但它们的作用完全不同：    快捷键 信号名称 作用 进程状态    Ctrl+C SIGINT (Signal Interrupt) 强制终止程序的执行 进程被...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dragon_SZ</div><div class="author-info-description">Dragon的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="https://github.com/shenzhenlong1203"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%B8%85%E7%90%86-MySQL-%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E9%94%99%E8%AF%AF%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">方法一：清理 MySQL 数据目录中的错误文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.1.</span> <span class="toc-text">详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%EF%BC%9A%E5%AE%9A%E4%BD%8D-MySQL-%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">步骤 1：定位 MySQL 数据目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%EF%BC%9A%E4%BF%AE%E6%94%B9-my-ini-%E4%B8%AD%E7%9A%84-datadir-%E8%B7%AF%E5%BE%84%EF%BC%88%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">步骤 2：修改 my.ini 中的 datadir 路径（如果需要）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%EF%BC%9A%E6%B8%85%E7%90%86%E9%94%99%E8%AF%AF%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text">步骤 3：清理错误文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-4%EF%BC%9A%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8-MySQL"><span class="toc-number">2.1.4.</span> <span class="toc-text">步骤 4：重新启动 MySQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">为什么这个方法有效？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BF%AE%E5%A4%8D-my-ini-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">方法二：修复 my.ini 配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E5%A4%8D"><span class="toc-number">3.1.</span> <span class="toc-text">常见问题及修复</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E8%B7%AF%E5%BE%84%E4%BD%BF%E7%94%A8%E4%BA%86%E9%94%99%E8%AF%AF%E7%9A%84%E6%96%9C%E6%9D%A0"><span class="toc-number">3.1.1.</span> <span class="toc-text">2.1 路径使用了错误的斜杠</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-innodb-%E9%85%8D%E7%BD%AE%E5%86%B2%E7%AA%81"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.2 innodb 配置冲突</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE%E6%A3%80%E6%9F%A5"><span class="toc-number">3.1.3.</span> <span class="toc-text">2.3 端口配置检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E5%AE%8C%E6%95%B4%E7%9A%84-my-ini-%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.4.</span> <span class="toc-text">2.4 完整的 my.ini 最小配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98"><span class="toc-number">3.2.</span> <span class="toc-text">通过错误日志定位问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%86%B2%E7%AA%81"><span class="toc-number">4.</span> <span class="toc-text">方法三：解决端口冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%A3%80%E6%9F%A5%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 检查端口占用情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9F%A5%E6%89%BE%E5%8D%A0%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 查找占用端口的程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85-MySQL-%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">方法四：重新安装 MySQL 服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%8D%B8%E8%BD%BD%E7%8E%B0%E6%9C%89%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 卸载现有服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 重新安装服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%80%9A%E8%BF%87-XAMPP-%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF%E5%90%AF%E5%8A%A8"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 通过 XAMPP 控制面板启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E7%AD%96%E7%95%A5"><span class="toc-number">6.</span> <span class="toc-text">数据备份策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-A%EF%BC%9A%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6-data-%E7%9B%AE%E5%BD%95"><span class="toc-number">6.1.</span> <span class="toc-text">方法 A：直接复制 data 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-B%EF%BC%9A%E4%BD%BF%E7%94%A8-mysqldump-%E5%AF%BC%E5%87%BA-SQL"><span class="toc-number">6.2.</span> <span class="toc-text">方法 B：使用 mysqldump 导出 SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-C%EF%BC%9A%E5%AE%9A%E6%9C%9F%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">6.3.</span> <span class="toc-text">方法 C：定期备份脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88%EF%BC%9A%E4%BD%BF%E7%94%A8-Docker-%E8%BF%90%E8%A1%8C-MySQL"><span class="toc-number">7.</span> <span class="toc-text">替代方案：使用 Docker 运行 MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E5%AE%89%E8%A3%85%E4%B8%8E%E8%BF%90%E8%A1%8C-MySQL"><span class="toc-number">7.1.</span> <span class="toc-text">Docker 安装与运行 MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-MySQL-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">7.2.</span> <span class="toc-text">Docker MySQL 的优势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E7%BB%8F%E9%AA%8C"><span class="toc-number">8.</span> <span class="toc-text">踩坑经验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E4%B8%80%EF%BC%9A%E7%9B%B4%E6%8E%A5%E5%88%A0%E9%99%A4-ibdata1-%E5%AF%BC%E8%87%B4%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1"><span class="toc-number">8.1.</span> <span class="toc-text">踩坑一：直接删除 ibdata1 导致数据丢失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E4%BA%8C%EF%BC%9AXAMPP-%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF%E6%98%BE%E7%A4%BA%E7%BB%BF%E8%89%B2%E4%BD%86-MySQL-%E5%AE%9E%E9%99%85%E6%9C%AA%E8%BF%90%E8%A1%8C"><span class="toc-number">8.2.</span> <span class="toc-text">踩坑二：XAMPP 控制面板显示绿色但 MySQL 实际未运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E4%B8%89%EF%BC%9A%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8"><span class="toc-number">8.3.</span> <span class="toc-text">踩坑三：权限不足导致无法启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E5%9B%9B%EF%BC%9A%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E9%98%BB%E6%AD%A2-MySQL-%E5%90%AF%E5%8A%A8"><span class="toc-number">8.4.</span> <span class="toc-text">踩坑四：杀毒软件阻止 MySQL 启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/11/11/66/" title="2020 该有个总结">2020 该有个总结</a><time datetime="2020-11-11T07:19:10.000Z" title="发表于 2020-11-11 15:19:10">2020-11-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/01/01/65/" title="2019 该有个总结">2019 该有个总结</a><time datetime="2020-01-01T02:02:24.000Z" title="发表于 2020-01-01 10:02:24">2020-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2019/01/01/64/" title="2018 该有个总结">2018 该有个总结</a><time datetime="2019-01-01T14:02:24.000Z" title="发表于 2019-01-01 22:02:24">2019-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2018/01/06/61/" title="2017 该有个总结">2017 该有个总结</a><time datetime="2018-01-06T10:02:24.000Z" title="发表于 2018-01-06 18:02:24">2018-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2017/11/22/59/" title="微信开发之初体验">微信开发之初体验</a><time datetime="2017-11-22T09:12:40.000Z" title="发表于 2017-11-22 17:12:40">2017-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Dragon_SZ</span><span class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

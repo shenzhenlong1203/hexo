@@ -1,525 +1,248 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-<script type='text/javascript'>
-!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
-  gio('init','b42bee32ec9ef0d0', {});
-
-
-gio('send');
-
-</script>
-
-
-  
-  <script>
-    (function(){
-        if('undefined' !== 'undefined'){
-            if (prompt('请输入文章密码') !== 'undefined'){
-                alert('密码错误！');
-                window.location = '/';
-            }
-        }
-    })();
-  </script>
-  <title>微信开发之初体验 | Dragon_SZ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="微信号区别 企业号  微信企业号只有企业通信录成员才能关注 同一个微信企业号可配置多个类似服务号的应用，发送信息条数无限制 旨在通过微信连接企业应用，为企业提供移动端办公入口   服务号  微信的服务号，顾名思义，是提供服务的，用于向粉丝提供服务的一种公众号, 它比订阅号的功能更全。 服务号也分为两种，认证服务号与未认证服务号，但是认证方式只可以是公司认证，并且也只有公司才能申请   订阅号  订">
-<meta name="keywords" content="微信,wechat,账号定义">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>微信开发之初体验 | Dragon_SZ</title><meta name="author" content="Dragon_SZ"><meta name="copyright" content="Dragon_SZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="缘起2017 年下半年，微信生态正处于高速发展的黄金期。公众号、小程序、企业微信，每一个方向都蕴含着巨大的商业机会。公司决定开拓微信端的业务，而我作为技术负责人之一，承担起了微信开发的技术预研工作。 那段时间，我几乎把所有的业余时间都花在了阅读微信官方文档上。微信的开发文档以详尽著称，但也因为其庞大的体系而让新手望而生畏。企业号、服务号、订阅号、小程序、开放平台、公众平台……光是理清这些概念之间的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信开发之初体验">
-<meta property="og:url" content="http://longlongblog.cn/2017/11/22/59/index.html">
+<meta property="og:url" content="https://blog.xiaoshenlong.cc/2017/11/22/59/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="微信号区别 企业号  微信企业号只有企业通信录成员才能关注 同一个微信企业号可配置多个类似服务号的应用，发送信息条数无限制 旨在通过微信连接企业应用，为企业提供移动端办公入口   服务号  微信的服务号，顾名思义，是提供服务的，用于向粉丝提供服务的一种公众号, 它比订阅号的功能更全。 服务号也分为两种，认证服务号与未认证服务号，但是认证方式只可以是公司认证，并且也只有公司才能申请   订阅号  订">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-02T14:04:22.000Z">
+<meta property="og:description" content="缘起2017 年下半年，微信生态正处于高速发展的黄金期。公众号、小程序、企业微信，每一个方向都蕴含着巨大的商业机会。公司决定开拓微信端的业务，而我作为技术负责人之一，承担起了微信开发的技术预研工作。 那段时间，我几乎把所有的业余时间都花在了阅读微信官方文档上。微信的开发文档以详尽著称，但也因为其庞大的体系而让新手望而生畏。企业号、服务号、订阅号、小程序、开放平台、公众平台……光是理清这些概念之间的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png">
+<meta property="article:published_time" content="2017-11-22T09:12:40.000Z">
+<meta property="article:modified_time" content="2026-04-22T04:08:45.716Z">
+<meta property="article:author" content="Dragon_SZ">
+<meta property="article:tag" content="微信">
+<meta property="article:tag" content="wechat">
+<meta property="article:tag" content="账号定义">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微信开发之初体验">
-<meta name="twitter:description" content="微信号区别 企业号  微信企业号只有企业通信录成员才能关注 同一个微信企业号可配置多个类似服务号的应用，发送信息条数无限制 旨在通过微信连接企业应用，为企业提供移动端办公入口   服务号  微信的服务号，顾名思义，是提供服务的，用于向粉丝提供服务的一种公众号, 它比订阅号的功能更全。 服务号也分为两种，认证服务号与未认证服务号，但是认证方式只可以是公司认证，并且也只有公司才能申请   订阅号  订">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
-<link rel="publisher" href="https://plus.google.com/u/0/">
-  
-  
-    <link rel="icon" href="/img/logo.jpg">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Add to homescreen for Chrome on Android -->    
-    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
-    <!-- Add to homescreen for Safari on iOS -->
-    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/img/logo.jpg">
-    <meta name="msapplication-TileColor" content="#0e90d2">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-105380317-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-</head>
-
-<body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-4090430472919209",
-              enable_page_level_ads: true
-                });
-    </script>
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Dragon_SZ</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">相离莫相忘,且行且珍惜</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives">文章</a>
-        
-          <a class="main-nav-link" href="/atom.xml">rss</a>
-        
-          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
-        
-      </nav>
-      <!--
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="longlongblog.cn">
-        </form>
-      </div>
-      -->
-    </div>
-  </div>
-</header>
-
-    <div class="outer">
-      <section id="main"><article id="post-59" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/22/59/" class="article-date">
-  <time datetime="2017-11-22T09:12:40.000Z" itemprop="datePublished">2017-11-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/微信/">微信</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      微信开发之初体验
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h3 id="微信号区别"><a href="#微信号区别" class="headerlink" title="微信号区别"></a>微信号区别</h3><ol>
-<li><p>企业号</p>
-<ul>
-<li>微信企业号只有企业通信录成员才能关注</li>
-<li>同一个微信企业号可配置多个类似服务号的应用，发送信息条数无限制</li>
-<li>旨在通过微信连接企业应用，为企业提供移动端办公入口</li>
-</ul>
-</li>
-<li><p>服务号</p>
-<ul>
-<li>微信的服务号，顾名思义，是提供服务的，用于向粉丝提供服务的一种公众号, 它比订阅号的功能更全。</li>
-<li>服务号也分为两种，认证服务号与未认证服务号，但是认证方式只可以是公司认证，并且也只有公司才能申请</li>
-</ul>
-</li>
-<li><p>订阅号</p>
-<ul>
-<li>订阅号用于媒体、政府等新闻发布平台，时下非常流行的自媒体概念一般都是使用订阅号</li>
-<li>订阅号适合推送消息</li>
-</ul>
-</li>
-<li><p>小程序</p>
-<ul>
-<li>在没有网络连接的情况下，微信公众号的功能无法使用</li>
-<li>小程序本身无需联网的工作，它能够在离线的情况下发挥作用</li>
-<li>小程序更像H5的应用，在微信平台体现可扩展的Native应用</li>
-</ul>
-</li>
-</ol>
-<h3 id="微信用户信息区别"><a href="#微信用户信息区别" class="headerlink" title="微信用户信息区别"></a>微信用户信息区别</h3><ol>
-<li><p>openid</p>
-<ul>
-<li>openid 普通用户的标识，对公众号帐号唯一</li>
-<li>一个openid只对应一个公众号</li>
-<li>同一个用户关注不同的公众号会有不同的openid</li>
-</ul>
-</li>
-<li><p>unionid</p>
-<ul>
-<li>unionid 微信用户统一标识</li>
-<li>针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的</li>
-<li>对于拥有多个账号的企业来说，unionid可以帮助识别不同公众账号下的用户是否是同一个人</li>
-<li>网页应用，二维码等需要记录用户的unionid，因为他们的openid是立即生成的，unionid表示唯一用户</li>
-</ul>
-</li>
-</ol>
-<h3 id="如何获取用户UnionId"><a href="#如何获取用户UnionId" class="headerlink" title="如何获取用户UnionId"></a>如何获取用户UnionId</h3><ol>
-<li><p>开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（<a href="https://open.weixin.qq.com" target="_blank" rel="noopener">https://open.weixin.qq.com</a>）绑定公众号后，才可利用UnionID机制来满足上述需求。 </p>
-</li>
-<li><p>获取公众号openid列表</p>
- <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">http请求方式</span>: GET（请使用https协议）</div><div class="line"></div><div class="line">https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&amp;next_openid=NEXT_OPENID</div></pre></td></tr></table></figure>
-</li>
-<li><p>获取公众号openid对应的unionid信息</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">接口调用请求说明</div><div class="line"></div><div class="line">http请求方式: GET https:<span class="regexp">//</span>api.weixin.qq.com<span class="regexp">/cgi-bin/u</span>ser<span class="regexp">/info?access_token=ACCESS_TOKEN&amp;openid=OPENID&amp;lang=zh_CN</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>批量获取用户openid的列表时，注意accesstoken是否已失效，一次获取的accesstoken的最长有效期是7200s,注意批量获取时，判断accesstoken的失效时间。</li>
-<li>批量获取用户unionid时，一般是脚本多线程跑数据，因为提供的批量一次传入100个openid，所以要注意accesstoken过期时间和接口调用sleep，防止被墙报异常。</li>
-</ol>
-
-      
-      
-  <div class="article-statement">
-    <hr>  
-    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
-    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
-    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
-  </div>
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2017/11/22/59/" data-id="ckgstzbw0004ih33kse9z187a" class="article-share-link" data-share="baidu" data-title="微信开发之初体验">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2017/11/22/59/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/账号定义/">账号定义</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/01/06/61/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          2017 该有个总结
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/11/01/58/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Redis Cluster FlushAll失败</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-</section>
-      
-      <aside id="sidebar">
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">来关注我</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        
-          <div style="text-align: center;">
-            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
-          </div>
-        
-        <li>
-          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">推荐文章</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        <li>
-          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-	<h3 class="widget-title">微信公众号</h3>
-	<div class="widget">
-		<div style="text-align: center;">
-			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
-			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
-		</div>
-	</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 15px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://honglu.me" target="_blank">独奏</a>
-          </li>
-        
-          <li>
-            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-      
-    </div>
-    <footer id="footer">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2020 <a href="/" target="_blank">Dragon_SZ</a>.
-      &nbsp;
-      <span id="busuanzi_container_site_pv">
-        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
-      </span>
-      <span id="busuanzi_container_site_uv">
-        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
-      </span>
-      
-        &nbsp;
-        <span>
-          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
-        </span>
-      
-    </div>
-  </div>
-</footer>
-
-  </div>
-  <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/archives" class="mobile-nav-link">文章</a>
-  
-    <a href="/atom.xml" class="mobile-nav-link">rss</a>
-  
-    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
-  
-</nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-</div>
-
-<!-- totop end -->
-
-<script>
-  var disqus_shortname = 'longlong';
-  
-  var disqus_url = 'http://longlongblog.cn/2017/11/22/59/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
+<meta name="twitter:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "微信开发之初体验",
+  "url": "https://blog.xiaoshenlong.cc/2017/11/22/59/",
+  "image": "https://blog.xiaoshenlong.cc/img/butterfly-icon.png",
+  "datePublished": "2017-11-22T09:12:40.000Z",
+  "dateModified": "2026-04-22T04:08:45.716Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dragon_SZ",
+      "url": "https://blog.xiaoshenlong.cc"
     }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.xiaoshenlong.cc/2017/11/22/59/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-<!-- 百度分享 end -->
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '微信开发之初体验',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dragon_SZ</span></a><a class="nav-page-title" href="/"><span class="site-name">微信开发之初体验</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">微信开发之初体验</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-11-22T09:12:40.000Z" title="发表于 2017-11-22 17:12:40">2017-11-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-22T04:08:45.716Z" title="更新于 2026-04-22 12:08:45">2026-04-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BE%AE%E4%BF%A1/">微信</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>2017 年下半年，微信生态正处于高速发展的黄金期。公众号、小程序、企业微信，每一个方向都蕴含着巨大的商业机会。公司决定开拓微信端的业务，而我作为技术负责人之一，承担起了微信开发的技术预研工作。</p>
+<p>那段时间，我几乎把所有的业余时间都花在了阅读微信官方文档上。微信的开发文档以详尽著称，但也因为其庞大的体系而让新手望而生畏。企业号、服务号、订阅号、小程序、开放平台、公众平台……光是理清这些概念之间的关系，就花了我整整一个周末。</p>
+<p>这篇博客记录的，就是我在微信开发入门阶段整理的一些核心知识点。希望对于后来者，能够少走一些弯路。</p>
+<p><img src="/img/2017-wechat-ecosystem.svg" alt="微信生态全景"></p>
+<h2 id="微信号区别"><a href="#微信号区别" class="headerlink" title="微信号区别"></a>微信号区别</h2><p>在微信生态中，有四种主要的账号类型。很多人一开始分不清它们的区别，这完全可以理解——因为微信自己在不同的时期对这些账号的定位也在不断调整。</p>
+<h3 id="1-企业号（后升级为企业微信）"><a href="#1-企业号（后升级为企业微信）" class="headerlink" title="1. 企业号（后升级为企业微信）"></a>1. 企业号（后升级为企业微信）</h3><p>企业号的核心定位是<strong>企业内部通信与协作</strong>：</p>
+<ul>
+<li>微信企业号只有企业通信录成员才能关注，外部人员无法看到。</li>
+<li>同一个微信企业号可配置多个类似服务号的应用，发送信息条数无限制。</li>
+<li>旨在通过微信连接企业应用，为企业提供移动端办公入口。</li>
+</ul>
+<blockquote>
+<p>后来企业号升级为”企业微信”，成为一个独立的产品。它在保留了原有企业内部通信能力的基础上，增加了与微信互通的能力——企业微信的用户可以直接与微信用户聊天，这为私域运营提供了新的可能。</p>
+</blockquote>
+<h3 id="2-服务号"><a href="#2-服务号" class="headerlink" title="2. 服务号"></a>2. 服务号</h3><p>微信的服务号，顾名思义，是<strong>提供服务</strong>的公众号：</p>
+<ul>
+<li>用于向粉丝提供服务的一种公众号，功能比订阅号更全面。</li>
+<li>服务号也分为两种：认证服务号与未认证服务号。认证方式只可以是公司认证，并且也只有公司才能申请。</li>
+<li>服务号每月可以推送 4 次群发消息，但消息会直接出现在用户的聊天列表中（而不是折叠在”订阅号消息”里），因此曝光率更高。</li>
+<li>服务号拥有更多的高级接口权限，如模板消息、微信支付、网页授权等。</li>
+</ul>
+<h3 id="3-订阅号"><a href="#3-订阅号" class="headerlink" title="3. 订阅号"></a>3. 订阅号</h3><p>订阅号的核心定位是<strong>信息推送</strong>：</p>
+<ul>
+<li>订阅号适合媒体、政府等新闻发布平台，时下非常流行的自媒体概念一般都是使用订阅号。</li>
+<li>订阅号适合推送消息，每天可以群发一次。</li>
+<li>但订阅号的消息会被折叠在”订阅号消息”文件夹中，用户需要主动打开才能看到，曝光率相对较低。</li>
+</ul>
+<h3 id="4-小程序"><a href="#4-小程序" class="headerlink" title="4. 小程序"></a>4. 小程序</h3><p>小程序是微信生态中的”革命性”产品：</p>
+<ul>
+<li>在没有网络连接的情况下，微信公众号的功能无法使用（公众号本质上是 H5 页面）。</li>
+<li>小程序本身并非无需联网，但它的离线缓存能力更强，体验更接近原生应用。</li>
+<li>小程序更像 H5 的应用，在微信平台体现为可扩展的 Native 应用。它无需下载安装，扫码即用，用完即走。</li>
+</ul>
+<p><img src="/img/2017-mini-program-architecture.svg" alt="小程序架构示意"></p>
+<h2 id="微信用户信息区别"><a href="#微信用户信息区别" class="headerlink" title="微信用户信息区别"></a>微信用户信息区别</h2><p>在微信开发中，最核心的概念之一就是用户标识。理解 <code>openid</code> 和 <code>unionid</code> 的区别，是做好微信开发的基础。</p>
+<h3 id="1-openid"><a href="#1-openid" class="headerlink" title="1. openid"></a>1. openid</h3><ul>
+<li><code>openid</code> 是普通用户的标识，<strong>对公众号账号唯一</strong>。</li>
+<li>一个 <code>openid</code> 只对应一个公众号。</li>
+<li>同一个用户关注不同的公众号会有不同的 <code>openid</code>。</li>
+</ul>
+<p>这意味着：如果你的公司有多个公众号，同一个用户在每个公众号下都有一个独立的 <code>openid</code>。如果你只依赖 <code>openid</code> 来做用户识别，就无法知道这些 <code>openid</code> 背后其实是同一个人。</p>
+<h3 id="2-unionid"><a href="#2-unionid" class="headerlink" title="2. unionid"></a>2. unionid</h3><ul>
+<li><code>unionid</code> 是<strong>微信用户统一标识</strong>。</li>
+<li>针对一个微信开放平台账号下的应用，同一用户的 <code>unionid</code> 是唯一的。</li>
+<li>对于拥有多个账号的企业来说，<code>unionid</code> 可以帮助识别不同公众账号下的用户是否是同一个人。</li>
+<li>网页应用、二维码等需要记录用户的 <code>unionid</code>，因为它们的 <code>openid</code> 是立即生成的，<code>unionid</code> 表示唯一用户。</li>
+</ul>
+<h3 id="openid-与-unionid-的关系图解"><a href="#openid-与-unionid-的关系图解" class="headerlink" title="openid 与 unionid 的关系图解"></a>openid 与 unionid 的关系图解</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">微信开放平台（一个账号）</span><br><span class="line">  |</span><br><span class="line">  +-- 公众号 <span class="type">A</span> <span class="comment">-- 用户张三 (openid_A, unionid_X)</span></span><br><span class="line">  +-- 公众号 <span class="type">B</span> <span class="comment">-- 用户张三 (openid_B, unionid_X)</span></span><br><span class="line">  +-- 小程序 <span class="type">C</span> <span class="comment">-- 用户张三 (openid_C, unionid_X)</span></span><br><span class="line">  +-- 移动应用 <span class="type">D</span> <span class="comment">-- 用户张三 (openid_D, unionid_X)</span></span><br></pre></td></tr></table></figure>
 
+<p>如上所示，同一个用户（张三）在同一个开放平台下的不同应用中，<code>openid</code> 各不相同，但 <code>unionid</code> 始终相同。这就是 <code>unionid</code> 存在的意义——<strong>打通多应用的用户体系</strong>。</p>
+<h2 id="如何获取用户-UnionId"><a href="#如何获取用户-UnionId" class="headerlink" title="如何获取用户 UnionId"></a>如何获取用户 UnionId</h2><p>获取 <code>unionid</code> 的前提是：<strong>你的公众号必须绑定到微信开放平台</strong>。</p>
+<h3 id="步骤一：绑定公众号到开放平台"><a href="#步骤一：绑定公众号到开放平台" class="headerlink" title="步骤一：绑定公众号到开放平台"></a>步骤一：绑定公众号到开放平台</h3><p>开发者有在多个公众号，或在公众号、移动应用之间统一用户账号的需求，需要前往微信开放平台（<a href="https://open.weixin.qq.com/">https://open.weixin.qq.com</a>）绑定公众号后，才可利用 <code>unionid</code> 机制来满足上述需求。</p>
+<blockquote>
+<p>注意：只有<strong>已认证</strong>的公众号才能绑定到开放平台。如果你的公众号尚未认证，需要先完成认证流程。</p>
+</blockquote>
+<h3 id="步骤二：获取公众号-openid-列表"><a href="#步骤二：获取公众号-openid-列表" class="headerlink" title="步骤二：获取公众号 openid 列表"></a>步骤二：获取公众号 openid 列表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http请求方式: <span class="keyword">GET</span>（请使用https协议）</span><br><span class="line"></span><br><span class="line">https:<span class="operator">/</span><span class="operator">/</span>api.weixin.qq.com<span class="operator">/</span>cgi<span class="operator">-</span>bin<span class="operator">/</span><span class="keyword">user</span><span class="operator">/</span><span class="keyword">get</span>?access_token<span class="operator">=</span>ACCESS_TOKEN<span class="operator">&amp;</span>next_openid<span class="operator">=</span>NEXT_OPENID</span><br></pre></td></tr></table></figure>
 
+<p>这个接口可以获取关注公众号的用户 <code>openid</code> 列表。每次最多返回 10000 个，如果用户数量超过 10000，需要通过 <code>next_openid</code> 参数进行翻页。</p>
+<h3 id="步骤三：获取公众号-openid-对应的-unionid-信息"><a href="#步骤三：获取公众号-openid-对应的-unionid-信息" class="headerlink" title="步骤三：获取公众号 openid 对应的 unionid 信息"></a>步骤三：获取公众号 openid 对应的 unionid 信息</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">接口调用请求说明</span><br><span class="line"></span><br><span class="line">http请求方式: <span class="keyword">GET</span> </span><br><span class="line">https://api.weixin.qq.com/cgi-bin/<span class="keyword">user</span>/<span class="keyword">info</span>?access_token=ACCESS_TOKEN&amp;openid=OPENID&amp;lang=zh_CN</span><br></pre></td></tr></table></figure>
 
-<script src="/js/script.js"></script>
-
-</div>
-</body>
-</html>
+<p>通过用户 <code>openid</code> 获取用户详细信息，返回结果中会包含 <code>unionid</code> 字段（前提是该公众号已绑定到开放平台）。</p>
+<h2 id="注意事项与踩坑记录"><a href="#注意事项与踩坑记录" class="headerlink" title="注意事项与踩坑记录"></a>注意事项与踩坑记录</h2><p>在微信开发的实际操作中，有几个容易被忽视的细节，值得重点关注：</p>
+<h3 id="1-access-token-的有效期管理"><a href="#1-access-token-的有效期管理" class="headerlink" title="1. access_token 的有效期管理"></a>1. access_token 的有效期管理</h3><p>批量获取用户 <code>openid</code> 列表时，注意 <code>access_token</code> 是否已失效。一次获取的 <code>access_token</code> 的最长有效期是 <strong>7200 秒（2 小时）</strong>。在批量获取时，需要判断 <code>access_token</code> 的失效时间，并在即将过期时及时刷新。</p>
+<blockquote>
+<p><strong>踩坑经验</strong>：我们最初的做法是在脚本启动时获取一次 <code>access_token</code>，然后在整个批量过程中反复使用。结果在用户量较大的情况下，<code>access_token</code> 在处理中途过期了，后续的所有请求都返回了错误。后来改成了”每次请求前检查 Token 有效期，过期则自动刷新”的策略，问题才得以解决。</p>
+</blockquote>
+<h3 id="2-接口调用频率限制"><a href="#2-接口调用频率限制" class="headerlink" title="2. 接口调用频率限制"></a>2. 接口调用频率限制</h3><p>批量获取用户 <code>unionid</code> 时，一般是脚本多线程跑数据。因为微信提供的接口一次最多传入 100 个 <code>openid</code>，所以需要注意：</p>
+<ul>
+<li><strong><code>access_token</code> 过期时间</strong>：如上所述，2 小时的有效期在大批量处理时可能不够用。</li>
+<li><strong>接口调用频率</strong>：微信对接口调用频率有严格限制，调用过快会被限流甚至封禁。需要在每次调用之间加入适当的 <code>sleep</code>，防止被”墙”报异常。</li>
+<li><strong>并发控制</strong>：多线程并发时，多个线程可能同时刷新 <code>access_token</code>，导致旧的 Token 失效。建议使用分布式锁或单线程刷新的方式来管理 Token。</li>
+</ul>
+<h3 id="3-用户授权的场景差异"><a href="#3-用户授权的场景差异" class="headerlink" title="3. 用户授权的场景差异"></a>3. 用户授权的场景差异</h3><p>不同的场景下，获取用户信息的方式也不同：</p>
+<ul>
+<li><strong>公众号内网页</strong>：通过网页授权（OAuth 2.0）获取用户信息，可以拿到 <code>openid</code> 和 <code>unionid</code>。</li>
+<li><strong>小程序</strong>：通过 <code>wx.login</code> 获取 <code>code</code>，然后在服务端调用 <code>code2Session</code> 接口获取 <code>openid</code> 和 <code>unionid</code>。</li>
+<li><strong>扫码关注</strong>：通过关注事件的推送消息获取 <code>openid</code>，但 <code>unionid</code> 需要额外调用用户信息接口。</li>
+</ul>
+<h2 id="微信开发的未来展望"><a href="#微信开发的未来展望" class="headerlink" title="微信开发的未来展望"></a>微信开发的未来展望</h2><p>回看 2017 年，那是微信生态最具爆发力的一年。小程序刚刚上线一年，就已经展现出了巨大的潜力。公众号的图文阅读虽然开始受到短视频的冲击，但依然是内容创作者的重要阵地。</p>
+<p>如今，微信生态已经发展得更加成熟和复杂。视频号、企业微信、微信支付、微信搜索……每一个方向都形成了完整的商业闭环。但无论如何变化，<strong>理解用户标识体系（openid &#x2F; unionid）和账号体系（订阅号 &#x2F; 服务号 &#x2F; 小程序）</strong>，依然是微信开发的基石。</p>
+<p><img src="/img/2017-wechat-future.svg" alt="微信开发展望"></p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>微信开发的入门，看似只是调用几个 API 接口，但其背后涉及的是一个庞大而精密的生态系统。理解这个系统的设计哲学——以用户为中心、以社交为纽带、以小程序为载体——才能真正做好微信端的业务。</p>
+<p>这篇博客记录的是我微信开发之路的起点。后来的日子里，我参与了公司公众号、小程序、企业微信等多个项目的开发，每一次实践都让我对微信生态有了更深的理解。但所有这些理解，都始于最初那个对着官方文档一个字一个字啃的周末。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc">Dragon_SZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc/2017/11/22/59/">https://blog.xiaoshenlong.cc/2017/11/22/59/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.xiaoshenlong.cc" target="_blank">Dragon_SZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BE%AE%E4%BF%A1/">微信</a><a class="post-meta__tags" href="/tags/wechat/">wechat</a><a class="post-meta__tags" href="/tags/%E8%B4%A6%E5%8F%B7%E5%AE%9A%E4%B9%89/">账号定义</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2018/01/06/61/" title="2017 该有个总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2017 该有个总结</div></div><div class="info-2"><div class="info-item-1">内心独白转眼间来到了 2018 年，这是我参加工作的第四个年头。时光如梭，又来到了新的一年。不知不觉中，一年的时间不再那么漫长，不再那么难熬，而是转眼间一年就过去了。心中懵然，生活就是如此，把握好每一天，不误好时光。 回忆是人世间最值得品味的东西。新的一年，对过去做一个总结，对未来做一个期望。   我还清晰地记得 2014 年刚毕业时的那个夏天。拖着行李箱从火车站出来，站在北京西站的广场上，抬头望着灰蒙蒙的天空，心里既忐忑又兴奋。那时的我不知道自己将要面对什么，只知道前方有一条路等着我去走。四年后的今天，回望那段青涩的时光，心中感慨万千。  人生喜事2017 年的元旦，新年的气息还在弥漫，我与父母筹备着人生的大事，与乖乖订婚。忙里忙外，筹备着各种礼物，从脸上的笑容能看出父母的期待与高兴。因为我们四个孩子中最后一个订婚的，对于他们来说，这是人生大事，是他们这半辈子来的心愿，是我们从一出生来到这个人世间，他们给自己定下的人生目标。 碰巧的是，那也是我来北京上大学以来第一个在家过的生日。他们都高兴得忘了——老妈甚至忘了给我包我最爱吃的水饺。但那又怎样呢？看着父母脸上洋溢的笑容，我觉得那...</div></div></div></a><a class="pagination-related" href="/2017/11/01/58/" title="Redis Cluster FlushAll失败"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Redis Cluster FlushAll失败</div></div><div class="info-2"><div class="info-item-1">问题背景FLUSHALL 是一个在生产环境中极少用到的危险操作。它的功能是把 Redis 实例中的所有数据库数据全部清空——这意味着所有 Key-Value 都会被永久删除，不可恢复。正因为它的破坏性极强，我们在日常运维中几乎不会主动去触发它。 然而，”极少用到”并不等于”不会用到”。2017 年下半年的一次例行维护中，我们碰到了一个诡异的现象：在 Redis Cluster 中向主节点发送 FLUSHALL 命令后，预期所有主从节点都应该清空数据库，但实际结果却是——主从节点发生了切换，并且数据并没有被清空。 这个现象让我困惑了很久。直觉上，FLUSHALL 应该是一个”一发入魂”的操作，命令发出，数据清空，结束。但分布式系统的复杂性远超我们的想象，这个看似简单的操作背后，隐藏着 Redis Cluster 运行机制中一个容易被忽视的盲区。  问题复现让我们还原当时的操作场景：  我们有一个 Redis Cluster，采用主从模式运行。 主节点上有大量业务数据。 运维人员通过 redis-cli 向主节点发送了 FLUSHALL 命令。 预期结果：主节点和从节点的数据都被清空...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dragon_SZ</div><div class="author-info-description">Dragon的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="https://github.com/shenzhenlong1203"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%98%E8%B5%B7"><span class="toc-number">1.</span> <span class="toc-text">缘起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E5%8F%B7%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">微信号区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BC%81%E4%B8%9A%E5%8F%B7%EF%BC%88%E5%90%8E%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">1. 企业号（后升级为企业微信）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E5%8F%B7"><span class="toc-number">2.2.</span> <span class="toc-text">2. 服务号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%A2%E9%98%85%E5%8F%B7"><span class="toc-number">2.3.</span> <span class="toc-text">3. 订阅号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.4.</span> <span class="toc-text">4. 小程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">微信用户信息区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-openid"><span class="toc-number">3.1.</span> <span class="toc-text">1. openid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-unionid"><span class="toc-number">3.2.</span> <span class="toc-text">2. unionid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#openid-%E4%B8%8E-unionid-%E7%9A%84%E5%85%B3%E7%B3%BB%E5%9B%BE%E8%A7%A3"><span class="toc-number">3.3.</span> <span class="toc-text">openid 与 unionid 的关系图解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7-UnionId"><span class="toc-number">4.</span> <span class="toc-text">如何获取用户 UnionId</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E7%BB%91%E5%AE%9A%E5%85%AC%E4%BC%97%E5%8F%B7%E5%88%B0%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0"><span class="toc-number">4.1.</span> <span class="toc-text">步骤一：绑定公众号到开放平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%EF%BC%9A%E8%8E%B7%E5%8F%96%E5%85%AC%E4%BC%97%E5%8F%B7-openid-%E5%88%97%E8%A1%A8"><span class="toc-number">4.2.</span> <span class="toc-text">步骤二：获取公众号 openid 列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%EF%BC%9A%E8%8E%B7%E5%8F%96%E5%85%AC%E4%BC%97%E5%8F%B7-openid-%E5%AF%B9%E5%BA%94%E7%9A%84-unionid-%E4%BF%A1%E6%81%AF"><span class="toc-number">4.3.</span> <span class="toc-text">步骤三：获取公众号 openid 对应的 unionid 信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E4%B8%8E%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="toc-number">5.</span> <span class="toc-text">注意事项与踩坑记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-access-token-%E7%9A%84%E6%9C%89%E6%95%88%E6%9C%9F%E7%AE%A1%E7%90%86"><span class="toc-number">5.1.</span> <span class="toc-text">1. access_token 的有效期管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E9%A2%91%E7%8E%87%E9%99%90%E5%88%B6"><span class="toc-number">5.2.</span> <span class="toc-text">2. 接口调用频率限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83%E7%9A%84%E5%9C%BA%E6%99%AF%E5%B7%AE%E5%BC%82"><span class="toc-number">5.3.</span> <span class="toc-text">3. 用户授权的场景差异</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E7%9A%84%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-number">6.</span> <span class="toc-text">微信开发的未来展望</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">7.</span> <span class="toc-text">写在最后</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/11/11/66/" title="2020 该有个总结">2020 该有个总结</a><time datetime="2020-11-11T07:19:10.000Z" title="发表于 2020-11-11 15:19:10">2020-11-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/01/01/65/" title="2019 该有个总结">2019 该有个总结</a><time datetime="2020-01-01T02:02:24.000Z" title="发表于 2020-01-01 10:02:24">2020-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2019/01/01/64/" title="2018 该有个总结">2018 该有个总结</a><time datetime="2019-01-01T14:02:24.000Z" title="发表于 2019-01-01 22:02:24">2019-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2018/01/06/61/" title="2017 该有个总结">2017 该有个总结</a><time datetime="2018-01-06T10:02:24.000Z" title="发表于 2018-01-06 18:02:24">2018-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2017/11/22/59/" title="微信开发之初体验">微信开发之初体验</a><time datetime="2017-11-22T09:12:40.000Z" title="发表于 2017-11-22 17:12:40">2017-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Dragon_SZ</span><span class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

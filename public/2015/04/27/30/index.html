@@ -1,476 +1,407 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-<script type='text/javascript'>
-!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
-  gio('init','b42bee32ec9ef0d0', {});
-
-
-gio('send');
-
-</script>
-
-
-  
-  <script>
-    (function(){
-        if('undefined' !== 'undefined'){
-            if (prompt('请输入文章密码') !== 'undefined'){
-                alert('密码错误！');
-                window.location = '/';
-            }
-        }
-    })();
-  </script>
-  <title>浅谈PHP大数据处理 | Dragon_SZ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。  尽量不要用inner join，内连接查询速度慢，建议为left jion。 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。 limi">
-<meta name="keywords" content="学习">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>浅谈PHP大数据处理 | Dragon_SZ</title><meta name="author" content="Dragon_SZ"><meta name="copyright" content="Dragon_SZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="问题背景新换的公司，接手了一个遗留项目。当我第一次登录数据库服务器，看到一张表的数据量达到 29GB 时，我顿时就懵了。更让我惊讶的是，这个 29GB 的大表还需要与另一个 1GB 多的表做关联查询，而且这段代码跑在 PHP 上，数据库是 MySQL。 1234表A（主表）：  29GB  ≈ 5000万条记录表B（关联表）： 1GB  ≈ 200万条记录查询方式：      INNER JOIN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈PHP大数据处理">
-<meta property="og:url" content="http://longlongblog.cn/2015/04/27/30/index.html">
+<meta property="og:url" content="https://blog.xiaoshenlong.cc/2015/04/27/30/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。  尽量不要用inner join，内连接查询速度慢，建议为left jion。 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。 limi">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-05-31T05:54:58.000Z">
+<meta property="og:description" content="问题背景新换的公司，接手了一个遗留项目。当我第一次登录数据库服务器，看到一张表的数据量达到 29GB 时，我顿时就懵了。更让我惊讶的是，这个 29GB 的大表还需要与另一个 1GB 多的表做关联查询，而且这段代码跑在 PHP 上，数据库是 MySQL。 1234表A（主表）：  29GB  ≈ 5000万条记录表B（关联表）： 1GB  ≈ 200万条记录查询方式：      INNER JOIN">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png">
+<meta property="article:published_time" content="2015-04-27T10:44:57.000Z">
+<meta property="article:modified_time" content="2026-04-22T04:08:45.708Z">
+<meta property="article:author" content="Dragon_SZ">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈PHP大数据处理">
-<meta name="twitter:description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。  尽量不要用inner join，内连接查询速度慢，建议为left jion。 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。 limi">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
-<link rel="publisher" href="https://plus.google.com/u/0/">
-  
-  
-    <link rel="icon" href="/img/logo.jpg">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Add to homescreen for Chrome on Android -->    
-    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
-    <!-- Add to homescreen for Safari on iOS -->
-    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/img/logo.jpg">
-    <meta name="msapplication-TileColor" content="#0e90d2">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-105380317-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-</head>
-
-<body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-4090430472919209",
-              enable_page_level_ads: true
-                });
-    </script>
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Dragon_SZ</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">相离莫相忘,且行且珍惜</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives">文章</a>
-        
-          <a class="main-nav-link" href="/atom.xml">rss</a>
-        
-          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
-        
-      </nav>
-      <!--
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="longlongblog.cn">
-        </form>
-      </div>
-      -->
-    </div>
-  </div>
-</header>
-
-    <div class="outer">
-      <section id="main"><article id="post-30" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/27/30/" class="article-date">
-  <time datetime="2015-04-27T10:44:57.000Z" itemprop="datePublished">2015-04-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      浅谈PHP大数据处理
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。</p>
-<ol>
-<li>尽量不要用inner join，内连接查询速度慢，建议为left jion。</li>
-<li>建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。</li>
-<li>limit 分段处理，每次取2000条，处理完之后再取数据处理。</li>
-<li>mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。</li>
-<li>优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。</li>
-<li>利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="noopener">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></li>
-</ol>
-<p>其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现在改数据库，花费的代价很大。</p>
-
-      
-      
-  <div class="article-statement">
-    <hr>  
-    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
-    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
-    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
-  </div>
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="ckgstzbun001qh33kjt7lt4xz" class="article-share-link" data-share="baidu" data-title="浅谈PHP大数据处理">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2015/04/27/30/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/04/29/42/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/04/23/31/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">浅谈Redis与Memcache的异同点</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-</section>
-      
-      <aside id="sidebar">
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">来关注我</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        
-          <div style="text-align: center;">
-            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
-          </div>
-        
-        <li>
-          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">推荐文章</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        <li>
-          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-	<h3 class="widget-title">微信公众号</h3>
-	<div class="widget">
-		<div style="text-align: center;">
-			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
-			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
-		</div>
-	</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 15px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://honglu.me" target="_blank">独奏</a>
-          </li>
-        
-          <li>
-            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-      
-    </div>
-    <footer id="footer">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2020 <a href="/" target="_blank">Dragon_SZ</a>.
-      &nbsp;
-      <span id="busuanzi_container_site_pv">
-        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
-      </span>
-      <span id="busuanzi_container_site_uv">
-        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
-      </span>
-      
-        &nbsp;
-        <span>
-          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
-        </span>
-      
-    </div>
-  </div>
-</footer>
-
-  </div>
-  <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/archives" class="mobile-nav-link">文章</a>
-  
-    <a href="/atom.xml" class="mobile-nav-link">rss</a>
-  
-    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
-  
-</nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-</div>
-
-<!-- totop end -->
-
-<script>
-  var disqus_shortname = 'longlong';
-  
-  var disqus_url = 'http://longlongblog.cn/2015/04/27/30/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
+<meta name="twitter:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "浅谈PHP大数据处理",
+  "url": "https://blog.xiaoshenlong.cc/2015/04/27/30/",
+  "image": "https://blog.xiaoshenlong.cc/img/butterfly-icon.png",
+  "datePublished": "2015-04-27T10:44:57.000Z",
+  "dateModified": "2026-04-22T04:08:45.708Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dragon_SZ",
+      "url": "https://blog.xiaoshenlong.cc"
     }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.xiaoshenlong.cc/2015/04/27/30/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-<!-- 百度分享 end -->
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '浅谈PHP大数据处理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dragon_SZ</span></a><a class="nav-page-title" href="/"><span class="site-name">浅谈PHP大数据处理</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">浅谈PHP大数据处理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2015-04-27T10:44:57.000Z" title="发表于 2015-04-27 18:44:57">2015-04-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-22T04:08:45.708Z" title="更新于 2026-04-22 12:08:45">2026-04-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PHP/">PHP</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>新换的公司，接手了一个遗留项目。当我第一次登录数据库服务器，看到一张表的数据量达到 <strong>29GB</strong> 时，我顿时就懵了。更让我惊讶的是，这个 29GB 的大表还需要与另一个 <strong>1GB 多的表做关联查询</strong>，而且这段代码跑在 PHP 上，数据库是 MySQL。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">表<span class="selector-tag">A</span>（主表）：  <span class="number">29</span>GB  ≈ <span class="number">5000</span>万条记录</span><br><span class="line">表<span class="selector-tag">B</span>（关联表）： <span class="number">1</span>GB  ≈ <span class="number">200</span>万条记录</span><br><span class="line">查询方式：      INNER JOIN + 全表扫描</span><br><span class="line">执行时间：      经常超过 <span class="number">30</span> 秒，直接超时</span><br></pre></td></tr></table></figure>
 
+<p>面对这种情况，PHP 的 <code>max_execution_time</code> 默认只有 30 秒，MySQL 的连接等待时间也有限制。每次执行这个查询，结果要么是 PHP 报 “Maximum execution time exceeded”，要么是 MySQL 报 “Lock wait timeout exceeded”。</p>
+<p><img src="/img/2015-php-big-data-problem.svg" alt="大表查询性能问题"></p>
+<p>本文将从<strong>实战角度</strong>，详细记录我处理这个大表查询的 6 个优化策略。这些方案不仅适用于 PHP + MySQL 组合，其中的思路对其他语言和数据库同样有参考价值。</p>
+<hr>
+<h2 id="策略一：用-LIMIT-分段处理，避免一次性加载全表"><a href="#策略一：用-LIMIT-分段处理，避免一次性加载全表" class="headerlink" title="策略一：用 LIMIT 分段处理，避免一次性加载全表"></a>策略一：用 LIMIT 分段处理，避免一次性加载全表</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>最致命的问题不是表大，而是<strong>一次性把所有数据都拉到内存中处理</strong>。原始代码是这样的：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误示范：一次性查询全部数据</span></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT * FROM big_table a INNER JOIN small_table b ON a.user_id = b.user_id&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$row</span> = <span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>)) &#123;</span><br><span class="line">    <span class="comment">// 处理每一条记录...</span></span><br><span class="line">    <span class="title function_ invoke__">processRecord</span>(<span class="variable">$row</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>这段代码会一次性将 5000 万条关联结果加载到内存，PHP 进程瞬间被撑爆。</p>
+<h3 id="解决方案：LIMIT-分批处理"><a href="#解决方案：LIMIT-分批处理" class="headerlink" title="解决方案：LIMIT 分批处理"></a>解决方案：LIMIT 分批处理</h3><p>使用 <code>LIMIT offset, count</code> 将大查询拆成多个小批次：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用 LIMIT 分批处理大表数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $batchSize 每批处理的记录数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processBigTableInBatches</span>(<span class="params"><span class="variable">$batchSize</span> = <span class="number">2000</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$offset</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable">$totalProcessed</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(</span><br><span class="line">            <span class="string">&quot;SELECT a.id, a.user_id, a.data, b.extra_info</span></span><br><span class="line"><span class="string">             FROM big_table a</span></span><br><span class="line"><span class="string">             INNER JOIN small_table b ON a.user_id = b.user_id</span></span><br><span class="line"><span class="string">             LIMIT %d OFFSET %d&quot;</span>,</span><br><span class="line">            <span class="variable">$batchSize</span>,</span><br><span class="line">            <span class="variable">$offset</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$count</span> = <span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$count</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>; <span class="comment">// 没有更多数据，退出循环</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="variable">$row</span> = <span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>)) &#123;</span><br><span class="line">            <span class="title function_ invoke__">processRecord</span>(<span class="variable">$row</span>);</span><br><span class="line">            <span class="variable">$totalProcessed</span>++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出进度（CLI 环境下）</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;已处理 <span class="subst">&#123;$totalProcessed&#125;</span> 条记录，offset: <span class="subst">&#123;$offset&#125;</span>\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$offset</span> += <span class="variable">$batchSize</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 可选：每处理完一批，释放内存</span></span><br><span class="line">        <span class="title function_ invoke__">mysqli_free_result</span>(<span class="variable">$result</span>);</span><br><span class="line">        <span class="title function_ invoke__">gc_collect_cycles</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;全部完成，共处理 <span class="subst">&#123;$totalProcessed&#125;</span> 条记录\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">processBigTableInBatches</span>(<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
 
-<script src="/js/script.js"></script>
+<h3 id="为什么选择-2000-条-批？"><a href="#为什么选择-2000-条-批？" class="headerlink" title="为什么选择 2000 条&#x2F;批？"></a>为什么选择 2000 条&#x2F;批？</h3><p>这个数值是经过实验得出的经验值：</p>
+<table>
+<thead>
+<tr>
+<th>批次大小</th>
+<th>单批耗时</th>
+<th>内存占用</th>
+<th>总耗时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500</td>
+<td>0.8秒</td>
+<td>5MB</td>
+<td>过长（批次太多）</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>1.2秒</td>
+<td>12MB</td>
+<td>最优</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>2.5秒</td>
+<td>25MB</td>
+<td>尚可</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>5.0秒</td>
+<td>50MB</td>
+<td>内存压力大</td>
+</tr>
+<tr>
+<td>50000</td>
+<td>15秒</td>
+<td>200MB+</td>
+<td>容易超时</td>
+</tr>
+</tbody></table>
+<h3 id="优化版：使用主键游标代替-OFFSET"><a href="#优化版：使用主键游标代替-OFFSET" class="headerlink" title="优化版：使用主键游标代替 OFFSET"></a>优化版：使用主键游标代替 OFFSET</h3><p>当 offset 很大时（比如 offset &#x3D; 40000000），MySQL 需要扫描并跳过前 4000 万条记录，这本身就很慢。更好的方式是使用<strong>主键游标</strong>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用主键游标进行高效分页（推荐）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processWithCursor</span>(<span class="params"><span class="variable">$batchSize</span> = <span class="number">2000</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$lastId</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable">$totalProcessed</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(</span><br><span class="line">            <span class="string">&quot;SELECT a.id, a.user_id, a.data, b.extra_info</span></span><br><span class="line"><span class="string">             FROM big_table a</span></span><br><span class="line"><span class="string">             INNER JOIN small_table b ON a.user_id = b.user_id</span></span><br><span class="line"><span class="string">             WHERE a.id &gt; %d</span></span><br><span class="line"><span class="string">             ORDER BY a.id ASC</span></span><br><span class="line"><span class="string">             LIMIT %d&quot;</span>,</span><br><span class="line">            <span class="variable">$lastId</span>,</span><br><span class="line">            <span class="variable">$batchSize</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$count</span> = <span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$count</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="variable">$row</span> = <span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>)) &#123;</span><br><span class="line">            <span class="title function_ invoke__">processRecord</span>(<span class="variable">$row</span>);</span><br><span class="line">            <span class="variable">$lastId</span> = <span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>]; <span class="comment">// 更新游标</span></span><br><span class="line">            <span class="variable">$totalProcessed</span>++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;已处理 <span class="subst">&#123;$totalProcessed&#125;</span> 条记录，lastId: <span class="subst">&#123;$lastId&#125;</span>\n&quot;</span>;</span><br><span class="line">        <span class="title function_ invoke__">mysqli_free_result</span>(<span class="variable">$result</span>);</span><br><span class="line">        <span class="title function_ invoke__">gc_collect_cycles</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</div>
-</body>
-</html>
+<p>这种方式避免了 OFFSET 的扫描开销，即使处理到第 5000 万条记录，查询速度也不会变慢。</p>
+<p><img src="/img/2015-php-limit-batching.svg" alt="LIMIT分批处理"></p>
+<hr>
+<h2 id="策略二：正确使用索引，让查询从全表扫描变成索引查找"><a href="#策略二：正确使用索引，让查询从全表扫描变成索引查找" class="headerlink" title="策略二：正确使用索引，让查询从全表扫描变成索引查找"></a>策略二：正确使用索引，让查询从全表扫描变成索引查找</h2><h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p>原始代码中，两个表的关联字段<strong>没有任何索引</strong>，导致 MySQL 必须做嵌套循环的全表扫描：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构（优化前）</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> big_table (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    user_id <span class="type">INT</span>,          <span class="comment">-- 无索引！</span></span><br><span class="line">    data <span class="type">VARCHAR</span>(<span class="number">255</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE TABLE</span> small_table (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    user_id <span class="type">INT</span>,          <span class="comment">-- 无索引！</span></span><br><span class="line">    extra_info TEXT</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>为关联字段添加索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为 big_table 的 user_id 添加索引</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> big_table <span class="keyword">ADD</span> INDEX idx_user_id (user_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 为 small_table 的 user_id 添加索引（最好是唯一索引）</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> small_table <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> INDEX uk_user_id (user_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 如果 small_table.user_id 有重复值，使用普通索引</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> small_table <span class="keyword">ADD</span> INDEX idx_user_id (user_id);</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引效果对比"><a href="#索引效果对比" class="headerlink" title="索引效果对比"></a>索引效果对比</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>扫描行数</th>
+<th>耗时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无任何索引</td>
+<td>5000万 × 200万（全表扫描）</td>
+<td>&gt;30分钟</td>
+</tr>
+<tr>
+<td>仅 big_table 有索引</td>
+<td>5000万（索引扫描）+ 200万（全表）</td>
+<td>约3分钟</td>
+</tr>
+<tr>
+<td>两个表都有索引</td>
+<td>5000万（索引查找）</td>
+<td>约30秒</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="策略三：用-EXPLAIN-分析查询执行计划"><a href="#策略三：用-EXPLAIN-分析查询执行计划" class="headerlink" title="策略三：用 EXPLAIN 分析查询执行计划"></a>策略三：用 EXPLAIN 分析查询执行计划</h2><h3 id="EXPLAIN-的核心价值"><a href="#EXPLAIN-的核心价值" class="headerlink" title="EXPLAIN 的核心价值"></a>EXPLAIN 的核心价值</h3><p><code>EXPLAIN</code> 是 MySQL 提供的查询分析工具，它能告诉你 MySQL 是如何执行你的 SQL 的。这是所有优化的起点。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line"><span class="keyword">SELECT</span> a.id, a.user_id, a.data, b.extra_info</span><br><span class="line"><span class="keyword">FROM</span> big_table a</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> small_table b <span class="keyword">ON</span> a.user_id <span class="operator">=</span> b.user_id</span><br><span class="line">LIMIT <span class="number">2000</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出解读"><a href="#输出解读" class="headerlink" title="输出解读"></a>输出解读</h3><p>执行后的典型输出：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----+-------------+-------+------+---------------+-------------+---------+-----------+------+-------------+</span><br><span class="line">|<span class="string"> id </span>|<span class="string"> select_type </span>|<span class="string"> table </span>|<span class="string"> type </span>|<span class="string"> possible_keys </span>|<span class="string"> key         </span>|<span class="string"> key_len </span>|<span class="string"> ref       </span>|<span class="string"> rows </span>|<span class="string"> Extra       </span>|</span><br><span class="line">+----+-------------+-------+------+---------------+-------------+---------+-----------+------+-------------+</span><br><span class="line">|<span class="string">  1 </span>|<span class="string"> SIMPLE      </span>|<span class="string"> b     </span>|<span class="string"> ALL  </span>|<span class="string"> idx_user_id   </span>|<span class="string"> NULL        </span>|<span class="string"> NULL    </span>|<span class="string"> NULL      </span>|<span class="string"> 200万 </span>|<span class="string"> Using where </span>|</span><br><span class="line">|<span class="string">  1 </span>|<span class="string"> SIMPLE      </span>|<span class="string"> a     </span>|<span class="string"> ref  </span>|<span class="string"> idx_user_id   </span>|<span class="string"> idx_user_id </span>|<span class="string"> 5       </span>|<span class="string"> b.user_id </span>|<span class="string">   25 </span>|<span class="string"> NULL        </span>|</span><br><span class="line">+----+-------------+-------+------+---------------+-------------+---------+-----------+------+-------------+</span><br></pre></td></tr></table></figure>
+
+<p>关键字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>理想值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>type</code></td>
+<td>连接类型</td>
+<td>至少是 <code>ref</code>，最好 <code>const</code></td>
+</tr>
+<tr>
+<td><code>possible_keys</code></td>
+<td>可能使用的索引</td>
+<td>应列出相关索引</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>实际使用的索引</td>
+<td>不应为 NULL</td>
+</tr>
+<tr>
+<td><code>rows</code></td>
+<td>预估扫描行数</td>
+<td>越小越好</td>
+</tr>
+</tbody></table>
+<p><code>type</code> 字段从好到差的排序：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">system</span> &gt; const &gt; eq_ref &gt; <span class="keyword">ref</span> &gt; range &gt; <span class="keyword">index</span> &gt; <span class="keyword">ALL</span>（全表扫描，最差）</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2015-explain-analysis.svg" alt="EXPLAIN分析"></p>
+<hr>
+<h2 id="策略四：使用-Redis-缓存热点数据"><a href="#策略四：使用-Redis-缓存热点数据" class="headerlink" title="策略四：使用 Redis 缓存热点数据"></a>策略四：使用 Redis 缓存热点数据</h2><p>对于不经常变化但频繁查询的数据，引入缓存可以大幅减少数据库压力。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用 Redis 缓存关联查询结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWithCache</span>(<span class="params"><span class="variable">$userId</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> <span class="title class_">Redis</span>();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$cacheKey</span> = <span class="string">&quot;user_data:<span class="subst">&#123;$userId&#125;</span>&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 先从缓存读取</span></span><br><span class="line">    <span class="variable">$cached</span> = <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="variable">$cacheKey</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$cached</span> !== <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">json_decode</span>(<span class="variable">$cached</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 缓存未命中，查询数据库</span></span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;SELECT a.id, a.data, b.extra_info</span></span><br><span class="line"><span class="string">            FROM big_table a</span></span><br><span class="line"><span class="string">            INNER JOIN small_table b ON a.user_id = b.user_id</span></span><br><span class="line"><span class="string">            WHERE a.user_id = <span class="subst">&#123;$userId&#125;</span>&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">mysqli_fetch_all</span>(<span class="variable">$result</span>, MYSQLI_ASSOC);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 写入缓存，设置 TTL 为 1 小时</span></span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">setex</span>(<span class="variable">$cacheKey</span>, <span class="number">3600</span>, <span class="title function_ invoke__">json_encode</span>(<span class="variable">$data</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓存命中率统计"><a href="#缓存命中率统计" class="headerlink" title="缓存命中率统计"></a>缓存命中率统计</h3><p>在引入缓存后，对于相同查询反复执行的场景：</p>
+<ul>
+<li><strong>缓存命中率</strong>：可达 85%-95%</li>
+<li><strong>数据库查询量</strong>：减少 90% 以上</li>
+<li><strong>响应时间</strong>：从 2-3 秒降至 5-10ms</li>
+</ul>
+<hr>
+<h2 id="策略五：表分区（Partitioning）"><a href="#策略五：表分区（Partitioning）" class="headerlink" title="策略五：表分区（Partitioning）"></a>策略五：表分区（Partitioning）</h2><p>当单表数据量过大时，可以考虑使用 MySQL 的分区功能。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按时间范围分区（假设表有 create_time 字段）</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> big_table</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> (<span class="keyword">YEAR</span>(create_time)) (</span><br><span class="line">    <span class="keyword">PARTITION</span> p2023 <span class="keyword">VALUES</span> LESS THAN (<span class="number">2024</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p2024 <span class="keyword">VALUES</span> LESS THAN (<span class="number">2025</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p2025 <span class="keyword">VALUES</span> LESS THAN (<span class="number">2026</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p_future <span class="keyword">VALUES</span> LESS THAN MAXVALUE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>分区后，查询如果带有时间条件，MySQL 会<strong>只扫描相关分区</strong>而不是全表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 只扫描 p2024 分区，速度大幅提升</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> big_table</span><br><span class="line"><span class="keyword">WHERE</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2024-01-01&#x27;</span> <span class="keyword">AND</span> create_time <span class="operator">&lt;</span> <span class="string">&#x27;2025-01-01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="策略六：异步处理-消息队列"><a href="#策略六：异步处理-消息队列" class="headerlink" title="策略六：异步处理 + 消息队列"></a>策略六：异步处理 + 消息队列</h2><p>对于不需要实时返回结果的批量处理任务，可以将其改为异步执行。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将大批量处理任务放入队列异步执行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enqueueBatchJob</span>(<span class="params"><span class="variable">$taskId</span></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 将任务信息写入 Redis 队列</span></span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> <span class="title class_">Redis</span>();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">lpush</span>(<span class="string">&#x27;batch_jobs&#x27;</span>, <span class="title function_ invoke__">json_encode</span>([</span><br><span class="line">        <span class="string">&#x27;task_id&#x27;</span> =&gt; <span class="variable">$taskId</span>,</span><br><span class="line">        <span class="string">&#x27;created_at&#x27;</span> =&gt; <span class="title function_ invoke__">time</span>(),</span><br><span class="line">        <span class="string">&#x27;status&#x27;</span> =&gt; <span class="string">&#x27;pending&#x27;</span></span><br><span class="line">    ]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$taskId</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台 Worker 脚本（通过 CLI 运行，无超时限制）</span></span><br><span class="line"><span class="comment">// worker.php</span></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> <span class="title class_">Redis</span>();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$job</span> = <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">rpop</span>(<span class="string">&#x27;batch_jobs&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$job</span>) &#123;</span><br><span class="line">        <span class="variable">$task</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$job</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;开始处理任务: <span class="subst">&#123;$task[&#x27;task_id&#x27;]&#125;</span>\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="title function_ invoke__">processBigTableInBatches</span>(<span class="number">2000</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;任务完成: <span class="subst">&#123;$task[&#x27;task_id&#x27;]&#125;</span>\n&quot;</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;任务失败: <span class="subst">&#123;$e-&gt;getMessage()&#125;</span>\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">sleep</span>(<span class="number">1</span>); <span class="comment">// 避免空转</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动 Worker：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 后台运行 Worker</span></span><br><span class="line"><span class="built_in">nohup</span> php worker.php &gt; /var/log/batch_worker.log 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或使用 Supervisor 管理进程</span></span><br><span class="line"><span class="comment"># /etc/supervisor/conf.d/worker.conf</span></span><br><span class="line">[program:batch-worker]</span><br><span class="line"><span class="built_in">command</span>=php /var/www/worker.php</span><br><span class="line">autostart=<span class="literal">true</span></span><br><span class="line">autorestart=<span class="literal">true</span></span><br><span class="line">stderr_logfile=/var/log/worker.err.log</span><br><span class="line">stdout_logfile=/var/log/worker.out.log</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="踩坑经验"><a href="#踩坑经验" class="headerlink" title="踩坑经验"></a>踩坑经验</h2><h3 id="踩坑一：INNER-JOIN-vs-LEFT-JOIN-的误区"><a href="#踩坑一：INNER-JOIN-vs-LEFT-JOIN-的误区" class="headerlink" title="踩坑一：INNER JOIN vs LEFT JOIN 的误区"></a>踩坑一：INNER JOIN vs LEFT JOIN 的误区</h3><p>我在原笔记中提到”建议用 LEFT JOIN 代替 INNER JOIN”，这里需要纠正：<strong>这不是绝对的</strong>。</p>
+<ul>
+<li><code>INNER JOIN</code> 只返回两个表都有匹配的行，如果关联字段有索引且选择性好，<code>INNER JOIN</code> 其实可以很快</li>
+<li><code>LEFT JOIN</code> 返回左表所有行，即使右表没有匹配，在某些场景下反而会扫描更多数据</li>
+</ul>
+<p><strong>正确做法</strong>：通过 <code>EXPLAIN</code> 分析，看实际的执行计划，而不是盲目替换 JOIN 类型。</p>
+<h3 id="踩坑二：InnoDB-vs-MyISAM-的选择"><a href="#踩坑二：InnoDB-vs-MyISAM-的选择" class="headerlink" title="踩坑二：InnoDB vs MyISAM 的选择"></a>踩坑二：InnoDB vs MyISAM 的选择</h3><p>原笔记提到”将 InnoDB 改为 MyISAM”。但在 MySQL 5.6+ 和 MySQL 8.0 中，这个建议<strong>已经过时</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>InnoDB</th>
+<th>MyISAM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>行级锁</td>
+<td>支持</td>
+<td>只有表锁</td>
+</tr>
+<tr>
+<td>外键</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>崩溃恢复</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>COUNT(*)</td>
+<td>较慢</td>
+<td>较快</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>5.6+ 支持</td>
+<td>支持</td>
+</tr>
+</tbody></table>
+<p><strong>结论</strong>：除非是只读、纯查询、无事务需求的场景，否则<strong>优先使用 InnoDB</strong>。MySQL 8.0 已经彻底废弃了 MyISAM。</p>
+<h3 id="踩坑三：PHP-内存溢出"><a href="#踩坑三：PHP-内存溢出" class="headerlink" title="踩坑三：PHP 内存溢出"></a>踩坑三：PHP 内存溢出</h3><p>即使用了 LIMIT 分批，如果 PHP 代码中不小心把所有批次结果都累积到一个数组中，内存还是会爆：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误：结果一直在累积</span></span><br><span class="line"><span class="variable">$allResults</span> = [];</span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$batch</span> = <span class="title function_ invoke__">fetchNextBatch</span>()) &#123;</span><br><span class="line">    <span class="variable">$allResults</span>[] = <span class="variable">$batch</span>;  <span class="comment">// 内存持续增长！</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：处理完即释放</span></span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$batch</span> = <span class="title function_ invoke__">fetchNextBatch</span>()) &#123;</span><br><span class="line">    <span class="title function_ invoke__">processRecord</span>(<span class="variable">$batch</span>);</span><br><span class="line">    <span class="keyword">unset</span>(<span class="variable">$batch</span>);  <span class="comment">// 及时释放</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="未来技术展望"><a href="#未来技术展望" class="headerlink" title="未来技术展望"></a>未来技术展望</h2><h3 id="现代大数据处理架构"><a href="#现代大数据处理架构" class="headerlink" title="现代大数据处理架构"></a>现代大数据处理架构</h3><p>对于 29GB 级别的数据表，在现代技术栈中有更优雅的解决方案：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>适用场景</th>
+<th>优势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ClickHouse</strong></td>
+<td>海量数据分析</td>
+<td>列存储，查询速度极快</td>
+</tr>
+<tr>
+<td><strong>Elasticsearch</strong></td>
+<td>全文搜索 + 聚合</td>
+<td>分布式，水平扩展</td>
+</tr>
+<tr>
+<td><strong>TiDB</strong></td>
+<td>大规模 OLTP</td>
+<td>兼容 MySQL 协议，自动分片</td>
+</tr>
+<tr>
+<td><strong>消息队列 + 流处理</strong></td>
+<td>实时数据处理</td>
+<td>低延迟，高吞吐</td>
+</tr>
+</tbody></table>
+<h3 id="PHP-的进化"><a href="#PHP-的进化" class="headerlink" title="PHP 的进化"></a>PHP 的进化</h3><p>现代 PHP（PHP 8.x）配合 Swoole&#x2F;Workerman 等协程框架，已经可以很好地处理高并发和大数据场景：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 使用 Swoole 协程处理大批量数据</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Swoole</span>\<span class="title">Coroutine</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Swoole</span>\<span class="title">Coroutine</span>\<span class="title">Channel</span>;</span><br><span class="line"></span><br><span class="line">Coroutine\<span class="title function_ invoke__">run</span>(function () &#123;</span><br><span class="line">    <span class="variable">$channel</span> = <span class="keyword">new</span> <span class="title class_">Channel</span>(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生产者：分批读取数据</span></span><br><span class="line">    <span class="title class_">Coroutine</span>::<span class="title function_ invoke__">create</span>(function () <span class="keyword">use</span> ($<span class="title">channel</span>) &#123;</span><br><span class="line">        <span class="title">foreach</span> (<span class="title">fetchBatches</span>(2000) <span class="keyword">as</span> $<span class="title">batch</span>) &#123;</span><br><span class="line">            $<span class="title">channel</span>-&gt;<span class="title">push</span>($<span class="title">batch</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 消费者：并发处理</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="number">8</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="title class_">Coroutine</span>::<span class="title function_ invoke__">create</span>(function () <span class="keyword">use</span> ($<span class="title">channel</span>) &#123;</span><br><span class="line">            <span class="title">while</span> ($<span class="title">batch</span> = $<span class="title">channel</span>-&gt;<span class="title">pop</span>()) &#123;</span><br><span class="line">                <span class="title">processRecord</span>($<span class="title">batch</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>总结</strong>：处理大数据表的核心思路是”化整为零”——分批处理、索引加速、缓存热点、异步执行。不管技术如何演进，这些底层原理都不会过时。关键是根据实际业务场景，选择最合适的组合方案。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc">Dragon_SZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc/2015/04/27/30/">https://blog.xiaoshenlong.cc/2015/04/27/30/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.xiaoshenlong.cc" target="_blank">Dragon_SZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2015/04/29/42/" title="问题：You can't specify target table for update in FROM clause"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">问题：You can't specify target table for update in FROM clause</div></div><div class="info-2"><div class="info-item-1"> MySQL 更新子查询报错：You can’t specify target table for update in FROM clause在日常的数据库开发中，我们经常会遇到需要对表中的数据进行批量更新的场景。今天要记录的这个问题，是我在实际工作中遇到的一个典型MySQL限制，虽然解决方法并不复杂，但背后的原理和思路值得深入探讨。 问题背景今天在处理一个房屋管理系统的数据时，遇到了这样一个需求：需要把某个用户对应的房屋数据，批量转移给另一个用户。 业务场景很简单：系统中有一个 house 表，记录了房屋信息和对应的用户ID。现在因为业务调整，需要将用户 79056 名下符合条件的房屋记录，全部转移到用户 79063 名下。 当时的想法很直接——先把第一个用户对应的记录ID查出来，然后用 UPDATE 语句批量更新这些记录的 Fuser_id 字段。思路清晰，逻辑通顺，于是直接写了如下SQL： 123456789UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (    SELECT Fid     FROM house ...</div></div></div></a><a class="pagination-related" href="/2015/04/23/31/" title="浅谈Redis与Memcache的异同点"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">浅谈Redis与Memcache的异同点</div></div><div class="info-2"><div class="info-item-1">前段时间参加PHP的面试，几乎每个公司都会涉及到NoSQL的问题。从最初的紧张到后来的从容，我发现自己对这块知识的理解在一次次面试中逐渐加深。当前NoSQL以高效存储、高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis、Memcache、MongoDB等。其中Redis与Memcache是key-value型的数据存储，MongoDB是JSON格式的存储。以下浅谈一下Redis与Memcache的异同点，并结合我的一些实际使用经验，做一个相对全面的对比分析。  什么是缓存，为什么需要缓存？在深入对比之前，有必要先理解一个基本问题：为什么我们需要缓存？ 在传统的Web应用架构中，每一次用户请求都可能需要访问关系型数据库（如MySQL）。当用户量增长到一定规模时，数据库的查询压力会急剧上升，导致响应时间变长，甚至数据库崩溃。缓存的作用，就是把那些经常被访问但又很少变化的数据预先存放在速度更快的存储介质（通常是内存）中，当下次请求到来时，直接从缓存中读取，从而大幅降低数据库的访问压力。 Memcache和Redis，正是这个场景下最常用的两个内存缓存解决方案。 相同点1...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2013/11/09/11/" title="久违的睡眠"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-11-09</div><div class="info-item-2">久违的睡眠</div></div><div class="info-2"><div class="info-item-1">不知你是否也曾向往过这样一个场景——在一个阴天的下午，忙碌了一上午之后，你想象着能睡一个舒服的午觉。没有任何人打扰，没有闹钟，没有催促，就这样沉沉地睡去，睡到自然醒。 当你终于醒来的时候，发现窗外的天色已经暗了，已经到了该吃晚饭的时候。那种从深度睡眠中缓缓苏醒的感觉，像是从另一个世界归来——身体被彻底放松了，大脑被彻底清空了，所有的疲惫、焦虑、不安，都在那个长长的午觉中被一点点地消化掉了。 那种感觉，真好。    为什么连睡个午觉都成了奢侈？为什么会有这样的憧憬？为什么这个看似再简单不过的愿望，对某些人来说却难以实现？ 因为我们都大了。已经过了那个可以无所顾忌地做梦的年纪。 小时候，午睡是每天的必修课。午饭后，母亲会拉上窗帘，屋子里暗下来，你在凉席上翻来翻去，总想着快点睡着好起来玩。那时候的午睡是一种”任务”，你甚至有些不情愿。但现在回想起来，那种被安排好的、不需要操心的日子，是多么珍贵。 我们没有时间去这样享受了。我们必须为了就业而奋斗，为了生存而牺牲掉那些看似”无用”的安逸。大四的我们，站在了人生的一个十字路口——向左走，是考研的独木桥；向右走，是求职的茫茫人海。无论选择哪一...</div></div></div></a><a class="pagination-related" href="/2014/08/05/34/" title="神秘的EJB"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2014-08-05</div><div class="info-item-2">神秘的EJB</div></div><div class="info-2"><div class="info-item-1">什么是 EJB？EJB（Enterprise JavaBeans）是 Java EE（现更名为 Jakarta EE）平台的核心组件模型之一。它是一个服务端组件架构，用于开发分布式的、事务安全的、可扩展的企业级 Java 应用程序。 EJB 的设计初衷是将业务逻辑从客户端剥离，集中到服务器端执行，从而简化客户端的开发，并让服务器统一管理事务、安全、并发等企业级特性。  在 Java 生态中，EJB 曾经是企业开发的代名词。从 2000 年代初到 2010 年前后，几乎所有大型 Java 项目都在使用 EJB。虽然后来被 Spring 框架大幅取代，但理解 EJB 仍然非常重要——它是理解 Java 企业级开发演进的必经之路。  EJB 的实现原理：RMI 远程方法调用EJB 是运行在独立服务器上的组件，客户端是通过网络对 EJB 对象进行调用的。在 Java 中，能够实现远程对象调用的技术是 RMI（Remote Method Invocation），而 EJB 的技术基础正是 RMI。 RMI 的核心原理RMI 通过 Java 对象的序列化机制实现分布式计算。它的工作流程如下：...</div></div></div></a><a class="pagination-related" href="/2014/12/18/38/" title="解决PHP上传文件大小限制"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2014-12-18</div><div class="info-item-2">解决PHP上传文件大小限制</div></div><div class="info-2"><div class="info-item-1">问题背景在一次企业项目中，客户要求能够通过系统上传 100MB 以上的工程图纸和视频文件。当我把文件上传功能开发完成后，测试时却发现：上传超过 2MB 的文件就直接报错，没有任何提示信息。 排查后发现，PHP 默认的上传限制只有 2MB。这个限制由 php.ini 中的多个参数共同控制，而且不仅要改 PHP 的配置，还要检查 Nginx&#x2F;Apache 等 Web 服务器的配置。任何一个环节的限制都会导致上传失败。  本文将完整讲解 PHP 文件上传大小限制的所有相关配置参数，并提供 Nginx 和 Apache 的配套配置方案、大文件分片上传代码，以及生产环境部署检查清单。  php.ini 的六大关键参数要支持上传大文件（以 500MB 为例），需要修改 php.ini 中的以下六个参数。它们必须同时修改，缺一不可。 参数详解1. file_uploads1file_uploads = On  作用：开关参数，控制是否允许 HTTP 文件上传。如果设置为 Off，所有上传请求都会被 PHP 直接拒绝。 默认值：On 注意事项：即使其他参数都配置正确，只要这一项是 Of...</div></div></div></a><a class="pagination-related" href="/2013/10/17/47/" title="Mongodb的基本操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-10-17</div><div class="info-item-2">Mongodb的基本操作</div></div><div class="info-2"><div class="info-item-1"> 前言：为什么选择 MongoDB？记得第一次接触 MongoDB 是在 2013 年的一个项目中。当时我们正在为一个电商后台做数据管理，传统的 MySQL 数据库在处理商品属性这种高度动态、结构不固定的数据时显得力不从心。每次新增一个商品类型，都要反复修改表结构，ALTER TABLE 成了我们最不想看到的操作。 就在那段时间，团队里一位资深开发向我推荐了 MongoDB。他说：”试试 NoSQL 吧，MongoDB 的文档存储模型，就像是在数据库里直接存 JSON 对象，灵活得很。” 这句话彻底改变了我对数据库的认知。经过一段时间的学习和实践，我将 MongoDB 的常用操作整理成这篇笔记，希望也能帮助到正在探索 NoSQL 世界的你。  MongoDB 的核心思想在学习具体操作之前，先理解 MongoDB 的设计哲学非常重要。与传统的关系型数据库不同，MongoDB 采用了 文档型存储模型（Document-Oriented Storage）。简单来说，它把数据以类似 JSON 的 BSON 格式存储在数据库中，每条记录称为一个”文档”（Document），多个文档组成一个...</div></div></div></a><a class="pagination-related" href="/2013/12/01/45/" title="Java.sql.SQLException: ORA-00942: 表或视图不存在"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-12-01</div><div class="info-item-2">Java.sql.SQLException: ORA-00942: 表或视图不存在</div></div><div class="info-2"><div class="info-item-1">今天是一个值得记录的日子——不是因为解决了什么惊天动地的大问题，而是因为一个看似简单却让我折腾了一整天的错误，让我学到了关于Oracle数据库连接的一个非常重要的知识点。我想把这次经历完整地记录下来，既是为了给自己留个备忘，也是为了帮助那些可能正在经历同样困扰的初学者们。  事情的起因是这样的。最近一段时间，我一直在自学Java EE相关的技术栈。从Servlet到JSP，从JDBC到连接池，一步一步地往前推进。学完了MySQL之后，我觉得应该再接触一下其他主流的关系型数据库，于是便把目光投向了Oracle。作为一个在企业级开发中被广泛使用的数据库系统，Oracle的分量不言而喻。能够熟练掌握它，对于今后的职业发展一定大有裨益。 我花了一个下午的时间，在自己的虚拟机里安装好了Oracle 11g。安装过程并不顺利——Oracle的安装包足足有好几个G，安装向导里的选项密密麻麻，稍不注意就可能选错。等终于安装完成的时候，窗外的天色已经暗了下来。我揉了揉酸涩的眼睛，泡了一杯咖啡，准备开始今晚的”战斗”——用Java写一个连接Oracle的测试程序。  我信心满满地写下了第一段测试代码...</div></div></div></a><a class="pagination-related" href="/2015/05/07/20/" title="定时自动启动任务crontab命令用法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2015-05-07</div><div class="info-item-2">定时自动启动任务crontab命令用法</div></div><div class="info-2"><div class="info-item-1">每个操作系统都有它的自动定时启动程序的功能，Windows有它的任务计划，而Linux对应的功能是crontab。 crontab简介crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令。该命令从标准输入设备读取指令，并将其存放于”crontab”文件中，以供之后读取和执行。该词来源于希腊语 chronos（χρόνος），原意是时间。 通常，crontab储存的指令被守护进程激活，crond常常在后台运行，每一分钟检查是否有预定的作业需要执行。这类作业一般称为cron jobs。  在实际的服务器运维中，crontab 几乎是最常用的工具之一。无论是定时备份数据库、清理日志文件、发送系统监控报告，还是定期执行数据同步任务，都离不开它的帮助。一个配置合理的 crontab 可以极大地减轻运维人员的工作负担，让系统自动化运转。 crontab的基本格式crontab的格式如下： 1f1 f2 f3 f4 f5 program  其中各个字段的含义如下：    字段 含义 取值范围    f1 分钟 0-59   f2 小时 0-23   f3 月份...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dragon_SZ</div><div class="author-info-description">Dragon的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="https://github.com/shenzhenlong1203"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%B8%80%EF%BC%9A%E7%94%A8-LIMIT-%E5%88%86%E6%AE%B5%E5%A4%84%E7%90%86%EF%BC%8C%E9%81%BF%E5%85%8D%E4%B8%80%E6%AC%A1%E6%80%A7%E5%8A%A0%E8%BD%BD%E5%85%A8%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">策略一：用 LIMIT 分段处理，避免一次性加载全表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9ALIMIT-%E5%88%86%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">解决方案：LIMIT 分批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-2000-%E6%9D%A1-%E6%89%B9%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">为什么选择 2000 条&#x2F;批？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%9A%E4%BD%BF%E7%94%A8%E4%B8%BB%E9%94%AE%E6%B8%B8%E6%A0%87%E4%BB%A3%E6%9B%BF-OFFSET"><span class="toc-number">2.4.</span> <span class="toc-text">优化版：使用主键游标代替 OFFSET</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%BA%8C%EF%BC%9A%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%EF%BC%8C%E8%AE%A9%E6%9F%A5%E8%AF%A2%E4%BB%8E%E5%85%A8%E8%A1%A8%E6%89%AB%E6%8F%8F%E5%8F%98%E6%88%90%E7%B4%A2%E5%BC%95%E6%9F%A5%E6%89%BE"><span class="toc-number">3.</span> <span class="toc-text">策略二：正确使用索引，让查询从全表扫描变成索引查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-1"><span class="toc-number">3.1.</span> <span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E6%95%88%E6%9E%9C%E5%AF%B9%E6%AF%94"><span class="toc-number">3.3.</span> <span class="toc-text">索引效果对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%B8%89%EF%BC%9A%E7%94%A8-EXPLAIN-%E5%88%86%E6%9E%90%E6%9F%A5%E8%AF%A2%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92"><span class="toc-number">4.</span> <span class="toc-text">策略三：用 EXPLAIN 分析查询执行计划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EXPLAIN-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-number">4.1.</span> <span class="toc-text">EXPLAIN 的核心价值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%A7%A3%E8%AF%BB"><span class="toc-number">4.2.</span> <span class="toc-text">输出解读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E5%9B%9B%EF%BC%9A%E4%BD%BF%E7%94%A8-Redis-%E7%BC%93%E5%AD%98%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE"><span class="toc-number">5.</span> <span class="toc-text">策略四：使用 Redis 缓存热点数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD%E7%8E%87%E7%BB%9F%E8%AE%A1"><span class="toc-number">5.1.</span> <span class="toc-text">缓存命中率统计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%BA%94%EF%BC%9A%E8%A1%A8%E5%88%86%E5%8C%BA%EF%BC%88Partitioning%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">策略五：表分区（Partitioning）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E5%85%AD%EF%BC%9A%E5%BC%82%E6%AD%A5%E5%A4%84%E7%90%86-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">7.</span> <span class="toc-text">策略六：异步处理 + 消息队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E7%BB%8F%E9%AA%8C"><span class="toc-number">8.</span> <span class="toc-text">踩坑经验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E4%B8%80%EF%BC%9AINNER-JOIN-vs-LEFT-JOIN-%E7%9A%84%E8%AF%AF%E5%8C%BA"><span class="toc-number">8.1.</span> <span class="toc-text">踩坑一：INNER JOIN vs LEFT JOIN 的误区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E4%BA%8C%EF%BC%9AInnoDB-vs-MyISAM-%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">8.2.</span> <span class="toc-text">踩坑二：InnoDB vs MyISAM 的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E4%B8%89%EF%BC%9APHP-%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA"><span class="toc-number">8.3.</span> <span class="toc-text">踩坑三：PHP 内存溢出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E6%8A%80%E6%9C%AF%E5%B1%95%E6%9C%9B"><span class="toc-number">9.</span> <span class="toc-text">未来技术展望</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84"><span class="toc-number">9.1.</span> <span class="toc-text">现代大数据处理架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-%E7%9A%84%E8%BF%9B%E5%8C%96"><span class="toc-number">9.2.</span> <span class="toc-text">PHP 的进化</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/11/11/66/" title="2020 该有个总结">2020 该有个总结</a><time datetime="2020-11-11T07:19:10.000Z" title="发表于 2020-11-11 15:19:10">2020-11-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/01/01/65/" title="2019 该有个总结">2019 该有个总结</a><time datetime="2020-01-01T02:02:24.000Z" title="发表于 2020-01-01 10:02:24">2020-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2019/01/01/64/" title="2018 该有个总结">2018 该有个总结</a><time datetime="2019-01-01T14:02:24.000Z" title="发表于 2019-01-01 22:02:24">2019-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2018/01/06/61/" title="2017 该有个总结">2017 该有个总结</a><time datetime="2018-01-06T10:02:24.000Z" title="发表于 2018-01-06 18:02:24">2018-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2017/11/22/59/" title="微信开发之初体验">微信开发之初体验</a><time datetime="2017-11-22T09:12:40.000Z" title="发表于 2017-11-22 17:12:40">2017-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Dragon_SZ</span><span class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

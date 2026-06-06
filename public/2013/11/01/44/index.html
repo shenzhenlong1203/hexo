@@ -1,472 +1,223 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-<script type='text/javascript'>
-!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
-  gio('init','b42bee32ec9ef0d0', {});
-
-
-gio('send');
-
-</script>
-
-
-  
-  <script>
-    (function(){
-        if('undefined' !== 'undefined'){
-            if (prompt('请输入文章密码') !== 'undefined'){
-                alert('密码错误！');
-                window.location = '/';
-            }
-        }
-    })();
-  </script>
-  <title>JavaEE+Mysql中文乱码 | Dragon_SZ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。 1.在数据库链接字符串上要形如：jdbc:mysql://localhost:3306/db?useUnicode=true&amp;amp;characterEncoding=UTF-8(注意要加characterEncoding=UTF-8)。 2.在数据库表和相应的字段都要的charset要选择utf8，字段也要">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JavaEE+Mysql中文乱码 | Dragon_SZ</title><meta name="author" content="Dragon_SZ"><meta name="copyright" content="Dragon_SZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="如果说在Java Web开发的世界里有什么问题是每一位开发者都绕不过去的，那中文乱码问题绝对名列前茅。对于刚刚踏入Java EE世界的初学者来说，中文乱码就像是一道无形的墙——你明明知道数据是正确的，但显示出来的却是一堆让人哭笑不得的乱码字符。今天，我想把自己在解决中文乱码问题上摸索出来的经验，系统地整理出来，帮助更多正在被这个问题困扰的朋友。  事情的起因要从一个项目说起。那时候我正在做一个简单">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaEE+Mysql中文乱码">
-<meta property="og:url" content="http://longlongblog.cn/2013/11/01/44/index.html">
+<meta property="og:url" content="https://blog.xiaoshenlong.cc/2013/11/01/44/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。 1.在数据库链接字符串上要形如：jdbc:mysql://localhost:3306/db?useUnicode=true&amp;amp;characterEncoding=UTF-8(注意要加characterEncoding=UTF-8)。 2.在数据库表和相应的字段都要的charset要选择utf8，字段也要">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg">
-<meta property="og:updated_time" content="2016-05-31T05:57:40.000Z">
+<meta property="og:description" content="如果说在Java Web开发的世界里有什么问题是每一位开发者都绕不过去的，那中文乱码问题绝对名列前茅。对于刚刚踏入Java EE世界的初学者来说，中文乱码就像是一道无形的墙——你明明知道数据是正确的，但显示出来的却是一堆让人哭笑不得的乱码字符。今天，我想把自己在解决中文乱码问题上摸索出来的经验，系统地整理出来，帮助更多正在被这个问题困扰的朋友。  事情的起因要从一个项目说起。那时候我正在做一个简单">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png">
+<meta property="article:published_time" content="2013-11-01T03:43:11.000Z">
+<meta property="article:modified_time" content="2026-04-22T04:08:45.712Z">
+<meta property="article:author" content="Dragon_SZ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaEE+Mysql中文乱码">
-<meta name="twitter:description" content="我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。 1.在数据库链接字符串上要形如：jdbc:mysql://localhost:3306/db?useUnicode=true&amp;amp;characterEncoding=UTF-8(注意要加characterEncoding=UTF-8)。 2.在数据库表和相应的字段都要的charset要选择utf8，字段也要">
-<meta name="twitter:image" content="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
-<link rel="publisher" href="https://plus.google.com/u/0/">
-  
-  
-    <link rel="icon" href="/img/logo.jpg">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Add to homescreen for Chrome on Android -->    
-    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
-    <!-- Add to homescreen for Safari on iOS -->
-    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/img/logo.jpg">
-    <meta name="msapplication-TileColor" content="#0e90d2">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-105380317-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-</head>
-
-<body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-4090430472919209",
-              enable_page_level_ads: true
-                });
-    </script>
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Dragon_SZ</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">相离莫相忘,且行且珍惜</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives">文章</a>
-        
-          <a class="main-nav-link" href="/atom.xml">rss</a>
-        
-          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
-        
-      </nav>
-      <!--
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="longlongblog.cn">
-        </form>
-      </div>
-      -->
-    </div>
-  </div>
-</header>
-
-    <div class="outer">
-      <section id="main"><article id="post-44" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/11/01/44/" class="article-date">
-  <time datetime="2013-11-01T03:43:11.000Z" itemprop="datePublished">2013-11-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      JavaEE+Mysql中文乱码
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p><span style="font-size: 14px;"><strong><a href="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8.jpg" target="_blank" rel="noopener"><img src="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg" alt="" title="ebc8"></a><span style="font-size: 14px;">我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。</span></strong></span></p>
-<p>1.在数据库链接字符串上要形如：<span style="color: #ff6600;">jdbc:mysql://localhost:3306/db?useUnicode=true&amp;characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="noopener"><span style="color: #ff6600;">UTF-8</span></a>(注意要加characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="noopener"><span style="color: #ff6600;">UTF-8</span></a>)。</span></p>
-<p>2.在数据库表和相应的字段都要的charset要选择utf8，字段也要加，参照<a href="http://blog.csdn.net/xuanner/article/details/1573616" target="_blank" rel="noopener">http://blog.csdn.net/xuanner/article/details/1573616</a>。<span style="color: #ff6600;">（最根本的解决方案是将mysql里的bin目录下的my.ini修改或者加入编码utf-8，重新启动服务，重新建立数据库即可）。</span></p>
-<p>3.在servlet的java中去参数时要加上<span style="color: #ff6600;">：httpServletRequest.setCharacterEncoding(“<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="noopener"><span style="color: #ff6600;">UTF-8</span></a>“);</span>（最好写一个filter来过滤所有的的代码，并设置为utf-8，参照<a href="http://www.cnblogs.com/yqskj/articles/2226774.html" target="_blank" rel="noopener">http://www.cnblogs.com/yqskj/articles/2226774.html</a>）。</p>
-<p>4.jsp页面要<span style="color: #000000;">加</span>上<span style="color: #000000;">字符集</span>：<span style="color: #ff6600;"> &lt;%@ page language=”java” contentType=”text/html; charset=UTF-8” pageEncoding=”UTF-8”%&gt;</span> 保证页码的编码是utf-8.</p>
-<p>5.在一个javaEE项目时，有一个Servers，将里边的server.xml中修改为&lt;Connector connectionTimeout=”20000” port=”8080” protocol=”HTTP/1.1” redirectPort=”8443” <span style="color: #ff6600;"> URIEncoding=”UTF-8”</span>/&gt;。</p>
-<p><strong>这样做完以上五个步骤，中文乱码问题就不复存在了。</strong></p>
-
-      
-      
-  <div class="article-statement">
-    <hr>  
-    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
-    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
-    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
-  </div>
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2013/11/01/44/" data-id="ckgstzbvd0033h33kx2xacyo5" class="article-share-link" data-share="baidu" data-title="JavaEE+Mysql中文乱码">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2013/11/01/44/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2013/11/09/11/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          久违的睡眠
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2013/10/23/41/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">那时花开</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-</section>
-      
-      <aside id="sidebar">
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">来关注我</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        
-          <div style="text-align: center;">
-            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
-          </div>
-        
-        <li>
-          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">推荐文章</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        <li>
-          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-	<h3 class="widget-title">微信公众号</h3>
-	<div class="widget">
-		<div style="text-align: center;">
-			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
-			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
-		</div>
-	</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习/" style="font-size: 15px;">学习</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/心理/" style="font-size: 10px;">心理</a> <a href="/tags/感悟/" style="font-size: 20px;">感悟</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/账号定义/" style="font-size: 10px;">账号定义</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://honglu.me" target="_blank">独奏</a>
-          </li>
-        
-          <li>
-            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-      
-    </div>
-    <footer id="footer">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2020 <a href="/" target="_blank">Dragon_SZ</a>.
-      &nbsp;
-      <span id="busuanzi_container_site_pv">
-        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
-      </span>
-      <span id="busuanzi_container_site_uv">
-        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
-      </span>
-      
-        &nbsp;
-        <span>
-          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
-        </span>
-      
-    </div>
-  </div>
-</footer>
-
-  </div>
-  <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/archives" class="mobile-nav-link">文章</a>
-  
-    <a href="/atom.xml" class="mobile-nav-link">rss</a>
-  
-    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
-  
-</nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-</div>
-
-<!-- totop end -->
-
-<script>
-  var disqus_shortname = 'longlong';
-  
-  var disqus_url = 'http://longlongblog.cn/2013/11/01/44/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
+<meta name="twitter:image" content="https://blog.xiaoshenlong.cc/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JavaEE+Mysql中文乱码",
+  "url": "https://blog.xiaoshenlong.cc/2013/11/01/44/",
+  "image": "https://blog.xiaoshenlong.cc/img/butterfly-icon.png",
+  "datePublished": "2013-11-01T03:43:11.000Z",
+  "dateModified": "2026-04-22T04:08:45.712Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dragon_SZ",
+      "url": "https://blog.xiaoshenlong.cc"
     }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.xiaoshenlong.cc/2013/11/01/44/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-<!-- 百度分享 end -->
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaEE+Mysql中文乱码',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dragon_SZ</span></a><a class="nav-page-title" href="/"><span class="site-name">JavaEE+Mysql中文乱码</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">JavaEE+Mysql中文乱码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2013-11-01T03:43:11.000Z" title="发表于 2013-11-01 11:43:11">2013-11-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-22T04:08:45.712Z" title="更新于 2026-04-22 12:08:45">2026-04-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>如果说在Java Web开发的世界里有什么问题是每一位开发者都绕不过去的，那中文乱码问题绝对名列前茅。对于刚刚踏入Java EE世界的初学者来说，中文乱码就像是一道无形的墙——你明明知道数据是正确的，但显示出来的却是一堆让人哭笑不得的乱码字符。今天，我想把自己在解决中文乱码问题上摸索出来的经验，系统地整理出来，帮助更多正在被这个问题困扰的朋友。</p>
+<p><img src="/img/2013-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E5%9B%B0%E6%89%B0.svg" alt="中文乱码困扰"></p>
+<p>事情的起因要从一个项目说起。那时候我正在做一个简单的学生信息管理系统，用JSP做前端页面，用Servlet做后台处理，用MySQL做数据存储。功能实现得很顺利，添加、删除、修改、查询，一切逻辑都跑通了。我满心欢喜地准备给同学们展示一下我的”杰作”。结果，当我输入”张三”这个名字并保存到数据库之后，页面上显示出来的却是”???”。那一刻，我的心情就像是从山顶一下子跌到了谷底。</p>
+<p>这不是个例。在接下来的几天里，我遇到了各种各样的乱码问题：表单提交过来的中文变成了乱码、从数据库读取出来的中文变成了问号、URL参数里的中文被编码成了 <code>%E5%BC%A0%E4%B8%89</code>、甚至有时候同一个页面上，一部分中文显示正常，另一部分却是乱码。这些问题像一群打不死的小强，按下一个又冒出来一个，让人头疼不已。</p>
+<p>我开始在网上搜索解决方案。结果发现，关于中文乱码的帖子铺天盖地，但每个帖子的答案都不完全一样。有人说改数据库配置，有人说改代码里的编码设置，有人说改服务器配置，还有人说改操作系统的语言环境。更让人崩溃的是，这些方法单独用都不一定管用，必须组合起来才行。</p>
+<p><img src="/img/2013-%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5.svg" alt="编码问题排查"></p>
+<p>在经历了无数次失败和重试之后，我终于总结出了一套完整的解决方案。这套方案涵盖了从数据请求到数据存储再到数据展示的整个链路，一共分为五个关键步骤。下面我逐一详细说明。</p>
+<p><strong>第一步：数据库连接字符串</strong></p>
+<p>在数据库的JDBC连接URL中，必须显式地指定字符编码。这是很多初学者最容易忽略的一步。正确的写法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://localhost:3306/db?useUnicode=<span class="literal">true</span>&amp;characterEncoding=UTF-8</span><br></pre></td></tr></table></figure>
 
+<p>这里有两个关键参数：<code>useUnicode=true</code> 告诉驱动使用Unicode字符集，<code>characterEncoding=UTF-8</code> 指定具体的编码方式。如果只写 <code>useUnicode=true</code> 而不指定 <code>characterEncoding</code>，驱动会使用默认的编码（通常是ISO-8859-1），这样中文就会出问题。</p>
+<p>需要注意的是，URL中的 <code>&amp;</code> 符号在XML配置文件中要写成 <code>&amp;amp;</code>，否则会导致XML解析错误。这也是一个很容易踩的坑。</p>
+<p><img src="/img/2013-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE.svg" alt="数据库连接配置"></p>
+<p><strong>第二步：数据库表和字段的字符集</strong></p>
+<p>仅仅在连接字符串中指定编码是不够的。数据库本身的表和字段也必须设置为UTF-8编码。具体来说：</p>
+<ul>
+<li>创建数据库时：<code>CREATE DATABASE mydb DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;</code></li>
+<li>创建表时：<code>CREATE TABLE users (...) DEFAULT CHARSET=utf8;</code></li>
+<li>如果需要修改已有表的编码：<code>ALTER TABLE users CONVERT TO CHARACTER SET utf8;</code></li>
+</ul>
+<p>更根本的解决方案是直接修改MySQL的配置文件。找到MySQL安装目录下的 <code>bin</code> 目录中的 <code>my.ini</code>（Windows系统）或 <code>/etc/my.cnf</code>（Linux系统），在 <code>[mysqld]</code> 和 <code>[client]</code> 段落下分别添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="attr">collation-server</span>=utf8_general_ci</span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
 
+<p>修改完之后，必须重启MySQL服务，并且<strong>重新创建数据库和表</strong>，新的编码设置才会生效。这一步非常重要——如果你只是在配置文件里改了编码，但没有重新建库建表，旧的表依然使用旧的编码，问题依然存在。</p>
+<p><strong>第三步：Servlet中的编码设置</strong></p>
+<p>在Java代码中处理HTTP请求和响应时，必须正确地设置字符编码。具体来说：</p>
+<p>在处理POST请求时，必须在调用 <code>getParameter()</code> 之前设置编码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">response.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">response.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<script src="/js/script.js"></script>
+<p>这里有一个很容易被忽略的细节：<code>setCharacterEncoding</code> 必须在 <code>getParameter</code> 之前调用。如果先调用了 <code>getParameter</code>，请求的参数已经被解析过了（使用默认编码），此时再设置编码就为时已晚了。</p>
+<p>更推荐的做法是写一个Filter（过滤器），在请求到达Servlet之前统一处理编码问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EncodingFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, </span></span><br><span class="line"><span class="params">                         FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">        request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        response.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        chain.doFilter(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</div>
-</body>
-</html>
+<p>使用Filter的好处是，你不需要在每个Servlet里重复写编码设置的代码，一次配置，全局生效。</p>
+<p><img src="/img/2013-Filter%E7%BC%96%E7%A0%81%E8%BF%87%E6%BB%A4.svg" alt="Filter编码过滤"></p>
+<p><strong>第四步：JSP页面的编码声明</strong></p>
+<p>每一个JSP页面的头部，都必须加上正确的编码声明：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">&quot;java&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里有两个容易混淆的属性：</p>
+<ul>
+<li><code>contentType</code> 中的 <code>charset=UTF-8</code> 告诉浏览器用什么编码来解析页面内容</li>
+<li><code>pageEncoding</code> 告诉JSP引擎用什么编码来编译这个JSP文件</li>
+</ul>
+<p>两者都必须设置为UTF-8，缺一不可。如果你用的是HTML文件而不是JSP文件，也需要在 <code>&lt;head&gt;</code> 标签中添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>第五步：Tomcat服务器的编码配置</strong></p>
+<p>最后一步，也是很多人遗漏的一步——配置Tomcat服务器的URI编码。</p>
+<p>在Tomcat的 <code>conf/server.xml</code> 文件中，找到 <code>&lt;Connector&gt;</code> 标签，添加 <code>URIEncoding=&quot;UTF-8&quot;</code> 属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span> <span class="attr">port</span>=<span class="string">&quot;8080&quot;</span> </span></span><br><span class="line"><span class="tag">           <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> </span></span><br><span class="line"><span class="tag">           <span class="attr">URIEncoding</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这一步的作用是确保通过URL传递的中文参数（GET请求）能够被正确地解码。如果不设置这个属性，Tomcat默认使用ISO-8859-1编码来解码URL参数，中文就会变成乱码。</p>
+<p><img src="/img/2013-Tomcat%E9%85%8D%E7%BD%AE.svg" alt="Tomcat配置"></p>
+<p><strong>写在最后</strong></p>
+<p>以上五个步骤，每一步都是中文乱码问题链路上的一个关键环节。只有五个步骤都做到位了，中文乱码问题才能彻底解决。漏掉任何一步，都可能在某个环节出现乱码。</p>
+<p>当然，编码问题远不止这些。在实际开发中，你可能还会遇到HTTP Header中的中文乱码、文件上传时的中文文件名乱码、JSON数据传输时的编码问题等等。但好消息是，只要你掌握了上面这套完整的编码配置方案，大部分的中文乱码问题都可以迎刃而解。</p>
+<p>编程之路就是这样，充满了各种看似琐碎却又不得不解决的细节问题。每一个踩过坑的开发者，都是从无数个”为什么显示的是乱码”的夜晚走过来的。希望这篇总结能够帮助正在被乱码困扰的你，少熬几个夜，多喝几杯咖啡以外的快乐。</p>
+<p>编码问题虽然烦人，但每解决一次，你对整个Web请求处理流程的理解就会更深一层。从这个角度来说，乱码也不是那么讨厌了，对吧？</p>
+<p><img src="/img/2013-%E6%9C%80%E7%BB%88%E6%88%90%E5%8A%9F%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87.svg" alt="最终成功显示中文"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc">Dragon_SZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.xiaoshenlong.cc/2013/11/01/44/">https://blog.xiaoshenlong.cc/2013/11/01/44/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.xiaoshenlong.cc" target="_blank">Dragon_SZ</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2013/11/09/11/" title="久违的睡眠"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">久违的睡眠</div></div><div class="info-2"><div class="info-item-1">不知你是否也曾向往过这样一个场景——在一个阴天的下午，忙碌了一上午之后，你想象着能睡一个舒服的午觉。没有任何人打扰，没有闹钟，没有催促，就这样沉沉地睡去，睡到自然醒。 当你终于醒来的时候，发现窗外的天色已经暗了，已经到了该吃晚饭的时候。那种从深度睡眠中缓缓苏醒的感觉，像是从另一个世界归来——身体被彻底放松了，大脑被彻底清空了，所有的疲惫、焦虑、不安，都在那个长长的午觉中被一点点地消化掉了。 那种感觉，真好。    为什么连睡个午觉都成了奢侈？为什么会有这样的憧憬？为什么这个看似再简单不过的愿望，对某些人来说却难以实现？ 因为我们都大了。已经过了那个可以无所顾忌地做梦的年纪。 小时候，午睡是每天的必修课。午饭后，母亲会拉上窗帘，屋子里暗下来，你在凉席上翻来翻去，总想着快点睡着好起来玩。那时候的午睡是一种”任务”，你甚至有些不情愿。但现在回想起来，那种被安排好的、不需要操心的日子，是多么珍贵。 我们没有时间去这样享受了。我们必须为了就业而奋斗，为了生存而牺牲掉那些看似”无用”的安逸。大四的我们，站在了人生的一个十字路口——向左走，是考研的独木桥；向右走，是求职的茫茫人海。无论选择哪一...</div></div></div></a><a class="pagination-related" href="/2013/10/23/41/" title="那时花开"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">那时花开</div></div><div class="info-2"><div class="info-item-1"> 那时花开那时的花是那样绚丽多彩，那时的你是多么单纯而懵懂。 想想这都是十五年前的事情了。时间这个东西，最可怕的地方不在于它流逝的速度，而在于你回首望去时，才发现原来已经走了这么远。我的印象中，有很多回忆像散落的珍珠，被岁月的丝线串在一起，而你，就是其中最闪亮的那一颗。你时常会出现在我的脑海中，不经意间，就让我露出了微笑。  昨天晚上，我做了一个梦。梦里我回到了小学，回到了那个我度过了最懵懂五年的地方。梦里的场景无比清晰——破旧的校舍、斑驳的墙壁、操场上那棵老槐树，还有那些已经记不清名字的同学们。 而最让我记忆犹新的，是那次任老师罚我们背诵数学题的事情。 是数学题，不是课文，不是古诗，是数学题。现在想想都觉得不可思议——数学怎么能背诵呢？但那时候的任老师就是这么规定的，我们也只能乖乖听话。 我记得那时是很早就放学了，别的同学都蹦蹦跳跳地回家了，但我们几个被留了下来。地点是学校南边的墙根，一排矮矮的土墙，墙外面是一片望不到边的玉米地。秋天的傍晚，风已经开始有了凉意，我们几个站在那里，嘴里念念有词地背着那些根本不需要背的数学题。  那时的我，傻不拉唧地背了一遍又一遍，但怎么也背不过。...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dragon_SZ</div><div class="author-info-description">Dragon的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="https://github.com/shenzhenlong1203"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/11/11/66/" title="2020 该有个总结">2020 该有个总结</a><time datetime="2020-11-11T07:19:10.000Z" title="发表于 2020-11-11 15:19:10">2020-11-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/01/01/65/" title="2019 该有个总结">2019 该有个总结</a><time datetime="2020-01-01T02:02:24.000Z" title="发表于 2020-01-01 10:02:24">2020-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2019/01/01/64/" title="2018 该有个总结">2018 该有个总结</a><time datetime="2019-01-01T14:02:24.000Z" title="发表于 2019-01-01 22:02:24">2019-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2018/01/06/61/" title="2017 该有个总结">2017 该有个总结</a><time datetime="2018-01-06T10:02:24.000Z" title="发表于 2018-01-06 18:02:24">2018-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2017/11/22/59/" title="微信开发之初体验">微信开发之初体验</a><time datetime="2017-11-22T09:12:40.000Z" title="发表于 2017-11-22 17:12:40">2017-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Dragon_SZ</span><span class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
